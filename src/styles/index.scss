@@ -1,0 +1,24 @@
+@import 'reset-css';
+@import 'layouts/chat';
+@import 'antd/dist/antd.css';
+
+body {
+    background-color: #f4f7fd;
+    // height: 100%;
+    // overflow: hidden;
+}
+
+body,
+html,
+#root,
+.wrapper {
+    color: #202020;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+     'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+     font-size: 14px;
+}
+
+* {
+    outline: none;
+}
