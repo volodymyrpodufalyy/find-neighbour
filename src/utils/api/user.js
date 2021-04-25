@@ -1,5 +1,6 @@
 import { axios } from "core";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   signIn: postData => axios.post("/user/signin", postData),
   signUp: postData => axios.post("/user/signup", postData),

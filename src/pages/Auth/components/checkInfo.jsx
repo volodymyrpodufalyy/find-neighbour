@@ -67,7 +67,7 @@ const CheckEmailInfo = ({ location, history }) => {
               info.status === 'success' &&
               verified && (
                 <Button type="primary" onClick={() => history.push('/signin')}>
-                  Войти
+                  Ввійти
                 </Button>
               )
             }

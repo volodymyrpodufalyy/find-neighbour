@@ -4,7 +4,8 @@
     width: 1140px;
     height: 100%;
     margin: 0 auto;
-    box-shadow: 0px 0px 25px rgba(0,0,0,0.04204);
+    box-shadow: 12px 12px 12px  rgba(25, 25, 29, 0.2);
+    border-radius: 8px;
     &__sidebar {
         border-right: 1px solid #f7f7f7;
         width: 320px;
@@ -39,7 +40,7 @@
                 &:active,
                 &:hover {
                     transform: translate3d(-10px, -10px, 0);
-                    background-color: #f3f7ff;
+                    background-color: #cbd8f3;
                     transition: transform .2s linear;
                 }
                }

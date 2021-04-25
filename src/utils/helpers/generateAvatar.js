@@ -10,6 +10,7 @@ const getCorrectIndex = number => {
   return number > 255 ? 255 : number < 0 ? 0 : number;
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default hash => {
   const [r, g, b] = hash
     .substr(0, 3)

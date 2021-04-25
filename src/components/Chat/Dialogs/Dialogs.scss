@@ -1,0 +1,97 @@
+@import '~styles/variables';
+.dialogs { 
+   &__search{
+      border-right: 1px solid #f7f7f7;
+      padding: 2px 20px 20px 20px;
+   }
+   &__item {
+      $item: &;
+      width: 319px;
+      display: flex;
+      margin-bottom: 20px;
+      color: $black;
+      &--selected, &--selected:hover {
+         background-color: #cbd8f3;
+
+      }
+      &-avatar {
+         position: relative;
+         flex: 0 0 40px;
+         width: 40px;
+         height: 40px;
+         margin-right: 10px;
+         img {
+           width: 100%;
+           height: 100%;
+           border-radius: 50%;
+         }
+      }
+      
+      &--online {
+         #{$item}-avatar {
+            &::before {
+               position: absolute;
+               display: block;
+               bottom: -2px;
+               right: 0;
+               content: '';
+               background-color:$green;
+               border-radius: 30px;
+               width: 12px;
+               height: 12px;
+               border: 3px solid #fff;
+            }
+         }
+      }
+      &-info {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         flex: 1;
+         &-top {
+            display: flex;
+            b {
+                font-weight: 500;
+                font-size: 14px;
+                flex: 1;
+                margin-bottom: 6px;
+            }
+            span {
+               opacity: 0.7;
+            }
+         }
+         &-bottom {
+            position: relative;
+            p {
+               opacity: 0.7;
+               text-overflow: ellipsis;
+               overflow: hidden; 
+               width: 220px; 
+               height: 1.2em; 
+               white-space: nowrap;
+            }
+            &-count {
+               position: absolute;
+               right: 0;
+               bottom: 0;
+               background: #f46b6b;
+               color: #fff;
+               font-weight: bold;
+               width: 100%;
+               max-width: 22px;
+               height: 18px;
+               border-radius: 30px;
+               font-size: 11px;
+               text-align: center;
+               line-height: 17px;
+               box-shadow: 0 0 0px 3px #fff;
+            }
+         }
+         .message__icon-readed {
+            bottom: 4px;
+            left: 210px;
+            right: 0;
+         }
+      }
+   }
+}

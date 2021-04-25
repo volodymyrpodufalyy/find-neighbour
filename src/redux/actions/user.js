@@ -29,8 +29,8 @@ const Actions = {
       .then(({ data }) => {
         const { token } = data;
         openNotification({
-          title: "Отлично!",
-          text: "Авторизация успешна.",
+          title: "Чудово!",
+          text: "Авторизація успішна.",
           type: "success"
         });
         window.axios.defaults.headers.common["token"] = token;
@@ -42,8 +42,8 @@ const Actions = {
       .catch(({ response }) => {
         if (response.status === 403) {
           openNotification({
-            title: "Ошибка при авторизации",
-            text: "Неверный логин или пароль",
+            title: "Помилка авторизації",
+            text: "Невірний логін або пароль",
             type: "error"
           });
         }

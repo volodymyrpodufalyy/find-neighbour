@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'antd';
-import { UserOutlined, LockOutlined, ExclamationCircleTwoTone, MailTwoTone } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, ExclamationCircleTwoTone, MailOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Block, FormField } from 'components';
 
@@ -22,7 +22,7 @@ const RegisterForm  = props =>  {
     <div>
     <div className="auth__top">
       <h2>Реєстрація</h2>
-      <p>Для входу в чат зареєструйтесь</p>
+      <p>Для входу зареєструйтесь</p>
     </div>
     <Block>
       {!success ? (
@@ -31,7 +31,7 @@ const RegisterForm  = props =>  {
       >
 
       <FormField name="email" handleChange={handleChange} handleBlur={handleBlur} placeholder="E-Mail"
-       touched={touched} errors={errors} values={values} icon={<MailTwoTone className="site-form-item-icon" />} />    
+       touched={touched} errors={errors} values={values} icon={<MailOutlined  className="site-form-item-icon" />} />    
        
       <FormField name="fullname" handleChange={handleChange} handleBlur={handleBlur} placeholder="Your name"
         touched={touched} errors={errors} values={values} icon={<UserOutlined className="site-form-item-icon" />} />
@@ -45,9 +45,11 @@ const RegisterForm  = props =>  {
               Зареєструватись
             </Button>
           </Form.Item>
-          <Link className="auth__register-link" to="/signin">
-          Увійти в акаунт
-          </Link>
+          <Button className="auth__register-link">
+            <Link to="/signin">
+            Увійти в акаунт
+            </Link>
+          </Button>
         </Form>
       ) : (
         <div className="auth__success-block">

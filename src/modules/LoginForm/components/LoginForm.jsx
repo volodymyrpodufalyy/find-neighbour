@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { MailTwoTone, LockOutlined } from '@ant-design/icons';
+import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Block } from 'components';
 import { validateField } from 'utils/helpers';
@@ -37,14 +37,14 @@ const LoginForm = props => {
       onSubmit={handleSubmit}
       onFinish={onFinish}
     >
-     <Form.Item
+     <Form.Item 
             validateStatus={validateField("email", touched, errors)}
             help={!touched.email ? "" : errors.email}
             hasFeedback
           >
             <Input
               id="email"
-              prefix={<MailTwoTone className="site-form-item-icon" />}
+              prefix={<MailOutlined className="site-form-item-icon" />}
               size="large"
               placeholder="E-Mail"
               value={values.email}
@@ -85,7 +85,11 @@ const LoginForm = props => {
         onClick={handleSubmit} size="large" type="primary" htmlType="submit" className="login-form-button">
           Увійти в акаунт
         </Button>
-        <Link className="auth__register-link" to="/signup">Зареєструватись</Link>
+          <Button className="auth__register-link">
+              <Link to="/signup">
+                Зареєструватись
+              </Link>
+          </Button>
       </Form.Item>
     </Form>
     </Block>

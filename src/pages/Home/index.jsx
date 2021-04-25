@@ -1,39 +1,17 @@
-import React, { useEffect } from 'react';
-import { withRouter } from 'react-router';
+import React from 'react';
+import { Chat } from "pages"
 import './Home.scss';
-import { Messages, ChatInput, Status } from 'containers';
-import {  SideBar } from 'containers';
-import { dialogsActions } from 'redux/actions';
-import { connect } from "react-redux";
 
-const Home = props => {
-    const { setCurrentDialogId } = props;
 
-    useEffect(() => {
-        const { location: { pathname } } = props;
-        const dialogId = pathname.split('/').pop();
-        setCurrentDialogId(dialogId);
-    }, [props.location.pathname]);
-    
+// TODO: ДОБАВИТИ HEADER ДЛЯ НАВІГАЦІЇ, ВКЛАСТИ СТОРІНКУ ДОДАТКОВОЇ ІНФИ, ПРОФІЛЮ І ГОЛОВНУ, 
+// ЗРОБИТИ SETTINGS, SEARCH PAGE
+
+const Home = () => {
     return (
     <section className="home">
-        <div className="chat">
-            <SideBar/>
-            <div className="chat__dialog">    
-                    <Status online />
-                <div className="chat__dialog-messages">
-                   <Messages />                   
-                </div>
-                    <div className="chat__dialog-input">
-                        <ChatInput />
-                    </div>
-            </div>
-        </div>
+         <Chat />
      </section>
     );
 };
 
-export default withRouter(connect(
-    ({ dialogs }) => dialogs,
-    dialogsActions
-  )(Home));
+export default Home;

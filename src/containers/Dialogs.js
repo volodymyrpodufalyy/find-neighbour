@@ -10,7 +10,8 @@ const Dialogs = ({
   fetchDialogs,
   currentDialogId,
   items,
-  userId
+  userId,
+  user
 }) => {
   const [inputValue, setValue] = useState("");
   const [filtred, setFiltredItems] = useState(Array.from(items));
@@ -54,6 +55,7 @@ const Dialogs = ({
 
   return (
     <BaseDialogs
+      user={user}
       userId={userId}
       items={filtred}
       onSearch={onChangeInput}
