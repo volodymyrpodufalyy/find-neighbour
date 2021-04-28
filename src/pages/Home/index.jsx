@@ -3,13 +3,13 @@ import { Chat } from "pages"
 import './Home.scss';
 
 
-// TODO: ДОБАВИТИ HEADER ДЛЯ НАВІГАЦІЇ, ВКЛАСТИ СТОРІНКУ ДОДАТКОВОЇ ІНФИ, ПРОФІЛЮ І ГОЛОВНУ, 
+// TODO: ДОБАВИТИ HEADER ДЛЯ НАВІГАЦІЇ, ВКЛАСТИ СТОРІНКУ ДОДАТКОВОЇ ІНФИ, ПРОФІЛЮ І ГОЛОВНУ,
 // ЗРОБИТИ SETTINGS, SEARCH PAGE
 
 const Home = () => {
     return (
     <section className="home">
-         <Chat />
+      home
      </section>
     );
 };

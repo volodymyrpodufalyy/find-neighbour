@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink, useHistory } from 'react-router-dom';
 import s from "./Header.module.css";
 import { connect } from "react-redux";
-import store from 'redux/store';  
+import store from 'redux/store';
 import { userActions } from "redux/actions";
 
 const Header = ({ isAuth }) => {
@@ -11,7 +11,7 @@ const Header = ({ isAuth }) => {
 
     const handleLogOut = event =>{
         event.preventDefault();
-        store.dispatch(userActions.fetchUserLogOut()); 
+        store.dispatch(userActions.fetchUserLogOut());
         history.push('/');
     }
 
@@ -21,6 +21,8 @@ const Header = ({ isAuth }) => {
                 <div className={s.app_header}>
                     <tr className={s.table}>
                         <th><NavLink  to={"/chat"} className={s.newMenu}>Чат</NavLink></th>
+                        <th><NavLink  to={"/profile"} className={s.newMenu}>Profile</NavLink></th>
+
                         <th><NavLink  to={"/"} onClick={handleLogOut} className={s.newMenu}>Вийти</NavLink></th>
                     </tr>
                 </div>
