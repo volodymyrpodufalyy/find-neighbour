@@ -40,7 +40,7 @@ const Actions = {
         return data;
       })
       .catch(({ response }) => {
-        if (response.status === 403) {
+        if (response.status === 403||404) {
           openNotification({
             title: "Помилка авторизації",
             text: "Невірний логін або пароль",
@@ -48,6 +48,10 @@ const Actions = {
           });
         }
       });
+  },
+  fetchUserLogOut: () => dispatch => {
+    dispatch(Actions.setIsAuth(false));
+    delete window.localStorage.token;
   },
   fetchUserRegister: postData => dispatch => {
     return userApi.signUp(postData).then(({ data }) => {

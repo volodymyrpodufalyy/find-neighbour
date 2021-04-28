@@ -12,3 +12,4 @@ export { default as Messages } from './Chat/Messages';
 export { default as FormField } from './Chat/FormField';
 export { default as SideBar } from './Chat/SideBar';
 export { default as UploadFiles } from './Chat/UploadFiles';
+export { default as Header } from './Header/Header';

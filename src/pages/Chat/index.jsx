@@ -11,20 +11,21 @@ const Chat = props => {
 
     useEffect(() => {
         const { location: { pathname } } = props;
-        const dialogId = pathname.split('/').pop();
+        const parts = pathname.split('/');
+        const dialogId = parts[3];
         setCurrentDialogId(dialogId);
     }, [props, props.location.pathname, setCurrentDialogId]);
     
     return (
         <div className="chat">
             <SideBar/>
-            {user && <div className="chat__dialog">    
+            {user && ( <div className="chat__dialog">    
                     <Status online />
                    <Messages />                   
                     <div className="chat__dialog-input">
                         <ChatInput />
                     </div>
-            </div>}
+            </div>)}
         </div>
     );
 };
