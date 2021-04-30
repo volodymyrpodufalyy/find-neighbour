@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Profile from "../pages/MyProfile/MyProfile";
-import userProfile, {getUserProfileThunkCreator} from "../redux/reducers/Profile";
+import userProfile, {getUserProfileThunkCreator} from "../redux/reducers/profileReducer";
 
 
 
@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component{
 
         let userId = this.props.match.params.userId
 
-        if (!userId){userId = 2}
+        if (!userId){userId = 0}
 
         this.props.getUserProfileThunkCreator(userId)
     }
@@ -25,20 +25,10 @@ class ProfileContainer extends React.Component{
 
 
 }
-debugger
+
 let mapSetToProps = (state) =>({
 
-    profile: {
-        "name": "Vovanddos",
-        "id": 16811,
-        "uniqueUrlName": null,
-        "photos": {
-            "small": null,
-            "large": null
-        },
-        "status": null,
-        "followed": false
-    }
+    profile: state.profileReducer.profile
 
 })
 

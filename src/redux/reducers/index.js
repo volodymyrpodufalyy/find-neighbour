@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-const reducers = ["messages", "dialogs", "user", "attachments", "Profile"];
+const reducers = ["messages", "dialogs", "user", "attachments", "profileReducer"];
 
 export default combineReducers(
   reducers.reduce((initial, name) => {

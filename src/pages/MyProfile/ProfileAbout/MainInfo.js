@@ -40,14 +40,14 @@ const Info = (props) => {
 
         <div>
             <div className="div1">
-                <div className='user_img'><p><a href={props.profile.photos.large}><img src={props.profile.photos.large}/></a></p></div>
-                <div className='user_name'><p>{props.profile.fullName}</p></div>
+                <div className='user_img'><p><a href={props.profile.id}><img src={props.profile.id}/></a></p></div>
+                <div className='user_name'><p>{props.profile.id}</p></div>
                 <div><NavLink to={"/Settings"} className='settings' >Settings</NavLink></div>
-                <div className="mail"><p>{props.profile.instagram}</p></div>
-                <div className='kind_of_activity'><p>Kind of activity: {props.profile.userId}</p></div>
+                <div className="mail"><p>{props.profile.id}</p></div>
+                <div className='kind_of_activity'><p>Kind of activity: {props.profile.id}</p></div>
                 <div >
                     <div><p className='About_p'>About:</p></div>
-                    <textarea className='textarea' ref={info} readOnly maxLength={300}>{props.profile.userId}</textarea>
+                    <textarea className='textarea' ref={info} readOnly maxLength={300}>{props.profile.id}</textarea>
                 </div>
             </div>
 

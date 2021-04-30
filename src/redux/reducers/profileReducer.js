@@ -95,13 +95,13 @@ const userProfile = (state = initialState, action) => {
     }
 
 }
-export default userProfile
 
 
 export const setUserProfile = (profile) => {
     return {type: SET_USER_PROFILE, profile};
 }
 
+export default userProfile
 
 
 export const getUserProfileThunkCreator = (userId) =>{
