@@ -1,6 +1,7 @@
 import React from 'react';
 import { Chat } from "pages"
 import './Home.scss';
+import MainPage from "./Main/MainPage";
 
 
 // TODO: ДОБАВИТИ HEADER ДЛЯ НАВІГАЦІЇ, ВКЛАСТИ СТОРІНКУ ДОДАТКОВОЇ ІНФИ, ПРОФІЛЮ І ГОЛОВНУ,
@@ -9,7 +10,7 @@ import './Home.scss';
 const Home = () => {
     return (
     <section className="home">
-      home
+      <MainPage/>
      </section>
     );
 };
