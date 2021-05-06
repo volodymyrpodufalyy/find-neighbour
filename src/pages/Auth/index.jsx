@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import { LoginForm, RegisterForm } from "modules";
+import { LoginForm, RegisterForm, AddInfoForm } from "modules";
 import checkInfo from "./components/checkInfo";
 
 import "./Auth.scss";
@@ -11,6 +11,7 @@ const Auth = () => (
     <div className="auth__content">
       <Route exact path="/signin" component={LoginForm} />
       <Route exact path="/signup" component={RegisterForm} />
+      <Route exact path="/addinfo" component={AddInfoForm} />
       <Route exact path="/signup/verify" component={checkInfo} />
     </div>
   </section>

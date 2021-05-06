@@ -1,0 +1,27 @@
+.header {
+    height: 50px;
+    width: 100%;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 3px 3px 3px  rgba(25, 25, 29, 0.2);
+}
+
+.menu{
+    display: flex;
+    float: right;
+    background: none;
+    border: none;
+    height: 50px;
+    text-decoration: none;
+}
+
+
+.link {
+    font-weight: 500;
+    font-size: 19px;
+    text-decoration: none;
+}
+
+

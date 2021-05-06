@@ -35,7 +35,8 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
 
   app.post("/files", multer.single('file'), UploadController.create);
 
-  app.post("/addInfo", AddInfoController.create);
+  app.post("/user/addinfo", AddInfoController.create);
+  app.get("/addinfo", AddInfoController.index);
 
 };
 

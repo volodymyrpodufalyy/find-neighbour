@@ -1,12 +1,18 @@
 .auth {
     background-color: #fff;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 20px;
     height: 100%;
-
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    &__content {
+        height: 95%;
+        margin-bottom: 5%;
+    }
     &__top {
-        margin-bottom: 50px;
+        margin-bottom: 30px;
         text-align: center;
 
         h2 {
@@ -26,10 +32,11 @@
         text-align: center;
         color: #685e5e;
         font-size: 16px;
-        margin-top: 20px;
+        margin-bottom: 20px;
         letter-spacing: 0.1px;
         width: 100%;
         border-radius: 15px;
+        font-weight: 500;
     }
     .login-form-forgot {
         color: #ADADAD;
@@ -41,17 +48,27 @@
         text-transform: uppercase;
         font-weight: 500;
         letter-spacing: 0.1px;
+        top: 0;
+        margin-bottom: 10px;
         font-size:14px;
         width: 100%;
         background-color: #EA2626;
         border: none;
         border-radius: 15px;
     }
-
     .block {
+        display: flex;
+        justify-content: center;
         border: 1px solid #c9c3c3;
-        width: 430px;
+        width: 370px;  
+        padding-bottom: 0;
         border-radius: 12px;
         box-shadow: 5px 5px 5px  rgba(25, 25, 29, 0.2);
     }
+    .ant-form-item-explain{
+        display: none;
+    }
 }
+
+
+

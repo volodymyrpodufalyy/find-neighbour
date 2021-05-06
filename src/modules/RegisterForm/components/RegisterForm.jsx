@@ -44,12 +44,13 @@ const RegisterForm  = props =>  {
             <Button onClick={handleSubmit} size="large" type="primary" htmlType="submit" className="login-form-button">
               Зареєструватись
             </Button>
-          </Form.Item>
+          
           <Button className="auth__register-link">
             <Link to="/signin">
             Увійти в акаунт
             </Link>
           </Button>
+          </Form.Item>
         </Form>
       ) : (
         <div className="auth__success-block">

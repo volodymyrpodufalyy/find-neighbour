@@ -11,8 +11,7 @@ export default withFormik({
   mapPropsToValues: () => ({
     email: '',
     fullname: '',
-    password: '',
-    password_2: ''
+    password: ''
   }),
   validate: values => {
     let errors = {};
@@ -23,7 +22,7 @@ export default withFormik({
     store
       .dispatch(userActions.fetchUserRegister(values))
       .then(() => {
-        props.history.push('/signup/verify');
+        props.history.push('/addinfo');
         setSubmitting(false);
       })
       .catch(err => {

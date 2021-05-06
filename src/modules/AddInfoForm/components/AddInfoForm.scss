@@ -1,0 +1,44 @@
+body {
+    height: fit-content;
+}
+
+.dropdown-menu {
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.dropdown{
+    width: 120px;
+}
+
+.birthdate {
+
+    margin-bottom: 15px;
+    p {
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        font-weight: 500;
+    }
+}
+
+.checkbox{
+    p {
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        font-weight: 500;
+    }
+    &-item {
+        margin-top: 10px;
+        font-size: 14px;
+        letter-spacing: 0.1px;
+        font-weight: 500;
+        &--male {
+            margin-right: 130px;
+            margin-left: 12px;
+        }
+    }
+}
+
+.addinfo-block {
+    width: 500px !important;   
+}

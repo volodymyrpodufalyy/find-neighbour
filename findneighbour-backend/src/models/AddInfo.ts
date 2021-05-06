@@ -1,7 +1,9 @@
+import { IUser } from './User';
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IAddInfo extends Document {
   age: number;
+  adress: string;
   sex: boolean;
   pets: boolean;
   badHabits: boolean;
@@ -10,12 +12,13 @@ export interface IAddInfo extends Document {
   maritalStatus: boolean;
   phoneNumber: string;
   moreAboutUser: string;
-  user: string;
+  user: IUser | string;
 }
 
 const AddInfoSchema = new Schema(
   {
     age: Number,
+    adress: String,
     sex: Boolean,
     pets: Boolean,
     badHabits: Boolean,

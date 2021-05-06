@@ -17,9 +17,7 @@ const LoginForm = props => {
     isValid,
     status
   } = props;
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-      };
+
     return (
         
         <div>
@@ -35,7 +33,6 @@ const LoginForm = props => {
         remember: true,
       }}
       onSubmit={handleSubmit}
-      onFinish={onFinish}
     >
      <Form.Item 
             validateStatus={validateField("email", touched, errors)}
@@ -68,15 +65,9 @@ const LoginForm = props => {
               onBlur={handleBlur}
             />
           </Form.Item>
-      <Form.Item>
         <Form.Item name="remember" valuePropName="checked" noStyle>
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-
-        <a className="login-form-forgot" href="/#">
-          Forgot password?
-        </a>
-      </Form.Item>
 
       <Form.Item>
         {isSubmitting && !isValid && <span>Помилка</span>}
@@ -93,9 +84,8 @@ const LoginForm = props => {
       </Form.Item>
     </Form>
     </Block>
-     
-        </div>
-    );
+  </div>
+  );
 };
 
 export default LoginForm;

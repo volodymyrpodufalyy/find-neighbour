@@ -89,7 +89,11 @@ class UserController {
       user
         .save()
         .then((obj: IUser) => {
-          res.json(obj);
+          const token = createJWToken(obj);
+          res.json({
+            obj, 
+            token
+          });
           transporter.sendMail(
             {
               to: postData.email,

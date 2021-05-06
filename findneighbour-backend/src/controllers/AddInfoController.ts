@@ -9,6 +9,7 @@ class AddInfoController {
 
     const postData = {
       age: req.body.age,
+      adress: req.body.adress,
       sex: req.body.sex,
       pets: req.body.pets,
       badHabits: req.body.badHabits,
@@ -36,6 +37,22 @@ class AddInfoController {
         message: err
       });
     });
+  };
+
+
+  index = (req: any, res: express.Response) => {
+    const userId = req.user._id;
+
+    AddInfoModel.find({ user: userId })
+      .populate(["user"])
+      .exec(function(err, addinfo) {
+        if (err) {
+          return res.status(404).json({
+            message: "addinfo not found"
+          });
+        }
+        return res.json(addinfo);
+      });
   };
   
 }

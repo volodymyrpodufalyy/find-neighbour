@@ -22,6 +22,51 @@ export default ({ isAuth, values, errors }) => {
       if (!isAuth && !value) {
         errors.fullname = "Вкажіть своє ім'я та прізвище";
       }
+    },
+    age: value => {
+      if (isAuth && !value) {
+        errors.age = "Вкажіть свій вік";
+      }
+    },
+    adress: value => {
+      if (isAuth && !value) {
+        errors.adress = "Вкажіть своє місто";
+      }
+    },
+    sex: value => {
+      if (isAuth && value === "00") {
+        errors.sex = "Вкажіть свою стать";
+      }
+    },
+    pets: value => {
+      if (isAuth && value === "00") {
+        errors.pets = "Заповніть це поле";
+      }
+    },
+    badHabits: value => {
+      if (isAuth && value === "00") {
+        errors.badHabits = "Заповніть це поле";
+      }
+    },
+    kindOfActivity: value => {
+      if (isAuth && value === "00") {
+        errors.kindOfActivity = "Заповніть це поле";
+      }
+    },
+    haveJobOrJobless: value => {
+      if (isAuth && value === "00") {
+        errors.haveJobOrJobless = "Заповніть це поле";
+      }
+    },
+    maritalStatus: value => {
+      if (isAuth && value === "00") {
+        errors.maritalStatus = "Заповніть це поле";
+      }
+    },
+    phoneNumber: value => {
+      if (isAuth && !value) {
+        errors.phoneNumber = "Вкажіть свій номер телефону";
+      }
     }
   };
 
