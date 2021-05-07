@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, useHistory } from 'react-router-dom';
 import { connect } from "react-redux";
-import store from 'redux/store';  
+import store from 'redux/store';
 import { userActions } from "redux/actions";
 import { Menu } from 'antd';
 import s from "./Header.Module.scss";
@@ -12,7 +12,7 @@ const Header = ({ isAuth }) => {
 
     const handleLogOut = event =>{
         event.preventDefault();
-        store.dispatch(userActions.fetchUserLogOut()); 
+        store.dispatch(userActions.fetchUserLogOut());
         history.push('/');
     }
 
@@ -25,6 +25,9 @@ const Header = ({ isAuth }) => {
                         </Menu.Item>
                         <Menu.Item key="/logout">
                             <Link to={"/"} onClick={handleLogOut} className={s.link}>Вийти</Link>
+                        </Menu.Item>
+                        <Menu.Item key="/profile">
+                            <Link to={"/profile"}  className={s.link}>Profile</Link>
                         </Menu.Item>
                     </Menu>
                 </div>

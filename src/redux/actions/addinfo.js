@@ -13,7 +13,7 @@ const Actions = {
         dispatch(Actions.setAddInfo(data));
       })
       .catch(err => {
-        if (err.response.status === 403) {
+        if (err.response.status === 403 || 404) {
             openNotification({
                 title: "Помилка авторизації",
                 text: "Невірні дані",
@@ -30,7 +30,7 @@ const Actions = {
             text: "Авторизація успішна.",
             type: "success"
           });
-      dispatch(Actions.fetchUserAddInfo());     
+      dispatch(Actions.fetchUserAddInfo());
       return data;
     })
     .catch(({ response }) => {

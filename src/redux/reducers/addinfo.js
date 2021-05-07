@@ -1,7 +1,7 @@
 const initialState = {
-    data: null,
+    data: null
 };
-  
+
   // eslint-disable-next-line import/no-anonymous-default-export
   export default (state = initialState, { type, payload }) => {
     switch (type) {

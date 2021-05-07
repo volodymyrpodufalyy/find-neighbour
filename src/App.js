@@ -5,6 +5,7 @@ import { Auth, Home, Chat } from "pages";
 import { Header } from "components";
 import { Layout } from "antd";
 import ProfileContainer from "./containers/ProfileContainer";
+import AddInfoForm from "./modules/AddInfoForm/components/AddInfoForm";
 
 const { Content } = Layout;
 
@@ -17,8 +18,9 @@ const App = props => {
           <Switch>
             <Route exact path={["/signin", "/signup", "/signup/verify", "/addinfo"]} component={Auth} />
             <Route path="/chat" render={() => (isAuth ? <Chat /> : <Redirect to="/signin" />)} />
-            <Route path="/" render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)} />
+            <Route path="/home" render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)} />
             <Route path="/profile" render={() => (isAuth ? <ProfileContainer /> : <Redirect to="/signin" />)} />
+            <Route path="/addInfo" render={() => (isAuth ? <AddInfoForm /> : <Redirect to="/signin" />)} />
           </Switch>
         </Content>
     </Layout>

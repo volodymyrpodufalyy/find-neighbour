@@ -21,7 +21,7 @@ const Profile = (props) => {
     //             return (<Posts username={people.username} about={people.abouts} img={people.img}/>)
     //     }
     // })
-    debugger
+
 
     return (
 
