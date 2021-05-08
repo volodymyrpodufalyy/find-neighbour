@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import s from "./Profile.module.css"
 import MainInfo from "./ProfileAbout/MainInfo";
 

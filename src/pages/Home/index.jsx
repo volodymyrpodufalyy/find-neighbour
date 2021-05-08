@@ -2,7 +2,7 @@ import React from 'react';
 import './Home.scss';
 
 
-// TODO: ДОБАВИТИ HEADER ДЛЯ НАВІГАЦІЇ, ВКЛАСТИ СТОРІНКУ ДОДАТКОВОЇ ІНФИ, ПРОФІЛЮ І ГОЛОВНУ,
+// TODO: ДОБАВИТИ HEADER ДЛЯ НАВІГАЦІЇ, ПРОФІЛЮ І ГОЛОВНУ,
 // ЗРОБИТИ SETTINGS, SEARCH PAGE
 
 const Home = () => {
