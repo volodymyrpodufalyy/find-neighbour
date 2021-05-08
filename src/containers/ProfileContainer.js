@@ -1,31 +1,23 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect } from 'react';
 import {connect} from 'react-redux';
 
 import MyProfile from "../pages/MyProfile/MyProfile";
-import {addinfoActions} from "../redux/actions";
+import {addinfoActions} from "redux/actions";
 
-const ProfileContainer = ({fetchUserAddInfo, addinfo}) => {
+const ProfileContainer = ({fetchUserAddInfo, profile}) => {
 
     useEffect(() => {
-        if (addinfo == null ) {
-            fetchUserAddInfo()
-            console.log("success")
-        } else {
-            console.log("sss")
-            fetchUserAddInfo()
-
-        }
-    },[] );
-
+        fetchUserAddInfo();
+    }, [])
 
     return (
-        <MyProfile profile={addinfo[0]}/>
+        <MyProfile profile={profile}/>
     );
 };
 
 export default connect(
-    ({addinfo}) => ({
-        addinfo: addinfo.data
+    ({ addinfo }) => ({
+        profile: addinfo
     }),
-    addinfoActions,
+    addinfoActions
 )(ProfileContainer);
