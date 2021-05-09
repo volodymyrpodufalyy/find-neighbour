@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 
 import MyProfile from "../pages/MyProfile/MyProfile";
@@ -10,7 +10,6 @@ const ProfileContainer = ({fetchUserAddInfo, profile}) => {
         fetchUserAddInfo();
     }, [])
 
-    profile = profile.data[0];
 
     return (
         <MyProfile profile={profile}/>
@@ -19,7 +18,7 @@ const ProfileContainer = ({fetchUserAddInfo, profile}) => {
 
 export default connect(
     ({ addinfo }) => ({
-        profile: addinfo
+        profile: addinfo.data
     }),
     addinfoActions
 )(ProfileContainer);
