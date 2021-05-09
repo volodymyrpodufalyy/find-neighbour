@@ -51,6 +51,7 @@ const Dialogs = ({
     }
   }, [attachments]);
 
+
   useEffect(() => {
     if (currentDialog) {
       fetchMessages(currentDialog._id);

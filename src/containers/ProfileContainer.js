@@ -10,6 +10,8 @@ const ProfileContainer = ({fetchUserAddInfo, profile}) => {
         fetchUserAddInfo();
     }, [])
 
+    profile = profile.data[0];
+
     return (
         <MyProfile profile={profile}/>
     );

@@ -9,6 +9,7 @@ import { UploadField } from '@navjobs/upload';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import { UploadFiles } from 'components';
+import reactStringReplace from 'react-string-replace';
 
 const { TextArea } = Input;
 
@@ -53,7 +54,8 @@ const ChatInput = props => {
          placeholder="Введіть текст повідомлення…"
          value={value}
          autoSize={{ minRows: 1, maxRows: 6 }}
-          />)}
+          />
+          )}
         <div className="chat-input__actions"> 
             <UploadField onFiles={onSelectFiles}
              containerProps={{ className: 'chat-input__actions-upload-btn' }} 
