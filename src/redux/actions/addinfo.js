@@ -6,19 +6,26 @@ const Actions = {
     type: "ADDINFO:SET_DATA",
     payload: data
   }),
+    setIsLoading: bool => ({
+        type: "ADDINFO:SET_IS_LOADING",
+        payload: bool
+    }),
   fetchUserAddInfo: () => dispatch => {
+      dispatch(Actions.setIsLoading(true));
     addinfoApi
       .getInfo()
       .then(({ data }) => {
         dispatch(Actions.setAddInfo(data));
+        dispatch(Actions.setIsLoading(false));
       })
       .catch(err => {
-        if (err.response.status === 403 || 404) {
-            openNotification({
-                title: "Помилка авторизації",
-                text: "Невірні дані",
-                type: "error"
-              });
+          dispatch(Actions.setIsLoading(false));
+            if (err.response.status === 403 || 404) {
+                openNotification({
+                    title: "Помилка авторизації",
+                    text: "Невірні дані",
+                    type: "error"
+                });
         }
       });
   },

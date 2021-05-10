@@ -1,5 +1,6 @@
 const initialState = {
-    data: null
+    data: null,
+    isLoading: false
 };
 
   // eslint-disable-next-line import/no-anonymous-default-export
@@ -9,6 +10,12 @@ const initialState = {
         return {
           ...state,
           data: payload,
+        };
+
+      case "ADDINFO:SET_IS_LOADING":
+        return {
+          ...state,
+          isLoading: payload
         };
       default:
         return state;
