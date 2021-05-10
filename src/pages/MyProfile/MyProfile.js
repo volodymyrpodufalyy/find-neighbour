@@ -2,9 +2,7 @@ import React from 'react';
 import s from "./Profile.module.css"
 import MainInfo from "./ProfileAbout/MainInfo";
 
-
-const Profile = (props) => {
-
+const Profile = ({ profile }) => {
 
     //
     // let people = props.peopleData.post.map(people => {
@@ -22,13 +20,11 @@ const Profile = (props) => {
     //     }
     // })
 
-
     return (
 
         <div className={s.main}>
-
             <div className={s.info}>
-                <div><MainInfo profile={props.profile}/></div>
+                <div><MainInfo profile={profile}/></div>
             </div>
             <h1>Recommended to You</h1>
             <div className={s.posts}>
@@ -43,8 +39,8 @@ const Profile = (props) => {
                     </tr>
                 </table>
             </div>
-
         </div>
-    )
-}
+    );
+};
+
 export default Profile

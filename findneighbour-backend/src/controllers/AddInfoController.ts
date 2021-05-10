@@ -26,10 +26,7 @@ class AddInfoController {
     addInfo
     .save()
     .then((addInfoObj: any) => {
-      res.json({
-        status: "success",
-        addInfo: addInfoObj
-      });
+      res.json(addInfoObj);
     })
     .catch(err => {
       res.json({
@@ -41,11 +38,11 @@ class AddInfoController {
 
 
   index = (req: any, res: express.Response) => {
-    const userId = req.user._id;
+    const id :string = req.user._id;
 
-    AddInfoModel.find({ user: userId })
+    AddInfoModel.findOne({ user: id })
       .populate(["user"])
-      .exec(function(err, addinfo) {
+      .exec(function(err, addinfo: any) {
         if (err) {
           return res.status(404).json({
             message: "addinfo not found"

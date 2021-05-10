@@ -34,6 +34,10 @@ const AddInfoSchema = new Schema(
   }
 );
 
+AddInfoSchema.set('toJSON', {
+  virtuals: true,
+});
+
 const AddInfoModel = mongoose.model<IAddInfo>('AddInfo', AddInfoSchema);
 
 export default AddInfoModel;

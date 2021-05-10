@@ -3,9 +3,7 @@ import classNames from "classnames";
 import format from "date-fns/format";
 import isToday from "date-fns/is_today";
 import { Link } from "react-router-dom";
-import { isAudio } from 'utils/helpers';
 import { IconReaded, Avatar } from "components";
-import { message } from "antd";
 
 const getMessageTime = createdAt => {
   if (isToday(createdAt)) {
@@ -40,7 +38,7 @@ const DialogItem = ({
     userId
   }) => {
     
-        return (<Link to={`/dialog/${_id}`}>
+        return (<Link to={`/chat/dialog/${_id}`}>
         <div
           className={classNames("dialogs__item", {
             "dialogs__item--online": partner.isOnline,
@@ -48,11 +46,11 @@ const DialogItem = ({
           })}
         >
           <div className="dialogs__item-avatar">
-            <Avatar user={author.id === userId ? author : partner} />
+            <Avatar user={author.id === userId ? partner : author} />
           </div>
           <div className="dialogs__item-info">
             <div className="dialogs__item-info-top">
-              <b>{author.id === userId ? author.fullname : partner.fullname}</b>
+              <b>{author.id === userId ? partner.fullname : author.fullname}</b>
               <span>{getMessageTime(lastMessage.createdAt)}</span>
             </div>
             <div className="dialogs__item-info-bottom">

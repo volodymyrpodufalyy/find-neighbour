@@ -7,25 +7,24 @@ import { connect } from "react-redux";
 import "./Chat.scss"
 
 const Chat = props => {
-    const { setCurrentDialogId, user } = props;
+     const { setCurrentDialogId, user } = props;
 
     useEffect(() => {
         const { location: { pathname } } = props;
-        const parts = pathname.split('/');
-        const dialogId = parts[3];
-        setCurrentDialogId(dialogId);
+        const dialogId = pathname.split('/');
+        setCurrentDialogId(dialogId[3]);
     }, [props, props.location.pathname, setCurrentDialogId]);
     
     return (
         <div className="chat">
             <SideBar/>
-            {user && ( <div className="chat__dialog">    
+            {user && <div className="chat__dialog">    
                     <Status online />
                    <Messages />                   
                     <div className="chat__dialog-input">
                         <ChatInput />
                     </div>
-            </div>)}
+            </div>}
         </div>
     );
 };

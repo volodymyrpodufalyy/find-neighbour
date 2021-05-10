@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect, Switch } from "react-router-dom";
-import { Auth, Home, Chat, Search } from "pages";
+import { Auth, Home, Chat, Search,Settings } from "pages";
 import { Header } from "components";
 import { Layout } from "antd";
 import { ProfileContainer } from "containers";
@@ -20,6 +20,7 @@ const App = props => {
             <Route path="/search" render={() => (isAuth ? <Search /> : <Redirect to="/signin" />)} />
             <Route path="/profile" render={() => (isAuth ? <ProfileContainer /> : <Redirect to="/signin" />)} />
             <Route exact path="/" render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)} />
+            <Route exact path="/settings" render={() => (isAuth ? <Settings /> : <Redirect to="/signin" />)} />
           </Switch>
         </Content>
     </Layout>

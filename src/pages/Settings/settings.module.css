@@ -1,0 +1,208 @@
+
+/*_______Main div and settings______*/
+.settings_div {
+    width: 522px;
+    height: 547px;
+
+    position: absolute;
+    left: 33%;
+    top: 18%;
+    border: 0.5px solid #909090;
+    border-radius: 5px;
+
+}
+
+.savebtn {
+    position: absolute;
+    top: 80%;
+    left: 55%;
+    color: white;
+    background-color: #EA2626;
+    border-radius: 5px;
+    border: 0.5px solid #909090;
+    width: 6%;
+    height: 4%;
+}
+
+input {
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 0.5px solid #909090;
+
+}
+
+select {
+    margin-left: 10px;
+    width: 50%;
+    border-radius: 5px;
+}
+
+/*_______div image and name______*/
+.change_photo {
+    position: absolute;
+    left: 40%;
+    top: 8%;
+}
+
+.setting_user_img img {
+    height: 37px;
+    position: absolute;
+    left: 25%;
+}
+
+.setting_user_name {
+    position: relative;
+    left: 40%;
+}
+
+/*_______div email______*/
+.div_email {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    height: 5%;
+    background-color: #ffffff;
+}
+
+.label_email {
+    position: absolute;
+    left: 25%;
+    width: 100%;
+}
+
+/*_______div kind of...______*/
+.div_kind_of_activity {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    height: 5%;
+    background-color: #ffffff;
+}
+
+.setting_kind_of_activity {
+    position: absolute;
+    left: 12.2%;
+    width: 63%;
+}
+
+/*_______div phone______*/
+.div_number {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    height: 5%;
+    background-color: #ffffff;
+}
+
+.label_phone {
+    position: absolute;
+    left: 23.5%;
+    width: 100%;
+}
+
+.input_number {
+
+}
+
+
+/*_______div about______*/
+.div_about {
+    position: absolute;
+    width: 100%;
+    height: 15%;
+    top: 30%;
+}
+
+.about {
+    position: absolute;
+    height: 45%;
+    width: 40%;
+    left: 24%;
+}
+
+.text_about {
+
+    border: 1px solid #909090;
+    resize: vertical;
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    left: 26.5%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+/*_______ div gender ______*/
+.gender {
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    top: 40%;
+}
+
+.label_gender {
+    position: absolute;
+    left: 22%;
+    width: 63%;
+}
+
+/*_______ div gender ______*/
+
+.pets {
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    top: 45%;
+}
+
+.label_pets {
+    position: absolute;
+    width: 63%;
+    left: 18.5%;
+}
+
+/*_______ div habits ______*/
+
+.habits {
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    top: 50%;
+}
+
+.label_habits {
+    position: absolute;
+    width: 63%;
+    left: 10%;
+}
+
+/*_______ div working ______*/
+
+.working {
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    top: 55%;
+}
+
+.label_working {
+    position: absolute;
+    width: 63%;
+    left: 20.3%;
+}
+
+/*_______ div habits ______*/
+
+.status {
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    top: 60%;
+
+}
+
+.label_status {
+    position: absolute;
+    width: 63%;
+    left: 13.5%;
+}
