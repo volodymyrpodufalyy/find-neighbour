@@ -11,7 +11,6 @@ const initialState = {
           ...state,
           data: payload,
         };
-
       case "ADDINFO:SET_IS_LOADING":
         return {
           ...state,

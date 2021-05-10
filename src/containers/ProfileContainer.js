@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import {connect} from 'react-redux';
-
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Spin } from 'antd';
 import MyProfile from "../pages/MyProfile/MyProfile";
-import {addinfoActions} from "redux/actions";
-import {LoadingOutlined} from "@ant-design/icons";
+import { addinfoActions } from "redux/actions";
 
-const ProfileContainer = ({fetchUserAddInfo, profile,isLoad}) => {
+const ProfileContainer = ({ fetchUserAddInfo, profile, isLoading }) => {
 
     useEffect(() => {
-
         fetchUserAddInfo();
     }, [])
 
+    if (!profile) {
+        return  (
+            <div className="spin-load">
+                <Spin size="large" tip="Завантаження профілю..."/>
+            </div>
+        );
+    }
 
     return (
-        isLoad ? <LoadingOutlined /> :
         <MyProfile profile={profile}/>
     );
-
-
-
-
 };
 
 export default connect(
     ({ addinfo }) => ({
         profile: addinfo.data,
-        isLoad: addinfo.isLoading
+        isLoading: addinfo.isLoading
     }),
     addinfoActions
 )(ProfileContainer);

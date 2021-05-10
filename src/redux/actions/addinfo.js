@@ -6,17 +6,16 @@ const Actions = {
     type: "ADDINFO:SET_DATA",
     payload: data
   }),
-    setIsLoading: bool => ({
-        type: "ADDINFO:SET_IS_LOADING",
-        payload: bool
-    }),
+  setIsLoading: bool => ({
+    type: "ADDINFO:SET_IS_LOADING",
+    payload: bool
+  }),
   fetchUserAddInfo: () => dispatch => {
       dispatch(Actions.setIsLoading(true));
     addinfoApi
       .getInfo()
       .then(({ data }) => {
         dispatch(Actions.setAddInfo(data));
-        dispatch(Actions.setIsLoading(false));
       })
       .catch(err => {
           dispatch(Actions.setIsLoading(false));
