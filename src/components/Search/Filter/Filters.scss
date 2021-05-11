@@ -1,0 +1,25 @@
+.age-picker {
+    padding: 10px;
+    p {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+}
+.age__dropdowns {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    &-item {
+        flex: 1;
+        width: 70px;
+    }
+}
+
+.arrows {
+    padding: 5px;
+}
+
+// .anticon anticon-down {
+//     margin-left: 10px;
+// }

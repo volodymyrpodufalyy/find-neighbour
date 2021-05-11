@@ -13,4 +13,6 @@ export { default as FormField } from './Chat/FormField';
 export { default as SideBar } from './Chat/SideBar';
 export { default as UploadFiles } from './Chat/UploadFiles';
 export { default as Header } from './Header/Header';
+export { default as CardItem } from './Search/CardItem/CardItem';
+export { default as Filter } from './Search/Filter/Filter';
 export { default as SearchLocationInput } from './Profile/SearchLocationInput';
