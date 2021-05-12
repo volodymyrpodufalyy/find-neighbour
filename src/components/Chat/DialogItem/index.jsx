@@ -67,8 +67,5 @@ const DialogItem = ({
       </Link>
     );
   }
-  
-  
-
-  
+ 
 export default DialogItem;

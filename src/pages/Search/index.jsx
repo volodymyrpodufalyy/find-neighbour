@@ -8,12 +8,15 @@ const Search = () => {
   useEffect(() => {
     setUsersList(userdata.slaves);
   }, [])
+  const onHandleList = (value) => {
+    setUsersList(value);
+  }
 
   return (
     <section className="search__neighbour">
         <div className="search__neighbour-content">
         <div className="search__neighbour-content-sidebar">
-            <Filter/>
+            <Filter onHandleList={onHandleList}/>
           </div>
           <div className="search__neighbour-content-list">
             <ul className="users__list">

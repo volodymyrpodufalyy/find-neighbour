@@ -3,7 +3,6 @@
 @import 'layouts/search';
 @import 'antd/dist/antd.css';
 
-
 body,
 html,
 #root,
@@ -17,4 +16,37 @@ html,
 
 * {
     outline: none;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: #d4d4d4;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #939393;
+    border-radius: 8px;
+    border: 3px solid #d4d4d4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7c7c7c;
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected a {
+    color: #000;
+}
+.ant-menu-horizontal > .ant-menu-item a:hover {
+    color: #000;
+}
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected {
+    border-bottom: 2.5px solid #da1212;
+}
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active {
+    border-bottom: 2.5px solid #da1212;
 }
