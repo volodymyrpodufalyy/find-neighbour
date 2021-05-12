@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { Form, Dropdown, Menu, Button } from "antd";
+import { Form, Dropdown, Menu, Button, Checkbox } from "antd";
 import { DownOutlined, SwapOutlined } from '@ant-design/icons';
 import "./Filters.scss"
-const Filter = () => {
+import userdata from "../../../pages/Search/usersdata.json"
+
+const Filter = ({ onHandleList }) => {
     const [startAge, setStartAge] = useState(1);
     const [endAge, setEndAge] = useState(30);
 
     const ageRange = [...Array(70).keys()].slice(1, 70);
+
+    const filterByAge = () => {
+        const filteredByAge = userdata.slaves.filter(item => {
+            return item.description >= startAge && item.description <= endAge
+        });
+        onHandleList(filteredByAge);
+    };
 
     const DropdownMenu = (age) => {
         return (
@@ -22,10 +31,21 @@ const Filter = () => {
     };
     return (
         <div>
-        <Form className="filter-form" name="time_related_controls">
-            <Form.Item name="range-picker">
+        <Form className="filter-form" 
+        name="time_related_controls" 
+        initialValues={{ remember: true, }}
+        onSubmit={filterByAge}
+        >
+            <Form.Item name="range-picker" hasFeedback>
                 <div className="age-picker">
                     <p>Вік:</p>
+                        <Button onClick={filterByAge} 
+                        className="submit-age" 
+                        type="primary" 
+                        htmlType="submit"
+                        >
+                            <p>OK</p>
+                        </Button>
                     <div className="age__dropdowns">
                         <Dropdown  
                          className="age__dropdowns-item"
@@ -48,6 +68,33 @@ const Filter = () => {
                         </Dropdown>
                     </div>
                 </div>
+            </Form.Item>
+        </Form>
+        <Form >
+            <Form.Item hasFeedback>
+            <div className="check__picker">
+                <p>Стать:</p>              
+              <Checkbox className="check__picker-item">Чоловік</Checkbox>
+              <Checkbox className="check__picker-item check__picker-item--female">Жінка</Checkbox>
+              </div>
+            </Form.Item>
+        </Form>
+        <Form  >
+            <Form.Item hasFeedback>
+            <div className="check__picker">
+                <p>Погані звички:</p>              
+                    <Checkbox className="check__picker-item">Так</Checkbox>
+                    <Checkbox className="check__picker-item check__picker-item--female">Ні</Checkbox>
+              </div>
+            </Form.Item>
+        </Form>
+        <Form  >
+            <Form.Item hasFeedback>
+            <div className="check__picker">
+                <p>Домашні тваринки:</p>              
+                    <Checkbox className="check__picker-item">Так</Checkbox>
+                    <Checkbox className="check__picker-item check__picker-item--female">Ні</Checkbox>
+              </div>
             </Form.Item>
         </Form>
         </div>

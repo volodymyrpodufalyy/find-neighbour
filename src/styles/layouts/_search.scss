@@ -20,6 +20,7 @@
         border-top: 1px solid #c9c3c3 ;
         border-top-right-radius: 8px;
         background-color: #fff;
+        height: 50rem;
       }
     }
     .users__list {
@@ -39,8 +40,6 @@
           padding: 10px;
           background-color: #fff;
           b {
-            color: #354686;
-            font-weight: 500;
             position: relative;
             left: 110px;
             bottom: 101px;
@@ -65,8 +64,6 @@
               left: 110px;
               width: 50px;
               span {
-                font-weight: 500;
-                color: #354686;
                 font-size: 16px;
               }
               p {

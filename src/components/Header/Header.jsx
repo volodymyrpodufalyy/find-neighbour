@@ -19,7 +19,7 @@ const Header = ({ isAuth }) => {
     if(isAuth){
         return(
                 <div className={s.header}>
-                    <Menu className={s.menu} mode="horizontal">
+                    <Menu style={{ color: "red" }} className={s.menu} mode="horizontal">
                         <Menu.Item key="/search">
                             <Link to={"/search"}  className={s.link}>Пошук</Link>
                         </Menu.Item>
@@ -29,7 +29,7 @@ const Header = ({ isAuth }) => {
                         <Menu.Item key="/chat">
                             <Link  to={"/chat"} className={s.link}>Чат</Link>
                         </Menu.Item>
-                        <Menu.Item key="/logout">
+                        <Menu.Item  key="/logout">
                             <Link to={"/"} onClick={handleLogOut} className={s.link}>Вийти</Link>
                         </Menu.Item>
                     </Menu>
