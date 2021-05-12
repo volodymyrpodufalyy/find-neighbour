@@ -3,6 +3,8 @@ import { CardItem, Filter } from "components";
 import userdata from "./usersdata.json";
 import "./Search.scss";
 
+//TODO: Добавити сортування по статі,поганим звичкам і тваринам
+
 const Search = () => {
   const [usersList, setUsersList] = useState([]);
   useEffect(() => {
