@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { CardItem, Filter } from "components";
+import { Empty } from "antd";
+import { CardItem } from "components";
+import { Filters } from "containers";
 import userdata from "./usersdata.json";
 import "./Search.scss";
 
@@ -18,16 +20,20 @@ const Search = () => {
     <section className="search__neighbour">
         <div className="search__neighbour-content">
         <div className="search__neighbour-content-sidebar">
-            <Filter onHandleList={onHandleList}/>
+            <Filters onHandleList={onHandleList}/>
           </div>
           <div className="search__neighbour-content-list">
-            <ul className="users__list">
+           {usersList.length ? (<ul className="users__list">
               {usersList.map((userInfo) => (
                 <li key={userInfo._id}>
                   <CardItem card={userInfo} />
                 </li>
               ))}
-            </ul>
+            </ul>) : (
+                <Empty style={{ marginTop: "17rem" }} 
+                image={Empty.PRESENTED_IMAGE_SIMPLE} 
+                description="Нічого не знайдено" />
+            )}
           </div>
         </div>
     </section>

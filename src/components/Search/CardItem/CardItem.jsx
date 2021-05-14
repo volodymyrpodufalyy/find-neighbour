@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CardItem = ({ card }) => {
-    console.log(card.image);
     return (
         <div className="users__list-card">
             <img src={card.image} alt={card.title}></img>
@@ -11,9 +10,13 @@ const CardItem = ({ card }) => {
                     <span>ВІК</span>
                     <p>{card.description}</p>
                 </div>
-                <div className="users__list-card-description-info">
+                {/* <div className="users__list-card-description-info">
                     <span>MICTO</span>
                     <p>{card.availableSizes}</p>
+                </div> */}
+                <div className="users__list-card-description-info">
+                    <span>SEX</span>
+                    <p>{card.sex === true ? "male" : "female"}</p>
                 </div>
             </div>
         </div>

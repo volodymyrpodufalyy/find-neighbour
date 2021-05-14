@@ -51,7 +51,19 @@ class AddInfoController {
         return res.json(addinfo);
       });
   };
-  
-}
+
+  getAll = (req: any, res: express.Response) => {
+    AddInfoModel.find({}, function(err, messages) {
+      if (err) {
+        return res.status(404).json({
+          status: "error",
+          message: "Messages not found"
+        });
+      }
+      return res.json(messages);
+    })
+    .populate(["user"]);
+  }
+};
 
 export default AddInfoController;
