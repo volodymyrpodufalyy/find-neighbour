@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Dropdown, Menu, Button, Checkbox } from "antd";
 import { DownOutlined, SwapOutlined } from '@ant-design/icons';
-import "./Filters.scss"
+import "./Filters.scss";
 import userdata from "../../../pages/Search/usersdata.json"
 
-const Filter = ({ onHandleList }) => {
-    const [startAge, setStartAge] = useState(1);
-    const [endAge, setEndAge] = useState(30);
-
-    const ageRange = [...Array(70).keys()].slice(1, 70);
-
-    const filterByAge = () => {
-        const filteredByAge = userdata.slaves.filter(item => {
-            return item.description >= startAge && item.description <= endAge
-        });
-        onHandleList(filteredByAge);
-    };
+const Filter = props => {
+    const { 
+        ageRange, 
+        startAge, 
+        setStartAge, 
+        endAge, 
+        setEndAge, 
+        filterByAge, 
+        onHandleList, 
+        filterSex } = props;
 
     const DropdownMenu = (age) => {
         return (
@@ -29,6 +27,7 @@ const Filter = ({ onHandleList }) => {
             </Menu>
         );
     };
+
     return (
         <div>
         <Form className="filter-form" 
@@ -74,8 +73,12 @@ const Filter = ({ onHandleList }) => {
             <Form.Item hasFeedback>
             <div className="check__picker">
                 <p>Стать:</p>              
-              <Checkbox className="check__picker-item">Чоловік</Checkbox>
-              <Checkbox className="check__picker-item check__picker-item--female">Жінка</Checkbox>
+              <Checkbox 
+              onChange={e => e.target.checked ? filterSex("man") : onHandleList(userdata.slaves)} 
+              className="check__picker-item">Чоловік</Checkbox>
+              <Checkbox 
+              onChange={e => e.target.checked ? filterSex("woman") : onHandleList(userdata.slaves)} 
+              className="check__picker-item check__picker-item--female">Жінка</Checkbox>
               </div>
             </Form.Item>
         </Form>
