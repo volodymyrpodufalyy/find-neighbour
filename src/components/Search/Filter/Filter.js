@@ -27,7 +27,6 @@ const Filter = props => {
             </Menu>
         );
     };
-
     return (
         <div>
         <Form className="filter-form" 
