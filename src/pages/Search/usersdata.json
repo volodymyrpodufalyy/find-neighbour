@@ -1,0 +1,100 @@
+{
+    "slaves": [
+      {
+        "_id": "dress1",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 19,
+        "availableSizes": "Lviv",
+        "sex": false
+      },
+      {
+        "_id": "dress2",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 23,
+        "availableSizes": "Lviv",
+        "sex": true
+      },
+      {
+        "_id": "dress3",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 29,
+        "availableSizes": "Lviv",
+        "sex": true
+      },
+      {
+        "_id": "dress4",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 26,
+        "availableSizes": "Lviv",
+        "sex": true
+      },
+      {
+        "_id": "dress5",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 40,
+        "availableSizes": "Lviv",
+        "sex": true
+      },
+      {
+        "_id": "dress6",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 37,
+        "availableSizes": "Lviv",
+        "sex": true
+      },
+      {
+        "_id": "dress7",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 33,
+        "availableSizes": "Lviv",
+        "sex": false
+      },
+      {
+        "_id": "dress8",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 32,
+        "availableSizes": "Lviv",
+        "sex": false
+      },
+      {
+        "_id": "dress9",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 28,
+        "availableSizes": "Lviv",
+        "sex": false
+      },
+      {
+        "_id": "dress10",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 21,
+        "availableSizes": "Lviv",
+        "sex": false
+      },
+      {
+        "_id": "dress11",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 22,
+        "availableSizes": "Lviv",
+        "sex": false
+      },
+      {
+        "_id": "dress12",
+        "image": "https://static-s.aa-cdn.net/img/gp/20600011439751/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw=s300?v=1",
+        "title": "Olena Smilna",
+        "description": 20,
+        "availableSizes": "Lviv",
+        "sex": false
+      }
+    ]
+}          
