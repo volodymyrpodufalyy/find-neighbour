@@ -24,7 +24,9 @@ const Avatar = ({ user }) => {
             }}
             className="avatar avatar--symbol"
           >
-            {firstChar}
+            <div>
+              {firstChar}
+            </div>
           </div>
         );
       }

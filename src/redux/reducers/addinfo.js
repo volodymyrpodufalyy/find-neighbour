@@ -1,6 +1,11 @@
 const initialState = {
     data: null,
-    isLoading: false
+    isLoading: false,
+    items: [],
+    results: [],
+    totalCount: 0,
+    currentPage: 1,
+    pageSize: 5
 };
 
   // eslint-disable-next-line import/no-anonymous-default-export
@@ -10,6 +15,26 @@ const initialState = {
         return {
           ...state,
           data: payload,
+        };
+      case "ADDINFO:SET_ITEMS":
+        return {
+          ...state,
+          items: payload,
+        };
+      case "ADDINFO:SET_RESULTS":
+        return {
+          ...state,
+          results: payload,
+        };
+      case "ADDINFO:SET_CURRENT_PAGE":
+        return {
+          ...state,
+          currentPage: payload,
+        };
+      case "ADDINFO:SET_TOTAL_COUNT":
+        return {
+          ...state,
+          totalCount: payload,
         };
       case "ADDINFO:SET_IS_LOADING":
         return {

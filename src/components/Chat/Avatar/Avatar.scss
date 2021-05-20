@@ -6,7 +6,12 @@
       color: #fff;
       text-align: center;
       font-weight: 600;
-      line-height: 38px;
-      font-size: 18px;
+      div {
+        position: absolute;
+        top: 46%; 
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 1.5em;
+      }
     }
   }

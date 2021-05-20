@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Filter } from "components";
-import userdata from "../pages/Search/usersdata.json"
+import userdata from "../pages/Search/usersdata.json";
 
 const Filters = ({ onHandleList }) => {
     const [startAge, setStartAge] = useState(1);

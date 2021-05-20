@@ -1,19 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { Empty } from "antd";
+import { Spin } from "antd";
 import { CardItem } from "components";
 import { Filters } from "containers";
-import userdata from "./usersdata.json";
+import { connect } from 'react-redux';
+import { addinfoActions } from "redux/actions";
 import "./Search.scss";
 
-//TODO: Добавити сортування по статі,поганим звичкам і тваринам
+const Search = ({ fetchUserAddInfos, setCurrentPage, results, currentPage, pageSize, totalCount, isLoading }) => {
+  const pageChooser = [];
 
-const Search = () => {
-  const [usersList, setUsersList] = useState([]);
+  for (let i = 1; i <= Math.ceil(totalCount/pageSize); i++) {
+    pageChooser.push(i);
+  }
+
   useEffect(() => {
-    setUsersList(userdata.slaves);
-  }, [])
+    fetchUserAddInfos(currentPage, pageSize);
+  }, []);
+
+  const onPageHandle = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    fetchUserAddInfos(pageNumber, pageSize);
+  }
+
   const onHandleList = (value) => {
-    setUsersList(value);
+    // setUsersList(value);
+  }
+
+  if(isLoading) {
+   return ( 
+      <div className="spin-load"> 
+        <Spin size="large" tip="Завантаження..."/> 
+      </div> 
+   );
   }
 
   return (
@@ -23,21 +41,41 @@ const Search = () => {
             <Filters onHandleList={onHandleList}/>
           </div>
           <div className="search__neighbour-content-list">
-           {usersList.length ? (<ul className="users__list">
-              {usersList.map((userInfo) => (
-                <li key={userInfo._id}>
-                  <CardItem card={userInfo} />
-                </li>
-              ))}
-            </ul>) : (
-                <Empty style={{ marginTop: "17rem" }} 
-                image={Empty.PRESENTED_IMAGE_SIMPLE} 
-                description="Нічого не знайдено" />
-            )}
+
+            <div>
+              <ul className="users__list">
+                {results.map((userInfo) => (
+                  <li key={userInfo._id}>
+                    <CardItem card={userInfo} />
+                  </li>
+                ))}
+              </ul>
+              <div className="pages__chooser">
+                <ul className="pages__chooser-list">
+                  {pageChooser.map((page) => (
+                       <li key={page}  >
+                        <a onClick={e => onPageHandle(e.target.innerText)} 
+                        className="pages__chooser-list-link" 
+                        >{page}</a> 
+                       </li>
+                    ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
     </section>
   );
 };
 
-export default Search;
+export default connect(
+  ({ addinfo }) => ({
+      items: addinfo.items.results,
+      results: addinfo.results,
+      currentPage: addinfo.currentPage,
+      pageSize: addinfo.pageSize,
+      totalCount: addinfo.totalCount,
+      isLoading: addinfo.isLoading
+  }),
+  addinfoActions
+)(Search);
