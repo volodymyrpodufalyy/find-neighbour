@@ -11,6 +11,7 @@ const CardItem = ({ card }) => {
                 <div className="users__list-card-info-top">
                     <b>{card.user.fullname}</b>
                 </div>
+
                 <div className="users__list-card-info-bottom">
                     <div className="users__list-card-info-bottom-item">
                         <span>ВІК</span>

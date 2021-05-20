@@ -41,6 +41,7 @@ const Search = ({ fetchUserAddInfos, setCurrentPage, results, currentPage, pageS
             <Filters onHandleList={onHandleList}/>
           </div>
           <div className="search__neighbour-content-list">
+
             <div>
               <ul className="users__list">
                 {results.map((userInfo) => (

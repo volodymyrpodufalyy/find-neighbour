@@ -89,4 +89,5 @@ class AddInfoController {
   };
 }
 
+
 export default AddInfoController;

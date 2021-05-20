@@ -26,19 +26,19 @@ const Profile = ({ profile }) => {
             <div className={s.info}>
                 <div><MainInfo profile={profile}/></div>
             </div>
-            <h1>Recommended to You</h1>
-            <div className={s.posts}>
-                <table>
-                    <tr>
-                        <th>
-                            people
-                        </th>
-                        <th>
-                            people2
-                        </th>
-                    </tr>
-                </table>
-            </div>
+            {/*/!*<h1>Recommended to You</h1>*!/*/}
+            {/*<div className={s.posts}>*/}
+            {/*    <table>*/}
+            {/*        <tr>*/}
+            {/*            <th>*/}
+            {/*                people*/}
+            {/*            </th>*/}
+            {/*            <th>*/}
+            {/*                people2*/}
+            {/*            </th>*/}
+            {/*        </tr>*/}
+            {/*    </table>*/}
+            {/*</div>*/}
         </div>
     );
 };
