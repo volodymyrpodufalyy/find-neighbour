@@ -4,7 +4,7 @@ import { Spin } from 'antd';
 import MyProfile from "../pages/MyProfile/MyProfile";
 import { addinfoActions } from "redux/actions";
 
-const ProfileContainer = ({ fetchUserAddInfo, profile, isLoading }) => {
+const ProfileContainer = ({ fetchUserAddInfo, profile }) => {
 
     useEffect(() => {
         fetchUserAddInfo();

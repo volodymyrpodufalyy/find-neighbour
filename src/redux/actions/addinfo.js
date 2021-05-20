@@ -6,16 +6,56 @@ const Actions = {
     type: "ADDINFO:SET_DATA",
     payload: data
   }),
+  setAddInfos: items => ({
+    type: "ADDINFO:SET_ITEMS",
+    payload: items
+  }),
+  setAddInfosResults: results => ({
+    type: "ADDINFO:SET_RESULTS",
+    payload: results
+  }),
+  setAddInfosCount: count => ({
+    type: "ADDINFO:SET_TOTAL_COUNT",
+    payload: count
+  }),
+  setAddInfosCurrentPage: currentPage => ({
+    type: "ADDINFO:SET_CURRENT_PAGE",
+    payload: currentPage
+  }),
   setIsLoading: bool => ({
     type: "ADDINFO:SET_IS_LOADING",
     payload: bool
   }),
+  setCurrentPage: (currentPage) => dispatch => {
+    dispatch(Actions.setAddInfosCurrentPage(currentPage));
+  },
   fetchUserAddInfo: () => dispatch => {
       dispatch(Actions.setIsLoading(true));
     addinfoApi
       .getInfo()
       .then(({ data }) => {
         dispatch(Actions.setAddInfo(data));
+      })
+      .catch(err => {
+          dispatch(Actions.setIsLoading(false));
+            if (err.response.status === 403 || 404) {
+                openNotification({
+                    title: "Помилка авторизації",
+                    text: "Невірні дані",
+                    type: "error"
+                });
+        }
+      });
+  },
+  fetchUserAddInfos: (page, limit) => dispatch => {
+      dispatch(Actions.setIsLoading(true));
+    addinfoApi
+      .getAll(page, limit)
+      .then(({ data }) => {
+        dispatch(Actions.setAddInfos(data));
+        dispatch(Actions.setAddInfosResults(data.results));
+        dispatch(Actions.setAddInfosCount(data.totalCount));
+        dispatch(Actions.setIsLoading(false));
       })
       .catch(err => {
           dispatch(Actions.setIsLoading(false));

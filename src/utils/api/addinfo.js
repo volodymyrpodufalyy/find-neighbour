@@ -4,4 +4,5 @@ import { axios } from "core";
 export default {
     getInfo: () => axios.get("/addinfo"),
     addInfo: postData => axios.post("/user/addinfo", postData),
+    getAll: (page, limit) => axios.get(`/addinfos?page=${page}&limit=${limit}`)
 };
