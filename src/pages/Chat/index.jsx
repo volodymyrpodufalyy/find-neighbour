@@ -9,6 +9,8 @@ import "./Chat.scss"
 const Chat = props => {
      const { setCurrentDialogId, user } = props;
 
+     
+
     useEffect(() => {
         const { location: { pathname } } = props;
         const dialogId = pathname.split('/');

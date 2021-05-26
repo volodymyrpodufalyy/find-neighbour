@@ -1,41 +1,45 @@
 import React, { useState } from 'react';
 import { Filter } from "components";
-import userdata from "../pages/Search/usersdata.json";
+import { connect } from 'react-redux';
+import { addinfoActions } from "redux/actions";
 
-const Filters = ({ onHandleList }) => {
+const Filters = ({ fetchUserAddInfos, results, filterAddInfosByAge, filterAddInfosBySex  }) => {
     const [startAge, setStartAge] = useState(1);
     const [endAge, setEndAge] = useState(30);
     const ageRange = [...Array(70).keys()].slice(1, 70);
-
+   
     const filterByAge = () => {
-        const filteredByAge = userdata.slaves.filter(item => {
-            return item.description >= startAge && item.description <= endAge
-        });
-        onHandleList(filteredByAge);
+        filterAddInfosByAge(startAge, endAge);
     };
 
     const filterSex = (sex) => {
         if(sex === "man"){
-            const sexesMan = userdata.slaves.filter(item => item.sex === true);
-            onHandleList(sexesMan);
+            filterAddInfosBySex(true);
         } else {
-            const sexesFemale = userdata.slaves.filter(item => item.sex === false);
-            onHandleList(sexesFemale)
+            filterAddInfosBySex(false);
         }
     }
 
     return (
         <Filter 
+        usersList={results}
         startAge={startAge}
         setStartAge={setStartAge}
         endAge={endAge}
         setEndAge={setEndAge}
         ageRange={ageRange}
         filterByAge={filterByAge}
-        onHandleList={onHandleList}
         filterSex={filterSex}
+        onSetList={fetchUserAddInfos}
         />
     )
 }
 
-export default Filters;
+export default connect(
+    ({ addinfo }) => ({
+        results: addinfo.results,
+        isLoading: addinfo.isLoading
+    }),
+    addinfoActions
+  )(Filters);
+

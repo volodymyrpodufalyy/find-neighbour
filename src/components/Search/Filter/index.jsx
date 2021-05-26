@@ -2,7 +2,6 @@ import React from "react";
 import { Form, Dropdown, Menu, Button, Checkbox } from "antd";
 import { DownOutlined, SwapOutlined } from '@ant-design/icons';
 import "./Filters.scss";
-import userdata from "../../../pages/Search/usersdata.json"
 
 const Filter = props => {
     const { 
@@ -12,9 +11,10 @@ const Filter = props => {
         endAge, 
         setEndAge, 
         filterByAge, 
-        onHandleList, 
-        filterSex } = props;
+        filterSex,
+        onSetList } = props;
 
+        
     const DropdownMenu = (age) => {
         return (
             <Menu className="dropdown-menu">
@@ -73,10 +73,10 @@ const Filter = props => {
             <div className="check__picker">
                 <p>Стать:</p>              
               <Checkbox 
-              onChange={e => e.target.checked ? filterSex("man") : onHandleList(userdata.slaves)} 
+              onChange={e => e.target.checked ? filterSex("man") : onSetList()}
               className="check__picker-item">Чоловік</Checkbox>
               <Checkbox 
-              onChange={e => e.target.checked ? filterSex("woman") : onHandleList(userdata.slaves)} 
+              onChange={e => e.target.checked ? filterSex("woman") : onSetList()} 
               className="check__picker-item check__picker-item--female">Жінка</Checkbox>
               </div>
             </Form.Item>

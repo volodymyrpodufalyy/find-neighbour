@@ -2,6 +2,15 @@
 
 .message {
     $self: &;
+    .message__avatar {
+      display: flex;
+      flex-direction: column-reverse;
+      width: 40px;
+      height: 40px;
+      margin-top: 12px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
     &__content {
       display: flex;
       max-width: 440px;
@@ -15,19 +24,7 @@
       }
     }
   
-    &__avatar {
-      display: flex;
-      flex-direction: column-reverse;
-      .avatar {
-        border-radius: 50px;
-        width: 33px;
-        height: 33px;
-        margin-right: 13px;
-        margin-bottom: 5px;
-        font-size: 14px;
-        line-height: 31px;
-      }
-    }
+    
   
     &__bubble {
       background: #F2F2F2;

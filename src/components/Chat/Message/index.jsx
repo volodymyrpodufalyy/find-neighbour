@@ -109,6 +109,7 @@ const Message = ({ avatar,
     'message--image': !isAudio(attachments) && attachments && attachments.length === 1 && !text,
     'message--is-audio': isAudio(attachments)
     })}>
+       
       <div className="message__content">
         <IconReaded isMe={isMe} isReaded={readed} />
          <Popover              
@@ -123,7 +124,7 @@ const Message = ({ avatar,
                 <Button icon={<EllipsisOutlined style={{ fontSize : '22px' }}   />}/>
             </div>
             </Popover>
-          <div className="message__avatar">
+        <div className="message__avatar">
             <Avatar user={user}/>
           </div>
           <div className="message__info">
@@ -151,6 +152,7 @@ const Message = ({ avatar,
             </span>)}
             </div>
         </div>
+        
     </div>
    );
 };

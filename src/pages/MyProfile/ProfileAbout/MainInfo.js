@@ -7,7 +7,6 @@ import imge from "../../../assets/img/account-avatar-profile-human-man-user-3044
 let info = React.createRef();
 
 const MainInfo = (props) => {
-    console.log(props)
 
 
     // let info = props.profile.map(people => {

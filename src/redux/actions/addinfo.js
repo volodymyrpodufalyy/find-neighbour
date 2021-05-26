@@ -18,17 +18,12 @@ const Actions = {
     type: "ADDINFO:SET_TOTAL_COUNT",
     payload: count
   }),
-  setAddInfosCurrentPage: currentPage => ({
-    type: "ADDINFO:SET_CURRENT_PAGE",
-    payload: currentPage
-  }),
+ 
   setIsLoading: bool => ({
     type: "ADDINFO:SET_IS_LOADING",
     payload: bool
   }),
-  setCurrentPage: (currentPage) => dispatch => {
-    dispatch(Actions.setAddInfosCurrentPage(currentPage));
-  },
+ 
   fetchUserAddInfo: () => dispatch => {
       dispatch(Actions.setIsLoading(true));
     addinfoApi
@@ -63,6 +58,46 @@ const Actions = {
                 openNotification({
                     title: "Помилка авторизації",
                     text: "Невірні дані",
+                    type: "error"
+                });
+        }
+      });
+  },
+  filterAddInfosByAge: (startAge, endAge) => dispatch => {
+      dispatch(Actions.setIsLoading(true));
+    addinfoApi
+      .filterByAge(startAge, endAge)
+      .then(({ data }) => {
+        dispatch(Actions.setAddInfosResults(data));
+        dispatch(Actions.setIsLoading(false));
+        console.log(data);
+      })
+      .catch(err => {
+          dispatch(Actions.setIsLoading(false));
+            if (err.response.status === 403 || 404) {
+                openNotification({
+                    title: "Помилка",
+                    text: "",
+                    type: "error"
+                });
+        }
+      });
+  },
+  filterAddInfosBySex: (sex) => dispatch => {
+      dispatch(Actions.setIsLoading(true));
+    addinfoApi
+      .filterBySex(sex)
+      .then(({ data }) => {
+        dispatch(Actions.setAddInfosResults(data));
+        dispatch(Actions.setIsLoading(false));
+        console.log(data);
+      })
+      .catch(err => {
+          dispatch(Actions.setIsLoading(false));
+            if (err.response.status === 403 || 404) {
+                openNotification({
+                    title: "Помилка",
+                    text: "",
                     type: "error"
                 });
         }

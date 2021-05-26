@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Checkbox, Space, Dropdown, Menu, Input } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { Block, SearchLocationInput } from 'components';
+import { Link } from "react-router-dom";
 import "./AddInfoForm.scss";
 import { validateField, convertDate, getAge } from 'utils/helpers';
 
@@ -192,7 +193,7 @@ const AddInfoForm = props => {
         <Button 
         disabled={isSubmitting}
         onClick={handleSubmit} size="large" type="primary" htmlType="submit" className="login-form-button">
-          Далі
+          <Link to="/signup/verify">Далі</Link>
         </Button>
       </Form.Item>
     </Form>
