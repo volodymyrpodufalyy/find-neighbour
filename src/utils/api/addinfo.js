@@ -5,6 +5,6 @@ export default {
     getInfo: () => axios.get("/addinfo"),
     addInfo: postData => axios.post("/user/addinfo", postData),
     getAll: (page, limit) => axios.get(`/addinfos?page=${page}&limit=${limit}`),
-    filterByAge: (startAge, endAge) => axios.get(`/addinfos/filterByAge?startAge=${startAge}&endAge=${endAge}`),
-    filterBySex: (sex) => axios.get(`/addinfos/filterBySex?sex=${sex}`)
+    filterUsers: (startAge, endAge, sex, pets, badHabits) => 
+    axios.get(`/addinfos/filterUsers?startAge=${startAge}&endAge=${endAge}&pets=${pets}&sex=${sex}&badHabits=${badHabits}`),
 };
