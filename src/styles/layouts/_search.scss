@@ -111,7 +111,7 @@
       border-top: 1px solid #c9c3c3 ;
       border-top-right-radius: 8px;
       background-color: #fff;
-      height: 50rem;
+      height: 40rem;
     }
   }
   .users__list {
@@ -189,13 +189,18 @@
   .pages__chooser {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-top: 10em;
+    margin-bottom: 40px;
     &-list {
       display: flex;
       flex-wrap: wrap;
       list-style-type: none;
       &-link {
         color: #000;
+      }
+      &-link--selected {
+        color: #000;
+        border-bottom: 2.5px solid #da1212;
       }
       &-link:hover {
         border-bottom: 2.5px solid #da1212;

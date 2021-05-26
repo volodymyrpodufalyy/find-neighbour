@@ -53,7 +53,6 @@ const CheckEmailInfo = ({ location, history }) => {
     }
   }, []);
 
-  console.log({ info, checking, verified, hash });
 
   return (
     <div className="verify-block">

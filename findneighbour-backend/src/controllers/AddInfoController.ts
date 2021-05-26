@@ -1,5 +1,5 @@
 import express from "express";
-import { any } from "prop-types";
+import { range } from "lodash";
 import { AddInfoModel } from "../models";
 
 class AddInfoController {
@@ -87,6 +87,45 @@ class AddInfoController {
     return res.json(results);
 
   };
+
+  filterUsers = (req: any, res: express.Response) => {
+    const startAge = parseInt(req.query.startAge);
+    const endAge = parseInt(req.query.endAge);
+
+    const pets = req.query.pets;
+    const badHabits = req.query.badHabits;
+    const sex = req.query.sex;
+
+    let queryObj: any = {};
+    
+    if(req.query.endAge && req.query.startAge !== undefined) {
+      let ageRange = range(startAge, endAge + 1);
+      queryObj.age = ageRange;
+    }
+    if(req.query.pets !== undefined) {
+      queryObj.pets = pets;
+    }
+    if(req.query.badHabits !== undefined) {
+      queryObj.badHabits = badHabits;
+    }    
+    if(req.query.sex !== undefined) {
+      queryObj.sex = sex;
+    }    
+    
+    AddInfoModel.find(queryObj)
+    .populate(["user"])
+    .exec(function (err, addinfos: any) {
+      if (err) {
+        return res.status(404).json({
+          message: "Users not found", err
+        });
+      }
+      return res.json(addinfos);
+    });
+    
+  };
+
+
 }
 
 

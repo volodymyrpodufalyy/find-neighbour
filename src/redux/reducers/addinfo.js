@@ -4,7 +4,6 @@ const initialState = {
     items: [],
     results: [],
     totalCount: 0,
-    currentPage: 1,
     pageSize: 5
 };
 
@@ -26,11 +25,7 @@ const initialState = {
           ...state,
           results: payload,
         };
-      case "ADDINFO:SET_CURRENT_PAGE":
-        return {
-          ...state,
-          currentPage: payload,
-        };
+     
       case "ADDINFO:SET_TOTAL_COUNT":
         return {
           ...state,

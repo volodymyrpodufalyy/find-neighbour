@@ -17,9 +17,13 @@ const CardItem = ({ card }) => {
                         <span>ВІК</span>
                         <p>{card.age}</p>
                     </div>
-                    <div className="users__list-card-info-bottom-item">
+                    {/* <div className="users__list-card-info-bottom-item">
                         <span>MICTO</span>
                         <p>{card.adress}</p>
+                    </div> */}
+                    <div className="users__list-card-info-bottom-item">
+                        <span>Cтать</span>
+                        <p>{card.sex === true ? "male" : "female"}</p>
                     </div>
                 </div>
             </div>
