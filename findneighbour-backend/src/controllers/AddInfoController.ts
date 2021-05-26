@@ -98,20 +98,20 @@ class AddInfoController {
 
     let queryObj: any = {};
     
-    if(req.query.endAge && req.query.startAge !== undefined) {
+    if(endAge && startAge !== (undefined && '')) {
       let ageRange = range(startAge, endAge + 1);
       queryObj.age = ageRange;
     }
-    if(req.query.pets !== undefined) {
+    if(pets !== (undefined && '')) {
       queryObj.pets = pets;
     }
-    if(req.query.badHabits !== undefined) {
+    if(badHabits !== (undefined && '')) {
       queryObj.badHabits = badHabits;
     }    
-    if(req.query.sex !== undefined) {
+    if(sex !== (undefined && '')) {
       queryObj.sex = sex;
-    }    
-    
+    }        
+
     AddInfoModel.find(queryObj)
     .populate(["user"])
     .exec(function (err, addinfos: any) {
