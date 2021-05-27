@@ -7,4 +7,5 @@ export default {
     getAll: (page, limit) => axios.get(`/addinfos?page=${page}&limit=${limit}`),
     filterUsers: (startAge, endAge, sex, pets, badHabits) => 
     axios.get(`/addinfos/filterUsers?startAge=${startAge}&endAge=${endAge}&sex=${sex}&pets=${pets}&badHabits=${badHabits}`),
+
 };

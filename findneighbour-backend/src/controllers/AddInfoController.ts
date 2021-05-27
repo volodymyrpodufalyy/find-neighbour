@@ -97,7 +97,6 @@ class AddInfoController {
     const sex = req.query.sex;
 
     let queryObj: any = {};
-    
 
     if(((endAge && startAge) !== 'undefined') && ((endAge && startAge) !== undefined)) {
       let ageRange = range(parseInt(startAge), parseInt(endAge) + 1);
