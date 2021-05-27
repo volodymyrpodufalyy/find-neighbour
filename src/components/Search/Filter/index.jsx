@@ -10,10 +10,10 @@ const Filter = props => {
         setStartAge, 
         endAge, 
         setEndAge, 
-        filterByAge, 
-        filterSex,
-        onSetList } = props;
-
+        filterUsers,
+        setSex,
+        setPets,
+        setBadHabits } = props;
         
     const DropdownMenu = (age) => {
         return (
@@ -32,18 +32,18 @@ const Filter = props => {
         <Form className="filter-form" 
         name="time_related_controls" 
         initialValues={{ remember: true, }}
-        onSubmit={filterByAge}
+        onSubmit={filterUsers}
         >
             <Form.Item name="range-picker" hasFeedback>
                 <div className="age-picker">
                     <p>Вік:</p>
-                        <Button onClick={filterByAge} 
+                        <button onClick={filterUsers} 
                         className="submit-age" 
                         type="primary" 
-                        htmlType="submit"
+                        htmltype="submit"
                         >
                             <p>OK</p>
-                        </Button>
+                        </button>
                     <div className="age__dropdowns">
                         <Dropdown  
                          className="age__dropdowns-item"
@@ -73,10 +73,10 @@ const Filter = props => {
             <div className="check__picker">
                 <p>Стать:</p>              
               <Checkbox 
-              onChange={e => e.target.checked ? filterSex("man") : onSetList()}
+              onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
               className="check__picker-item">Чоловік</Checkbox>
               <Checkbox 
-              onChange={e => e.target.checked ? filterSex("woman") : onSetList()} 
+              onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)} 
               className="check__picker-item check__picker-item--female">Жінка</Checkbox>
               </div>
             </Form.Item>
@@ -85,8 +85,12 @@ const Filter = props => {
             <Form.Item hasFeedback>
             <div className="check__picker">
                 <p>Погані звички:</p>              
-                    <Checkbox className="check__picker-item">Так</Checkbox>
-                    <Checkbox className="check__picker-item check__picker-item--female">Ні</Checkbox>
+                    <Checkbox 
+                    onChange={e => e.target.checked ? setBadHabits(e.target.checked) : setBadHabits()}
+                    className="check__picker-item">Так</Checkbox>
+                    <Checkbox 
+                    onChange={e => e.target.checked ? setBadHabits(!e.target.checked) : setBadHabits()}
+                    className="check__picker-item check__picker-item--female">Ні</Checkbox>
               </div>
             </Form.Item>
         </Form>
@@ -94,8 +98,12 @@ const Filter = props => {
             <Form.Item hasFeedback>
             <div className="check__picker">
                 <p>Домашні тваринки:</p>              
-                    <Checkbox className="check__picker-item">Так</Checkbox>
-                    <Checkbox className="check__picker-item check__picker-item--female">Ні</Checkbox>
+                    <Checkbox 
+                    onChange={e => e.target.checked ? setPets(e.target.checked) : setPets()}
+                    className="check__picker-item">Так</Checkbox>
+                    <Checkbox 
+                    onChange={e => e.target.checked ? setPets(!e.target.checkede) : setPets()}
+                    className="check__picker-item check__picker-item--female">Ні</Checkbox>
               </div>
             </Form.Item>
         </Form>

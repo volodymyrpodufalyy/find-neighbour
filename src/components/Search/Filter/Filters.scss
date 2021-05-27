@@ -9,10 +9,20 @@
     background-color: #EA2626;
     border: transparent;
     border-radius: 5px;
+    cursor: pointer;
     p {
         position: relative;
-        right: 6px;
-        bottom: 7px;
+        right: 1.5px;
+        bottom: 3.5px;
+        color: #fff;
+
+    }
+}
+.submit-age:hover {
+    background-color: #fff;
+    border: 1px solid #EA2626;
+    p {
+        color: #EA2626;
     }
 }
 .age-picker {

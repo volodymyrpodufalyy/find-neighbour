@@ -63,30 +63,10 @@ const Actions = {
         }
       });
   },
-  filterAddInfosByAge: (startAge, endAge) => dispatch => {
+  filterAddInfos: (startAge, endAge, sex, pets, badHabits) => dispatch => {
       dispatch(Actions.setIsLoading(true));
     addinfoApi
-      .filterByAge(startAge, endAge)
-      .then(({ data }) => {
-        dispatch(Actions.setAddInfosResults(data));
-        dispatch(Actions.setIsLoading(false));
-        console.log(data);
-      })
-      .catch(err => {
-          dispatch(Actions.setIsLoading(false));
-            if (err.response.status === 403 || 404) {
-                openNotification({
-                    title: "Помилка",
-                    text: "",
-                    type: "error"
-                });
-        }
-      });
-  },
-  filterAddInfosBySex: (sex) => dispatch => {
-      dispatch(Actions.setIsLoading(true));
-    addinfoApi
-      .filterBySex(sex)
+      .filterUsers(startAge, endAge, sex, pets, badHabits)
       .then(({ data }) => {
         dispatch(Actions.setAddInfosResults(data));
         dispatch(Actions.setIsLoading(false));
