@@ -4,7 +4,7 @@ const initialState = {
     items: [],
     results: [],
     totalCount: 0,
-    pageSize: 5
+    pageSize: 9
 };
 
   // eslint-disable-next-line import/no-anonymous-default-export

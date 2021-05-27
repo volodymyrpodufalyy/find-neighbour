@@ -89,8 +89,8 @@ class AddInfoController {
   };
 
   filterUsers = (req: any, res: express.Response) => {
-    const startAge = parseInt(req.query.startAge);
-    const endAge = parseInt(req.query.endAge);
+    const startAge = req.query.startAge;
+    const endAge = req.query.endAge;
 
     const pets = req.query.pets;
     const badHabits = req.query.badHabits;
@@ -99,20 +99,20 @@ class AddInfoController {
     let queryObj: any = {};
     
 
-    if(endAge && startAge !== (undefined && '')) {
-      let ageRange = range(startAge, endAge + 1);
+    if(((endAge && startAge) !== 'undefined') && ((endAge && startAge) !== undefined)) {
+      let ageRange = range(parseInt(startAge), parseInt(endAge) + 1);
       queryObj.age = ageRange;
     }
-    if(pets !== (undefined && '')) {
+    if((pets !== 'undefined') && (pets !== undefined)) {
       queryObj.pets = pets;
     }
-    if(badHabits !== (undefined && '')) {
+    if((badHabits !==  'undefined') && (badHabits !==  undefined)) {
       queryObj.badHabits = badHabits;
     }    
-    if(sex !== (undefined && '')) {
+    if((sex !== 'undefined') && (sex !== undefined)) {
       queryObj.sex = sex;
     }        
-
+    
     AddInfoModel.find(queryObj)
     .populate(["user"])
     .exec(function (err, addinfos: any) {
