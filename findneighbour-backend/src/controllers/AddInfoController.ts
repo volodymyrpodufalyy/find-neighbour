@@ -95,12 +95,16 @@ class AddInfoController {
     const pets = req.query.pets;
     const badHabits = req.query.badHabits;
     const sex = req.query.sex;
+    const adress = req.query.adress;
 
     let queryObj: any = {};
 
     if(((endAge && startAge) !== 'undefined') && ((endAge && startAge) !== undefined)) {
       let ageRange = range(parseInt(startAge), parseInt(endAge) + 1);
       queryObj.age = ageRange;
+    }
+    if((adress !== 'undefined') && (adress !== undefined)) {
+      queryObj.adress = adress;
     }
     if((pets !== 'undefined') && (pets !== undefined)) {
       queryObj.pets = pets;

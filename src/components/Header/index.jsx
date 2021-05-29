@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import store from 'redux/store';
 import { userActions } from "redux/actions";
 import { Menu } from 'antd';
+import houselogo from "../../assets/img/house-logo.svg"
 import s from "./Header.Module.scss";
 
 const Header = ({ isAuth }) => {
@@ -18,20 +19,30 @@ const Header = ({ isAuth }) => {
 
     if(isAuth){
         return(
+
                 <div className={s.header}>
+                    {/* <Menu className={s.homelink}>
+                        
+                    </Menu> */}
                     <Menu style={{ color: "red" }} className={s.menu} mode="horizontal">
-                        <Menu.Item key="/search">
-                            <Link to={"/search"}  className={s.link}>Пошук</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/profile">
-                            <Link to={"/profile"}  className={s.link}>Профіль</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/chat">
-                            <Link  to={"/chat"} className={s.link}>Чат</Link>
-                        </Menu.Item>
-                        <Menu.Item  key="/logout">
-                            <Link to={"/"} onClick={handleLogOut} className={s.link}>Вийти</Link>
-                        </Menu.Item>
+                                <Menu.Item key="/homepage" className={s.homeMenuItem} >
+                                    <div className={s.homelink} >
+                                        <div  className={s.houselogo} > <img src={houselogo} alt="House" /> </div>
+                                        <Link to={"/"} className={s.homeTitle} >NEIGHBOUR</Link>
+                                    </div>
+                                </Menu.Item>
+                                <Menu.Item key="/search" className={s.menuItemSearch} >  
+                                    <Link to={"/search"}  className={s.link}>Пошук</Link>
+                                </Menu.Item>
+                                <Menu.Item key="/profile" className={s.menuItemProfile} >
+                                    <Link to={"/profile"}  className={s.link}>Профіль</Link>
+                                </Menu.Item>
+                                <Menu.Item key="/chat" className={s.menuItemChat} >
+                                    <Link  to={"/chat"} className={s.link}>Чат</Link>
+                                </Menu.Item>
+                                <Menu.Item  key="/logout" className={s.menuItemLogOut} >
+                                    <Link to={"/"} onClick={handleLogOut} className={s.link}>Вийти</Link>
+                                </Menu.Item>
                     </Menu>
                 </div>
         );

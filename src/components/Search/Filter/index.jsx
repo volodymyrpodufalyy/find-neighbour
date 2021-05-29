@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Dropdown, Menu, Button, Checkbox } from "antd";
 import { DownOutlined, SwapOutlined } from '@ant-design/icons';
+import { SearchLocationInput } from "components";
 import "./Filters.scss";
 
 const Filter = props => {
@@ -11,6 +12,7 @@ const Filter = props => {
         endAge, 
         setEndAge, 
         filterUsers,
+        setUserAdress,
         setSex,
         setPets,
         setBadHabits } = props;
@@ -66,6 +68,14 @@ const Filter = props => {
                         </Dropdown>
                     </div>
                 </div>
+            </Form.Item>
+        </Form>
+        <Form >
+            <Form.Item hasFeedback>
+            <div className="check__picker">
+                <p>Місто:</p>              
+                    <SearchLocationInput parentCallback={setUserAdress} onChange={() => null}  />
+              </div>
             </Form.Item>
         </Form>
         <Form >

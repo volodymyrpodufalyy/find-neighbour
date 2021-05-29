@@ -1,7 +1,9 @@
 import React from 'react';
 import { Avatar } from "components";
+import { Emoji } from 'emoji-mart';
 
 const CardItem = ({ card }) => {
+    const adress = card.adress.split(',');
     return (
         <div className="users__list-card">
             <div className="users__list-card-image">
@@ -9,7 +11,7 @@ const CardItem = ({ card }) => {
             </div>
             <div className="users__list-card-info">
                 <div className="users__list-card-info-top">
-                    <b>{card.user.fullname}</b>
+                    <b>{card.user.fullname}</b> 
                 </div>
 
                 <div className="users__list-card-info-bottom">
@@ -17,13 +19,9 @@ const CardItem = ({ card }) => {
                         <span>ВІК</span>
                         <p>{card.age}</p>
                     </div>
-                    {/* <div className="users__list-card-info-bottom-item">
-                        <span>MICTO</span>
-                        <p>{card.adress}</p>
-                    </div> */}
                     <div className="users__list-card-info-bottom-item">
-                        <span>Cтать</span>
-                        <p>{card.sex === true ? "male" : "female"}</p>
+                        <span>MICTO</span>
+                        <p>{adress[0]}</p>
                     </div>
                 </div>
             </div>

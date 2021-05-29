@@ -1,24 +1,11 @@
 import React, {Component} from 'react';
-import s from "./MainInfo.module.css"
+import s from "./MainInfo.module.scss"
 import {NavLink} from "react-router-dom";
-import {generateAvatar} from "../../../utils/helpers";
 import imge from "../../../assets/img/account-avatar-profile-human-man-user-30448.png"
 
 let info = React.createRef();
 
 const MainInfo = (props) => {
-
-
-    // let info = props.profile.map(people => {
-    //     if (people.id === 0) {
-    //         return (<Info abouts={people.aboutMe}
-    //                               img={people.photos.large}
-    //                               username={people.fullName}
-    //                               gmail={people.contacts.instagram}
-    //                               number={people.userId}/>)
-    //     }
-    //
-    // })
 
 
     return (
@@ -34,9 +21,8 @@ const Info = (props) => {
     return (
 
         <div>
-            <div className={s.div1}>
-
-                    <div className={s.user_img}><p><a href="#"><img src={imge}/></a></p></div>
+            <div className={s.div1}>             
+                    <div className={s.user_img}><p><a href="#"><img src={imge} alt="User img" /></a></p></div>
                 <div className={s.div2}>
                     <div className={s.user_name}><p>{props.profile.user.fullname}</p></div>
                     <div><NavLink to={"/Settings"} className={s.settings}>Settings</NavLink></div>
