@@ -27,8 +27,8 @@ const Dialogs = ({
       )
     );
     setValue(value);
+    
   };
-
   window.fetchDialogs = fetchDialogs;
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Dialogs = ({
     if (!items.length) {
       fetchDialogs();
     } else {
-      setFiltredItems(items);
+      setFiltredItems(filtred);
     } 
 
     socket.on("SERVER:DIALOG_CREATED", fetchDialogs);

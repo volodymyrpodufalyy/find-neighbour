@@ -9,7 +9,6 @@ import { UploadField } from '@navjobs/upload';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import { UploadFiles } from 'components';
-import reactStringReplace from 'react-string-replace';
 
 const { TextArea } = Input;
 
@@ -30,6 +29,7 @@ const ChatInput = props => {
       onHideRecording,
       isLoading } = props;
 
+
     return (    
       <Fragment>
                 <div className="chat-input">
@@ -37,7 +37,7 @@ const ChatInput = props => {
         <div className="chat-input__smile-btn">
         <div className="chat-input__emoji-picker">
         {emojiPickerVisible &&  (
-                <Picker onSelect={(emojiTag) => addEmoji(emojiTag)} set='apple' />
+                <Picker onSelect={(e) => setValue(value + e.native)} set='apple' />
             )}
             </div>
         <Button onClick={toggleEmojiPicker} icon={<SmileOutlined />}/>

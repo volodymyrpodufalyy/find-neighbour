@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { messagesActions, attachmentsActions } from "redux/actions";
 import { filesApi } from "utils/api"
 import socket from 'core/socket';
+import reactStringReplace from 'react-string-replace';
+import { Emoji } from 'emoji-mart';
+
 
 const ChatInput = (props) => {
   const {
@@ -59,9 +62,8 @@ const ChatInput = (props) => {
       const file =  new File([e.data], "audio.webm");
       setLoading(true);
       filesApi.upload(file).then(({ data }) => {
-        sendAudio(data.file._id).then(() => {
-        setLoading(true);
-      });
+        sendAudio(data.file._id)
+        setLoading(false);
     });
     };
   };
@@ -80,6 +82,7 @@ const ChatInput = (props) => {
 
   const addEmoji = ({ colons }) => {
     setValue((value + '' + colons).trim())
+    console.log(colons);
   }
   
   const sendAudio = (audioId) => {

@@ -8,12 +8,17 @@ const Filters = ({ results, filterAddInfos  }) => {
     const [endAge, setEndAge] = useState(30);
     const ageRange = [...Array(70).keys()].slice(1, 70);
 
+
+    const [userAdress, setUserAdress] = useState();
+
     const [sex, setSex] = useState();
     const [pets, setPets] = useState();
     const [badHabits, setBadHabits] = useState();
     
     const filterUsers = () => {
-        filterAddInfos(startAge, endAge, sex, pets, badHabits);
+
+        filterAddInfos(startAge, endAge, userAdress, sex, pets, badHabits);
+
     }
     console.log(sex);
 
@@ -21,8 +26,13 @@ const Filters = ({ results, filterAddInfos  }) => {
         filterUsers();
     }, [sex, pets, badHabits])
 
+    useEffect(() => {
+        filterUsers();
+    }, [sex, pets, badHabits, userAdress])
+
     return (
         <Filter 
+        setUserAdress={setUserAdress}
         setBadHabits={setBadHabits}
         setPets={setPets}
         setSex={setSex}
