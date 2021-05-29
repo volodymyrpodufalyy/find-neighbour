@@ -103,9 +103,11 @@ class AddInfoController {
       let ageRange = range(parseInt(startAge), parseInt(endAge) + 1);
       queryObj.age = ageRange;
     }
+
     if((adress !== 'undefined') && (adress !== undefined)) {
       queryObj.adress = adress;
     }
+
     if((pets !== 'undefined') && (pets !== undefined)) {
       queryObj.pets = pets;
     }
