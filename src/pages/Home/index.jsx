@@ -4,18 +4,17 @@ import main_logo from "./logo_neifhbor.png"
 import people_img from "./face.jpeg"
 import bottompeople from "./bottompeopleimg.jpg"
 import cityblue from "./cityblue.png"
-function App() {
+import React from 'react';
+import './Home.scss';
+
+
+const Home = () => {
+
     return (
         <div className="App">
             <script src="https://kit.fontawesome.com/47f61c7504.js" crossOrigin="anonymous"></script>
             <body>
-            <div className="navbar">
-                <img className="logo_img" src={main_logo} alt=""/>
-                <div className="navbuts">
-                    <input className="navbut1" type="button" value="Have an account"></input>
-                    <input className="navbut2" type="button" value="Join"></input>
-                </div>
-            </div>
+            
             <div className="fullcontent">
                 <div className="header">
                     <div className="image1">
@@ -151,4 +150,4 @@ function App() {
         </div>
     );
 }
-export default App;
+export default Home;
