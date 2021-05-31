@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./settings.module.css"
+import imge from "../../assets/img/account-avatar-profile-human-man-user-30448.png";
 
 
 export let refFromSettingsInfo = React.createRef();
@@ -15,12 +16,13 @@ const SettingsInfo = (props) => {
 
             <div className={s.setting_user_img}>
                 <p>
-                    <a href={props.img}><img src={props.img}/></a>
+                    {/*<a href={props.img}><img src={props.img}/></a>*/}
+                    <a href="#"><img src={imge} alt="User img" /></a>
                 </p>
             </div>
 
 
-            <div className={s.setting_user_name}><p>{props.username}</p></div>
+            <div className={s.setting_user_name}><p>{props.username} Username</p></div>
 
             <a className={s.change_photo} href="#">Change photo</a>
 

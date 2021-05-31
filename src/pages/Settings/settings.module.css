@@ -9,6 +9,7 @@
     top: 18%;
     border: 0.5px solid #909090;
     border-radius: 5px;
+    background-color: white;
 
 }
 
@@ -42,17 +43,22 @@ select {
     position: absolute;
     left: 40%;
     top: 8%;
+
 }
 
 .setting_user_img img {
-    height: 37px;
+    height: 50px;
     position: absolute;
     left: 25%;
+    top: 3%;
+
 }
 
 .setting_user_name {
     position: relative;
     left: 40%;
+    top: 5%;
+
 }
 
 /*_______div email______*/
@@ -81,7 +87,7 @@ select {
 
 .setting_kind_of_activity {
     position: absolute;
-    left: 12.2%;
+    left: 13.5%;
     width: 63%;
 }
 
@@ -111,13 +117,16 @@ select {
     width: 100%;
     height: 15%;
     top: 30%;
+    background-color: white;
+
 }
 
 .about {
     position: absolute;
     height: 45%;
     width: 40%;
-    left: 24%;
+    left: 23%;
+    background-color: white;
 }
 
 .text_about {
@@ -153,12 +162,16 @@ select {
     width: 100%;
     height: 5%;
     top: 45%;
+    background-color: white;
+
 }
 
 .label_pets {
     position: absolute;
     width: 63%;
-    left: 18.5%;
+    left: 19%;
+    background-color: white;
+
 }
 
 /*_______ div habits ______*/
@@ -168,12 +181,16 @@ select {
     width: 100%;
     height: 5%;
     top: 50%;
+    background-color: white;
+
 }
 
 .label_habits {
     position: absolute;
     width: 63%;
-    left: 10%;
+    left: 11.5%;
+    background-color: white;
+
 }
 
 /*_______ div working ______*/
@@ -183,12 +200,14 @@ select {
     width: 100%;
     height: 5%;
     top: 55%;
+    background-color: white;
+
 }
 
 .label_working {
     position: absolute;
     width: 63%;
-    left: 20.3%;
+    left: 20.5%;
 }
 
 /*_______ div habits ______*/
@@ -198,11 +217,15 @@ select {
     width: 100%;
     height: 5%;
     top: 60%;
+    background-color: white;
+
 
 }
 
 .label_status {
     position: absolute;
     width: 63%;
-    left: 13.5%;
+    left: 14.5%;
+    background-color: white;
+
 }
