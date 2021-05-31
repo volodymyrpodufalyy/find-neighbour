@@ -1,29 +1,33 @@
-.home {
-  height: 100%;
-}
 
 .main_img {
+  margin-top: 27px;
+  position: absolute;
   height: auto;
   width: 100%;
+  overflow-x: hidden;
 }
-.logo_img {
+.logo_img{
   position: absolute;
-  left: 2%;
   display: flex;
   align-self: flex-start;
-  height: 30px;
-  width: 184px;
+  height: 60px;
+  width: 368px;
 }
-.navbuts {
+.header{
+  z-index: 1;
+  display: block;
+}
+.navbuts{
   float: right;
 }
-
-.image1 {
-  position: absolute;
+.image1{
+  /*position: absolute;*/
   top: 80px;
+  max-width: 100%;
+  height: auto;
+  width: 98vw;
 }
-.navbar {
-  position: absolute;
+.navbar{
   width: 100%;
   height: auto;
   background-color: #fff;
@@ -31,12 +35,11 @@
   padding-right: 0;
   padding-bottom: 15px;
 }
-
-.navbut1 {
+.navbut1{
   position: relative;
   background-color: #fff;
-  color: #ea2626;
-  font-size: 17px;
+  color: #EA2626;
+  font-size: 25px;
   border: none;
   border-radius: 5px;
   margin-right: 25px;
@@ -45,11 +48,11 @@
   padding-left: 25px;
   padding-bottom: 10px;
 }
-.navbut2 {
+.navbut2{
   position: relative;
-  background-color: #ea2626;
+  background-color: #EA2626;
   color: #fff;
-  font-size: 17px;
+  font-size: 25px;
   border: none;
   border-radius: 5px;
   margin-right: 25px;
@@ -58,17 +61,16 @@
   padding-left: 50px;
   padding-bottom: 10px;
 }
-.navbut1:hover {
+.navbut1:hover{
   color: white;
-  background-color: #ea2626;
+  background-color: #EA2626;
 }
-.navbut2:hover {
-  color: #ea2626;
+.navbut2:hover{
+  color: #EA2626;
   background-color: white;
 }
-
 .but1 {
-  background-color: #ea2626;
+  background-color: #EA2626;
   color: #fff;
   font-size: 25px;
   padding-top: 20px;
@@ -78,26 +80,24 @@
   border: none;
   border-radius: 5px;
 }
-
-.but1:hover {
-  color: #ea2626;
+.but1:hover{
+  color: #EA2626;
   background-color: white;
 }
-.but2 {
-  top: 80px;
+.but2{
   width: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
 }
-
 .but3 {
   display: flex;
   justify-content: flex-end;
   position: relative;
   align-self: flex-end;
-  padding-top: 400px;
   padding-right: 400px;
+  padding-bottom: 550px;
+  margin-top: -100px;
 }
 .but1:after {
   border: none;
@@ -111,15 +111,25 @@
 }
 .window {
   position: relative;
-  height: 450px;
+  height: 475px;
   width: 400px;
-  background-color: grey;
+  background-color: azure;
   font-size: 20px;
+  border-radius: 20px;
 }
-.window input {
+.window p {
+  margin-left: 20px;
+}
+.window input{
   height: 30px;
 }
-
+.inputicons i{
+  position: absolute;
+}
+.icon{
+  min-width: 40px;
+  padding: 10px;
+}
 .first {
   margin-left: 35px;
   align-self: center;
@@ -166,32 +176,35 @@
   justify-content: space-around;
   border-bottom: 1px solid #ff6b6b;
 }
-/* .brightred {
-  
-  } */
-.adv_but {
+.dropbth{
+  color: white;
+  border: none;
+  position: relative;
+}
+.dropdowncontent{
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+.adv_but{
   margin: 30px;
-  background-color: grey;
-  color: #ea2626;
+  background-color: azure;
+  color: #EA2626;
   font-size: 10px;
   border: none;
   border-radius: 5px;
   margin-right: 25px;
 }
-.adv_but:hover {
-  border: none;
-  /*outline: none;*/
-}
-.adv_but:focus {
+.adv_but:focus{
   outline: none;
 }
-.windowbut {
+.windowbut{
   display: flex;
   justify-content: space-between;
 }
-.search_but {
+.search_but{
   margin: 30px;
-  background-color: #ea2626;
+  background-color: #EA2626;
   color: #fff;
   font-size: 15px;
   border: none;
@@ -199,38 +212,137 @@
   padding-right: 50px;
   padding-left: 50px;
 }
-
-.website {
+.search_but:hover {
+  background-color: white;
+  color: #EA2626;
+}
+.website{
   padding-right: 500px;
-  margin-left: 0;
+  margin-left: 10px;
+  padding-top: 27px;
+  margin-top: 27px;
+  box-shadow: 11px 14px 11px 0px rgba(34, 60, 80, 0.2);
   /*display: flex;*/
   /*justify-content: flex-start;*/
 }
-.users {
-  margin-top: 550px;
+.pplblock1{
+  background-color: azure;
+  display: flex;
+  color: black;
+  width: 500px;
+  height: auto;
+  font-size: 14px;
+  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+.pplblock2{
+  margin-top: 50px;
+  background-color: azure;
+  display: flex;
+  color: black;
+  width: 500px;
+  height: auto;
+  font-size: 14px;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.pplblock {
+  background-color: #fff;
+}
+.pplblock img {
+  display: flex;
+  justify-content: center;
+  align-self:
+center;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  float: left;
+}
+.pplbut:hover {
+  color: #EA2626;
+  background-color: azure;
+}
+.pplblock input {
+  width: 50%;
+  margin-left: 45%;
+  margin-bottom: 5%;
+  background-color: #EA2626;
+  color: #fff;
+  font-size: 15px;
+  padding-top: 10px;
+  padding-right: 1px;
+  padding-left: 1px;
+  padding-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+.users{
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
-.user1 {
-  background-color: grey;
-  height: 130px;
-  width: 550px;
+.users1{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
-.user2 {
-  background-color: grey;
-  height: 130px;
-  width: 550px;
+.bottom1{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
 }
-.user3 {
-  background-color: grey;
-  height: 130px;
-  width: 550px;
+.bottom1 p{
+  width: 36%;
 }
-.user4 {
-  background-color: grey;
-  height: 130px;
-  width: 550px;
+.bottom1 img{
+  width: 36%;
+  height: auto;
+  border-radius: 30px;
+  background-size: cover;
 }
-.UserBut1 {
-  float: right;
+.bottombut{
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.aboba2{
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+}
+.aboba1 {
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+}
+.aboba1 p{
+  padding-top: -50px;
+  padding-bottom: -50px;
+}
+.people{
+  margin-top: 20px;
+}
+.footer img{
+  width: 100%;
+  position: absolute;
+}
+.footertext{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 22px;
+  bottom: -650px;
+}
+.footertext p {
+  position: relative;
+  width: 30%;
+}
+.fullcontent {
+  min-height: 100%;
+}
+.last {
+  text-align: center;
+  position: relative;
+  color: white;
+  bottom: -670px;
 }
