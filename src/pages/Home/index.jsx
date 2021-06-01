@@ -12,6 +12,7 @@ import { SearchOutlined, DownOutlined, SwapOutlined } from '@ant-design/icons';
 import { SearchLocationInput } from "components";
 
 
+
 const Home = ({ fetchUserAddInfos, results, isLoading, filterAddInfos }) => {
 
     const [startAge, setStartAge] = useState(1);
@@ -86,6 +87,7 @@ const Home = ({ fetchUserAddInfos, results, isLoading, filterAddInfos }) => {
                         </Dropdown>
                         <div className="arrows">
                             <SwapOutlined />
+
                         </div>
                         <Dropdown  
                          className="age__dropdowns-item"
@@ -134,6 +136,7 @@ const Home = ({ fetchUserAddInfos, results, isLoading, filterAddInfos }) => {
                     <button className="join-button" ><Link to={"/signup"} className="join-link"  >Join us </Link>
                       </button>
                 </div>
+
             </div>
             <div className="welcome__bottom">
                      <div className="suit__block" >
@@ -211,3 +214,4 @@ export default connect(
     }),
     addinfoActions
 )(Home);
+
