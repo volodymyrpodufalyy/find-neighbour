@@ -30,7 +30,7 @@ const Filter = props => {
         );
     };
     return (
-        <div>
+        <div className="filters" >
         <Form className="filter-form" 
         name="time_related_controls" 
         initialValues={{ remember: true, }}

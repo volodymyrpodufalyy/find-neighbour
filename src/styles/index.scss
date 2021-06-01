@@ -14,9 +14,15 @@ html,
     font-size: 14px;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
 @font-face {
     font-family: 'Sukar';
     src: local('Sukar'), url(../fonts/Sukar-Black.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Built Titling';
+    src: local('Built Titling'), url(../fonts/built-titling.ttf) format('truetype');
 }
 
 * {

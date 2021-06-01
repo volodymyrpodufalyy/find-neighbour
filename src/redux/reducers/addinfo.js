@@ -4,7 +4,8 @@ const initialState = {
     items: [],
     results: [],
     totalCount: 0,
-    pageSize: 9
+    pageSize: 9,
+    isInfo: window.localStorage.info
 };
 
   // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,6 +15,12 @@ const initialState = {
         return {
           ...state,
           data: payload,
+          isInfo: window.localStorage.info,
+        };
+      case "ADDINFO:SET_AUTH":
+        return {
+          ...state,
+          isInfo: payload,
         };
       case "ADDINFO:SET_ITEMS":
         return {

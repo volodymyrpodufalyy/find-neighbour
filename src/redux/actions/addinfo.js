@@ -6,6 +6,10 @@ const Actions = {
     type: "ADDINFO:SET_DATA",
     payload: data
   }),
+  setAuthInfo: bool => ({
+    type: "ADDINFO:SET_AUTH",
+    payload: bool
+  }),
   setAddInfos: items => ({
     type: "ADDINFO:SET_ITEMS",
     payload: items
@@ -23,13 +27,13 @@ const Actions = {
     type: "ADDINFO:SET_IS_LOADING",
     payload: bool
   }),
- 
   fetchUserAddInfo: () => dispatch => {
       dispatch(Actions.setIsLoading(true));
     addinfoApi
       .getInfo()
       .then(({ data }) => {
         dispatch(Actions.setAddInfo(data));
+        dispatch(Actions.setAuthInfo(true));
       })
       .catch(err => {
           dispatch(Actions.setIsLoading(false));
@@ -70,7 +74,6 @@ const Actions = {
       .then(({ data }) => {
         dispatch(Actions.setAddInfosResults(data));
         dispatch(Actions.setIsLoading(false));
-        console.log(data);
       })
       .catch(err => {
           dispatch(Actions.setIsLoading(false));
@@ -87,11 +90,12 @@ const Actions = {
     return addinfoApi
     .addInfo(postData).then(({ data }) => {
         openNotification({
-            title: "Чудово!",
-            text: "Авторизація успішна.",
+            title: "Авторизація успішна",
+            text: "Посилання з підтвердженням акаунту надіслано на вашу пошту  ",
             type: "success"
           });
       dispatch(Actions.fetchUserAddInfo());
+      dispatch(Actions.setAuthInfo(true));
       return data;
     })
     .catch(({ response }) => {
