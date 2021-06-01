@@ -65,3 +65,9 @@
 .arrows {
     padding: 5px;
 }
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

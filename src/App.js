@@ -12,7 +12,7 @@ const App = props => {
   const { isAuth } = props;
   return (
     <Layout style={{height:"100%"}}>
-          <Header isAuth={isAuth}/>
+          <Header />
         <Content className="wrapper">
           <Switch>
             <Route exact path={["/signin", "/signup", "/signup/verify", "/addinfo"]} component={Auth} />

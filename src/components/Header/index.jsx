@@ -21,9 +21,6 @@ const Header = ({ isAuth }) => {
         return(
 
                 <div className={s.header}>
-                    {/* <Menu className={s.homelink}>
-                        
-                    </Menu> */}
                     <Menu style={{ color: "red" }} className={s.menu} mode="horizontal">
                                 <Menu.Item key="/homepage" className={s.homeMenuItem} >
                                     <div className={s.homelink} >
@@ -50,7 +47,7 @@ const Header = ({ isAuth }) => {
     else{
             return(
                 <div className={s.header}>
-                    <Menu className={s.menu} mode="horizontal" defaultSelectedKeys={['2']}>
+                    <Menu className={s.menuLogOut} mode="horizontal" defaultSelectedKeys={['2']}>
                         <Menu.Item key="1">
                             <Link to={"/signup"} className={s.link}>Зареєструватись</Link>
                         </Menu.Item>

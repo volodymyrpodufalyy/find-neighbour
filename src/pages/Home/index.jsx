@@ -1,153 +1,217 @@
-import './App.css';
-import main_img from "./1st-main2-img.jpg"
-import main_logo from "./logo_neifhbor.png"
-import people_img from "./face.jpeg"
-import bottompeople from "./bottompeopleimg.jpg"
-import cityblue from "./cityblue.png"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.scss';
+import { CardItem } from "components";
+import { Spin, Dropdown, Menu, Form, Button, Checkbox } from "antd";
+import arrow from "../../assets/img/arrow.svg"
+import city from "../../assets/img/cityblue.svg"
+import peopleImage from "../../assets/img/people-image.jpg"
+import { connect } from 'react-redux';
+import { addinfoActions } from "redux/actions";
+import { Link } from 'react-router-dom';
+import { SearchOutlined, DownOutlined, SwapOutlined } from '@ant-design/icons';
+import { SearchLocationInput } from "components";
 
 
-const Home = () => {
+
+const Home = ({ fetchUserAddInfos, results, isLoading, filterAddInfos }) => {
+
+    const [startAge, setStartAge] = useState(1);
+    const [endAge, setEndAge] = useState(45);
+    const ageRange = [...Array(70).keys()].slice(1, 70);
+
+    const [userAdress, setUserAdress] = useState();
+
+    const [sex, setSex] = useState();
+
+    useEffect(() => {
+        fetchUserAddInfos(1, 6);
+      }, []);
+
+    const filterUsers = () => {
+
+        filterAddInfos(startAge, endAge, userAdress, sex);
+        
+    }
+
+    if(isLoading) {
+        return ( 
+           <div className="spin-load"> 
+             <Spin size="large" tip="Завантаження..."/> 
+           </div> 
+        );
+    }
+
+    const DropdownMenu = (age) => {
+        return (
+            <Menu className="dropdown-menu">
+                {ageRange.map((num) => {
+                    if(age === "startAge") {
+                        return ( <Menu.Item key={num} onClick={e => setStartAge(e.key)} > {num} </Menu.Item> );
+                    }
+                    return ( <Menu.Item key={num} onClick={e => setEndAge(e.key)} > {num} </Menu.Item> );
+                })}
+            </Menu>
+        );
+    };
 
     return (
-        <div className="App">
-            <script src="https://kit.fontawesome.com/47f61c7504.js" crossOrigin="anonymous"></script>
-            <body>
-            
-            <div className="fullcontent">
-                <div className="header">
-                    <div className="image1">
-                        <img className="main_img" src={main_img} alt=""/>
-                    </div>
-                    <div className="website">
-                        <div className="window">
-                            <p>Search neighbourhood in UA</p>
-                            <div className="txt3">
-                                <p className="brightred">I have an apartment</p>
-                                <p>I'm looking for</p>
-                            </div>
-                            <div className="inputIcons">
-                                <i className="fas fa-search icon"></i><input type="text" className="first"
-                                                                             placeholder="Lviv"></input>
-                                <div className="txt1">
-                                    <p>Min price</p>
-                                    <p>Max price</p>
-                                </div>
-                                <div className="fns">
-                                    <input type="text" className="second" placeholder="No min"></input>
-                                    <input type="text" className="third" placeholder="No max"></input>
-                                </div>
-                                <div className="txt2">
-                                    <p>Gender</p>
-                                    <p>About pets</p>
-                                </div>
-                                <div className="fnf">
-                                    <input type="text" className="fourth"></input>
-                                    <input type="text" className="fifth"></input>
-                                </div>
-                            </div>
-                            <div className="windowbut">
-                                <input className="adv_but" type="button" value="Advanced search options"></input>
-                                <input className="search_but" type="button" value="search"></input>
-                            </div>
+    <div className="home-page">
+        <section className="welcome" >
+            <div className="welcome__top" >
+                <div className="search__block" >
+                    <div className="search__block-wrapper">
+                        <h1>Input your preferences:</h1>
+                    <div className="filters"> 
+                    <Form className="filter-form" 
+                    name="time_related_controls" 
+                    initialValues={{ remember: true, }}
+                    onSubmit={filterUsers}
+                    >
+            <Form.Item name="range-picker" hasFeedback>
+                <div className="age-picker">
+                    <p>Вік:</p>
+                        <button onClick={filterUsers} 
+                        className="submit-age" 
+                        type="primary" 
+                        htmltype="submit"
+                        >  <p>  OK   </p>
+                        </button>
+                    <div className="age__dropdowns">
+                        <Dropdown  
+                         className="age__dropdowns-item"
+                         overlay={DropdownMenu("startAge")} 
+                         placement="bottomLeft" 
+                         trigger={['click']}
+                        >
+                            <Button className="age-btn" > {startAge} <DownOutlined/></Button>
+                        </Dropdown>
+                        <div className="arrows">
+                            <SwapOutlined />
+
                         </div>
-                    </div>
-                </div>
-                <div className="but2">
-                    <div className="but3"><p><input className="but1" type="button" value=" Join us "></input></p></div>
-                </div>
-                <div className="people">
-                    <div className="pplblock">
-                        <div className="users">
-                            <div className="pplblock1">
-                                <img src={people_img}></img>
-                                <div className="aboba1">
-                                    <h2>John john</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                    <br></br>
-                                    <p>Gender Man</p>
-                                    <p>age 666</p>
-                                    <input type="button" className="pplbut" value="contact"></input>
-                                </div>
-                            </div>
-                            <div className="pplblock1">
-                                <img src={people_img}></img>
-                                <div className="aboba1">
-                                    <h2>John john</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                    <br></br>
-                                    <p>Gender Man</p>
-                                    <p>age 666</p>
-                                    <input type="button" className="pplbut" value="contact"></input>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="users1">
-                            <div className="pplblock2">
-                                <img src={people_img}></img>
-                                <div className="aboba2">
-                                    <h2>John john</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                    <br></br>
-                                    <p>Gender Man</p>
-                                    <p>age 666</p>
-                                    <input type="button" className="pplbut" value="contact"></input>
-                                </div>
-                            </div>
-                            <div className="pplblock2">
-                                <img src={people_img}></img>
-                                <div className="aboba2">
-                                    <h2>John john</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                                    <br></br>
-                                    <p>Gender Man</p>
-                                    <p>age 666</p>
-                                    <input type="button" className="pplbut" value="contact"></input>
-                                </div>
-                            </div>
-                        </div>
+                        <Dropdown  
+                         className="age__dropdowns-item"
+                         overlay={DropdownMenu()} 
+                         placement="bottomLeft" 
+                         trigger={['click']}
+                        >
+                            <Button className="age-btn" > {endAge} <DownOutlined/></Button>
+                        </Dropdown>
                     </div>
                 </div>
-                <div className="bottom1">
-                    <img src={bottompeople}></img>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, delectus deleniti eius eos, est
-                        eveniet hic iste laboriosam maxime nam nobis rerum unde ut! Accusamus dolores id incidunt l
-                        aboriosam voluptatum!Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
-                        in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
-                        McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more
-                        obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the
-                        word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections
-                        1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
-                        written in 45 BC. This book is a treatise on the theory of ethics, very popular during the
-                        Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in
-                        section 1.10.32.
-                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-                        Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
-                        their exact original form, accompanied by English versions from the 1914 translation by H.
-                        Rackham.</p>
+            </Form.Item>
+        </Form>
+        <Form >
+            <Form.Item hasFeedback>
+            <div className="check__picker">
+                <p>Місто:</p>              
+                    <SearchLocationInput parentCallback={setUserAdress} onChange={() => null}  />
+              </div>
+            </Form.Item>
+        </Form>
+        <Form >
+            <Form.Item hasFeedback>
+            <div className="check__picker">
+                <p>Стать:</p>              
+              <Checkbox 
+              onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
+              className="check__picker-item">Чоловік</Checkbox>
+              <Checkbox 
+              onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)} 
+              className="check__picker-item check__picker-item--female">Жінка</Checkbox>
+              </div>
+            </Form.Item>
+        </Form>
+                    </div>
+                    </div>
+         
                 </div>
-                <div className="bottombut"><input className="but1" type="button" value=" Join us "></input></div>
+                <div className="slogan">
+                    <div className="slogan__top" >
+                        <p>FIND YOUR</p>
+                    </div>
+                    <div className="slogan__bottom" >
+                        <p>NEIGHBOUR</p>
+                    </div>
+                    <button className="join-button" ><Link to={"/signup"} className="join-link"  >Join us </Link>
+                      </button>
+                </div>
+
             </div>
-            <div className="footer">
-                <img src={cityblue}></img>
-                <div className="footertext">
-                    <p>Contact us:<br></br>
-                        Gmail: propositumtop@gmail.com
-                        <br></br>Insta: Propositum_top
-                        <br></br>Telegram: +38066666666
-                        <br></br>Viber: +38066666666</p>
-                    <p>About us: Lorem ipsum dolor sit amet, consectetur adipisicing elit. At
-                        dolorum error esse est
-                        harum labore minima minus necessitatibus obcaecati officiis perspiciatis possimus quae quia
-                        quidem recusandae repellendus saepe, similique sunt.</p>
+            <div className="welcome__bottom">
+                     <div className="suit__block" >
+                        <div className="suit__block-slogan">
+                            <p>Maybe they will suit you</p>
+                        </div>
+                        <img className="suit__block-arrow" src={arrow} alt="arrow"></img>
+                    </div>
+            </div>
+        </section>
+        <section className="examples">
+                <div className="examples__list" >
+                        <ul className="users__list">
+                            {results.map((userInfo) => (
+                                <li key={userInfo._id}>
+                                    <CardItem card={userInfo} />
+                                </li>
+                            ))}
+                        </ul>
                 </div>
-                <div className="last">
-                    <h1>Lorem ipsum dolor sit.</h1>
+                <div className="examples__see-more" >
+                    <Link to={'/search'} className="examples__see-more-link" >See more options   <SearchOutlined style={{ fontSize: "20px" }} /> </Link>
+                </div>
+        </section>
+        <section className="about">
+            <img className="about__image" src={peopleImage} alt="people"></img>  
+            <div className="about__article" >
+                <p>Let’s start with the words you use to describe yourself. 
+                    They say a picture is worth a thousand words, 
+                    but our singles consistently tell us that a profile description matters more to them than a photo.
+                </p>    
+                <p>
+                    It’s important, especially on a serious dating site,
+                     that you take the time to make your written presentation as good as it can be,
+                      and reveal your true self honestly and carefully.
+                </p>
+                <p>
+                  And words can break the ice! It can be hard to introduce yourself to a single you find interesting;
+                   it is always difficult to find the right way to approach them and find THE message that will attract their attention. 
+                </p>
+            </div>                  
+        </section>
+        <section className="footer">
+            <img className="footer__city" src={city} alt="City blue" ></img>
+            <div className="footer__info" >
+                <div className="footer__info-top">
+                    <div className="contacts">
+                        <p>Contact us:</p>
+                        <p>Gmail: propositumtop@gmail.com</p>
+                        <p>Mobile: +380993598947</p>
+                    </div>
+                    <div className="about-us">
+                        <span>About us:</span>
+                        <p>We are a group of students from Ukraine,
+                            who love making beautiful applications and realize cool ideas.
+                        </p>
+                    </div>
+                </div>
+                <div className="footer__info-bottom">
+                    <p> Made By Propositum </p>
                 </div>
             </div>
-            </body>
-        </div>
+        </section>
+     </div>
     );
-}
-export default Home;
+};
+
+export default connect(
+    ({ addinfo }) => ({
+        items: addinfo.items,
+        results: addinfo.results,
+        pageSize: addinfo.pageSize,
+        totalCount: addinfo.totalCount,
+        isLoading: addinfo.isLoading
+    }),
+    addinfoActions
+)(Home);
+
