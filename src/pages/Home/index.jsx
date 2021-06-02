@@ -28,9 +28,7 @@ const Home = ({ fetchUserAddInfos, results, isLoading, filterAddInfos }) => {
       }, []);
 
     const filterUsers = () => {
-
         filterAddInfos(startAge, endAge, userAdress, sex);
-        
     }
 
     if(isLoading) {
@@ -158,7 +156,9 @@ const Home = ({ fetchUserAddInfos, results, isLoading, filterAddInfos }) => {
                         </ul>
                 </div>
                 <div className="examples__see-more" >
-                    <Link to={'/search'} className="examples__see-more-link" >See more options   <SearchOutlined style={{ fontSize: "20px" }} /> </Link>
+                    <Link to={'/search'} className="examples__see-more-link" >See more options  
+                     <SearchOutlined style={{ fontSize: "20px"}} />
+                    </Link>
                 </div>
         </section>
         <section className="about">

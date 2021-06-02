@@ -26,7 +26,7 @@
   .pages__chooser {
     display: flex;
     justify-content: center;
-    margin-top: 10em;
+    margin-top: 2em;
     margin-bottom: 40px;
     &-list {
       display: flex;
@@ -123,5 +123,5 @@
 .users__list li {
   flex: 0 1 10rem;
   height: 170px;
-  padding: 2.5rem;
+  padding: 0.5rem;
 }
