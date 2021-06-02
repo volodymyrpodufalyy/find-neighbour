@@ -7,7 +7,7 @@ import "./AddInfoForm.scss";
 import { validateField, convertDate, getAge } from 'utils/helpers';
 
 const AddInfoForm = props => {
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting, isValid, status } = props;  
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting, isValid } = props;  
 
     const [userAdress, setUserAdress] = useState("");
     const [day, setDay] = useState("День");

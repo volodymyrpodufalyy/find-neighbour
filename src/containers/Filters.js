@@ -3,7 +3,7 @@ import { Filter } from "components";
 import { connect } from 'react-redux';
 import { addinfoActions } from "redux/actions";
 
-const Filters = ({ results, filterAddInfos  }) => {
+const Filters = ({ results, filterAddInfos, fetchUserAddInfos, pageSize  }) => {
     const [startAge, setStartAge] = useState(1);
     const [endAge, setEndAge] = useState(30);
     const ageRange = [...Array(70).keys()].slice(1, 70);
@@ -16,15 +16,12 @@ const Filters = ({ results, filterAddInfos  }) => {
     const [badHabits, setBadHabits] = useState();
     
     const filterUsers = () => {
-
         filterAddInfos(startAge, endAge, userAdress, sex, pets, badHabits);
-
     }
-    console.log(sex);
 
-    useEffect(() => {
-        filterUsers();
-    }, [sex, pets, badHabits])
+    useEffect(() => {  
+        fetchUserAddInfos(1, pageSize )
+    }, [])
 
     useEffect(() => {
         filterUsers();
@@ -50,7 +47,8 @@ const Filters = ({ results, filterAddInfos  }) => {
 export default connect(
     ({ addinfo }) => ({
         results: addinfo.results,
-        isLoading: addinfo.isLoading
+        isLoading: addinfo.isLoading,
+        pageSize: addinfo.pageSize,
     }),
     addinfoActions
   )(Filters);

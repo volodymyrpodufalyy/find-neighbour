@@ -6,8 +6,10 @@ import { userActions } from "redux/actions";
 import { Menu } from 'antd';
 import houselogo from "../../assets/img/house-logo.svg"
 import s from "./Header.Module.scss";
+import { SearchOutlined } from '@ant-design/icons';
 
-const Header = ({ isAuth }) => {
+
+const Header = ({  user }) => {
 
     const history  = useHistory()
 
@@ -17,7 +19,8 @@ const Header = ({ isAuth }) => {
         history.push('/');
     }
 
-    if(isAuth){
+
+    if((user.data !== null &&  user.data.confirmed ) && user.isAuth){
         return(
 
                 <div className={s.header}>
@@ -25,7 +28,11 @@ const Header = ({ isAuth }) => {
                                 <Menu.Item key="/homepage" className={s.homeMenuItem} >
                                     <div className={s.homelink} >
                                         <div  className={s.houselogo} > <img src={houselogo} alt="House" /> </div>
-                                        <Link to={"/"} className={s.homeTitle} >NEIGHBOUR</Link>
+                                        <SearchOutlined className={s.searchIcon}
+                                        style={{ fontSize: "15px", color: "#da1212" }}
+                                        />
+                                        <Link to={"/"} className={s.homeTitle} >NEIGHBOUR
+                                        </Link>
                                     </div>
                                 </Menu.Item>
                                 <Menu.Item key="/search" className={s.menuItemSearch} >  
@@ -44,14 +51,14 @@ const Header = ({ isAuth }) => {
                 </div>
         );
     }
-    else{
+    else {
             return(
                 <div className={s.header}>
                     <Menu className={s.menuLogOut} mode="horizontal" defaultSelectedKeys={['2']}>
-                        <Menu.Item key="1">
+                        <Menu.Item key="1" >
                             <Link to={"/signup"} className={s.link}>Зареєструватись</Link>
                         </Menu.Item>
-                        <Menu.Item key="2">
+                        <Menu.Item key="2" >
                             <Link to={"/signin"} className={s.link}>Ввійти</Link>
                         </Menu.Item>
                     </Menu>
@@ -60,4 +67,4 @@ const Header = ({ isAuth }) => {
         }
 }
 
-export default connect(({ user }) => ({ isAuth: user.isAuth }))(Header);
+export default connect( ({ user }) => ( { user: user }) )(Header);

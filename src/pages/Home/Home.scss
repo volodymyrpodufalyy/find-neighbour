@@ -1,5 +1,6 @@
 
 .home-page {
+  max-width: 100%;
   height: fit-content;
   
   .welcome {
@@ -27,6 +28,7 @@
         &-wrapper {
           h1 {
             text-align: center;
+            padding-top: 1rem;
             font-family: 'Montserrat Regular', sans-serif;
             font-size: 1.25em;
           }

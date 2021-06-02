@@ -14,7 +14,7 @@
     position: relative;
     flex-wrap: wrap;
     float: left;
-    width: 200px;
+    width: 15rem;
     margin-right: 30% !important;
     right: 5.5% !important;
 }
@@ -39,7 +39,6 @@
     position: relative;
     left: 5% !important;
 }
-
 .houselogo {
     padding-top: 8px;
 }
@@ -53,7 +52,6 @@
 
 .homeTitle {
     padding-top: 3px;
-    padding-left: 7px;
     font-size: 24px;
     color: #EA2626 !important;
     text-decoration: none;
@@ -72,6 +70,12 @@
 		0.035em 0.035em 0 mix(#fff, #EA2626, 72%);
 }
 
+.searchIcon {
+    position: relative;
+    padding-top: 2px;
+    margin-right: 0 !important;
+}
+
 
 .menu{
     display: flex;
@@ -86,7 +90,7 @@
     display: flex;
     float: right;
     position: relative;
-    left: 82% !important;
+    padding-left: 80% !important;
     background: none;
     border: none;
     height: 50px;

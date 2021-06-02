@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Result, Button, Spin } from 'antd';
-
+import { connect } from 'react-redux';
+import { userActions } from "redux/actions";
 import { userApi } from 'utils/api';
 import { Block } from 'components';
 
@@ -28,7 +29,7 @@ const renderTextInfo = ({ hash, verified }) => {
   }
 };
 
-const CheckEmailInfo = ({ location, history }) => {
+const CheckEmailInfo = ({ location, history, user, fetchUserData }) => {
   const hash = location.search.split('hash=')[1];
   const [verified, setVerified] = useState(false);
   const [checking, setChecking] = useState(!!hash);
@@ -51,7 +52,9 @@ const CheckEmailInfo = ({ location, history }) => {
           setStatus({ verified: false, checking: false });
         });
     }
+    fetchUserData();
   }, []);
+
 
 
   return (
@@ -81,4 +84,5 @@ const CheckEmailInfo = ({ location, history }) => {
   );
 };
 
-export default CheckEmailInfo;
+export default connect( ({ user }) => ({ user: user }), userActions )(CheckEmailInfo);;
+
