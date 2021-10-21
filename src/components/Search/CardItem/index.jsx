@@ -6,25 +6,28 @@ const CardItem = ({ card }) => {
     const adress = card.adress.split(',');
     return (
         <div className="users__list-card">
+
             <div className="users__list-card-image">
-                <Avatar user={card.user} /> 
+                <Avatar user={card.user} />
             </div>
+
             <div className="users__list-card-info">
                 <div className="users__list-card-info-top">
-                    <b>{card.user.fullname}</b> 
+                    <p className='item_card_text_name'>{card.user.fullname}</p>
                 </div>
 
                 <div className="users__list-card-info-bottom">
                     <div className="users__list-card-info-bottom-item">
-                        <span>ВІК</span>
-                        <p>{card.age}</p>
+                        <h5>ВІК</h5>
+                        <h6 className='item_card_text'>{card.age}</h6>
                     </div>
                     <div className="users__list-card-info-bottom-item">
-                        <span>MICTO</span>
-                        <p>{adress[0]}</p>
+                        <h5>MICTO</h5>
+                        <h6 className='item_card_text'>{adress[0]}</h6>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

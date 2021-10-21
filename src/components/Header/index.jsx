@@ -20,7 +20,7 @@ const Header = ({  user }) => {
     }
 
 
-    if((user.data !== null &&  user.data.confirmed ) && user.isAuth){
+    if(user.isAuth){
         return(
 
                 <div className={s.header}>
@@ -35,7 +35,7 @@ const Header = ({  user }) => {
                                         </Link>
                                     </div>
                                 </Menu.Item>
-                                <Menu.Item key="/search" className={s.menuItemSearch} >  
+                                <Menu.Item key="/search" className={s.menuItemSearch} >
                                     <Link to={"/search"}  className={s.link}>Пошук</Link>
                                 </Menu.Item>
                                 <Menu.Item key="/profile" className={s.menuItemProfile} >
