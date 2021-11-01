@@ -96,6 +96,7 @@ class AddInfoController {
     const badHabits = req.query.badHabits;
     const sex = req.query.sex;
     const adress = req.query.adress;
+    const userId = req.query.userId;
 
     let queryObj: any = {};
 
@@ -113,11 +114,13 @@ class AddInfoController {
     }
     if((badHabits !==  'undefined') && (badHabits !==  undefined)) {
       queryObj.badHabits = badHabits;
-    }    
+    }
     if((sex !== 'undefined') && (sex !== undefined)) {
       queryObj.sex = sex;
-    }        
-    
+    }
+    if((userId !== 'undefined') && (userId !== undefined)) {
+      queryObj.user = userId;
+    }
     AddInfoModel.find(queryObj)
     .populate(["user"])
     .exec(function (err, addinfos: any) {
@@ -128,7 +131,7 @@ class AddInfoController {
       }
       return res.json(addinfos);
     });
-    
+
   };
 
 
