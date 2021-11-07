@@ -1,10 +1,17 @@
 import bodyParser from "body-parser";
 import express from "express";
 import socket from "socket.io";
-import { DialogCtrl, MessageCtrl, UserCtrl, UploadCtrl, AddInfoCtrl} from "../controllers";
+
+import {
+  DialogCtrl,
+  MessageCtrl,
+  UserCtrl,
+  UploadCtrl,
+  AddInfoCtrl,
+} from "../controllers";
 import { checkAuth, updateLastSeen } from "../middleware";
 import { loginValidation, registerValidation } from "../utils/validations";
-import multer from './multer';
+import multer from "./multer";
 
 const createRoutes = (app: express.Express, io: socket.Server) => {
   const UserController = new UserCtrl(io);
@@ -17,7 +24,19 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
   app.use(checkAuth);
   app.use(updateLastSeen);
 
+  /**
+   * @swagger
+   * /user/me:
+   *   get:
+   *     tags: ["user"]
+   *     summary: Retrieve a  user's info
+   *     description: Retrieve a  current user's info
+   *     responses:
+   *       200:
+   *         description: A user's info.
+   */
   app.get("/user/me", UserController.getMe);
+
   app.get("/user/verify", UserController.verify);
   app.post("/user/signup", registerValidation, UserController.create);
   app.post("/user/signin", loginValidation, UserController.login);
@@ -33,13 +52,12 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
   app.post("/messages", MessageController.create);
   app.delete("/messages", MessageController.delete);
 
-  app.post("/files", multer.single('file'), UploadController.create);
+  app.post("/files", multer.single("file"), UploadController.create);
 
   app.post("/user/addinfo", AddInfoController.create);
   app.get("/addinfo", AddInfoController.index);
   app.get("/addinfos", AddInfoController.getAll);
   app.get("/addinfos/filterUsers", AddInfoController.filterUsers);
-
 };
 
 export default createRoutes;
