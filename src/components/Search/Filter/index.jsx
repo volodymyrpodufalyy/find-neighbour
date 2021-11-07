@@ -39,13 +39,6 @@ const Filter = props => {
             <Form.Item name="range-picker" hasFeedback>
                 <div className="age-picker">
                     <p>Вік:</p>
-                        <button onClick={filterUsers} 
-                        className="submit-age" 
-                        type="primary" 
-                        htmltype="submit"
-                        >
-                            <p>OK</p>
-                        </button>
                     <div className="age__dropdowns">
                         <Dropdown  
                          className="age__dropdowns-item"
@@ -114,7 +107,14 @@ const Filter = props => {
                     <Checkbox 
                     onChange={e => e.target.checked ? setPets(!e.target.checkede) : setPets()}
                     className="check__picker-item check__picker-item--female">Ні</Checkbox>
-              </div>
+            </div>
+                <button onClick={filterUsers}
+                        className="submit"
+                        type="primary"
+                        htmltype="submit"
+                >
+                    <p>OK</p>
+                </button>
             </Form.Item>
         </Form>
         </div>

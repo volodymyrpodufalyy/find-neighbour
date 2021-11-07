@@ -67,12 +67,6 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
                                     <Form.Item name="range-picker" hasFeedback>
                                         <div className="age-picker">
                                             <p>Вік:</p>
-                                            <button onClick={filterUsers}
-                                                    className="submit-age"
-                                                    type="primary"
-                                                    htmltype="submit"
-                                            ><p> OK </p>
-                                            </button>
                                             <div className="age__dropdowns">
                                                 <Dropdown
                                                     className="age__dropdowns-item"
@@ -108,15 +102,21 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
                                 </Form>
                                 <Form>
                                     <Form.Item hasFeedback>
-                                        <div className="check__picker">
-                                            <p>Стать:</p>
-                                            <Checkbox
-                                                onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
-                                                className="check__picker-item">Чоловік</Checkbox>
-                                            <Checkbox
-                                                onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)}
-                                                className="check__picker-item check__picker-item--female">Жінка</Checkbox>
-                                        </div>
+                                            <div className="check__picker">
+                                                <p>Стать:</p>
+                                                <Checkbox
+                                                    onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
+                                                    className="check__picker-item">Чоловік</Checkbox>
+                                                <Checkbox
+                                                    onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)}
+                                                    className="check__picker-item check__picker-item--female">Жінка</Checkbox>
+                                            </div>
+                                        <button onClick={filterUsers}
+                                                className="search__submit__button"
+                                                type="primary"
+                                                htmltype="submit"
+                                        ><p> OK </p>
+                                        </button>
                                     </Form.Item>
                                 </Form>
                             </div>

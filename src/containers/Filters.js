@@ -14,12 +14,12 @@ const Filters = ({ results, filterAddInfos, fetchUserAddInfos, pageSize  }) => {
     const [sex, setSex] = useState();
     const [pets, setPets] = useState();
     const [badHabits, setBadHabits] = useState();
-
+    
     const filterUsers = () => {
         filterAddInfos(startAge, endAge, userAdress, sex, pets, badHabits);
     }
 
-    useEffect(() => {
+    useEffect(() => {  
         fetchUserAddInfos(1, pageSize )
     }, [])
 
@@ -28,7 +28,7 @@ const Filters = ({ results, filterAddInfos, fetchUserAddInfos, pageSize  }) => {
     }, [sex, pets, badHabits, userAdress])
 
     return (
-        <Filter
+        <Filter 
         setUserAdress={setUserAdress}
         setBadHabits={setBadHabits}
         setPets={setPets}

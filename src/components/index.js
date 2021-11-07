@@ -17,4 +17,3 @@ export { default as CardItem } from './Search/CardItem';
 export { default as Filter } from './Search/Filter';
 export { default as UserList } from './Search/UserList';
 export { default as SearchLocationInput } from './Profile/SearchLocationInput';
-export { default as MainInfoUser } from './MainInfoUser';
