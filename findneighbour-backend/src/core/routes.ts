@@ -26,20 +26,68 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
 
   /**
    * @swagger
-   * /user/me:
+   * /user/signup:
    *   get:
    *     tags: ["user"]
-   *     summary: Retrieve a  user's info
+   *     summary: signup a user
+   *     description: Registration for a current user
+   *     responses:
+   *       200:
+   *         description: New user instance and token.
+   */
+  app.post("/user/signup", registerValidation, UserController.create);
+
+  /**
+   * @swagger
+   * /user/signin:
+   *   get:
+   *     tags: ["user"]
+   *     summary: signin a user
+   *     description: For signin use email, password
+   *     responses:
+   *       200:
+   *         description: Status and token.
+   */
+  app.post("/user/signin", loginValidation, UserController.login);
+
+  /**
+   * @swagger
+   * /users/me:
+   *   get:
+   *     tags: ["user"]
+   *     summary: Retrieve a  user's info by token in headers
    *     description: Retrieve a  current user's info
+   *     parameters:
+   *       - in: headers
+   *         name: token
+   *         required: true
+   *         description: string token of the user to retrieve.
+   *         schema:
+   *           type: string
    *     responses:
    *       200:
    *         description: A user's info.
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/User'
+   *               type: object
    */
+
   app.get("/user/me", UserController.getMe);
 
+  /**
+   * @swagger
+   * /user/verify:
+   *   get:
+   *     tags: ["user"]
+   *     summary: Verify a user's hash
+   *     description: Verify a  current user's hash
+   *     responses:
+   *       200:
+   *         description: Verification status.
+   */
   app.get("/user/verify", UserController.verify);
-  app.post("/user/signup", registerValidation, UserController.create);
-  app.post("/user/signin", loginValidation, UserController.login);
   app.get("/user/find", UserController.findUsers);
   app.get("/user/:id", UserController.show);
   app.delete("/user/:id", UserController.delete);

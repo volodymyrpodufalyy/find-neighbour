@@ -20,7 +20,7 @@ createRoutes(app, io);
 
 const options = {
   definition: swaggerDocument,
-  apis: ["./src/core/*.ts"],
+  apis: ["./src/core/*.ts", "./src/swagger/*.ts"],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
