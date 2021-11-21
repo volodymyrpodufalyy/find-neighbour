@@ -2,11 +2,16 @@ import {
   BeforeCreate,
   Column,
   DataType,
+  ForeignKey,
+  HasOne,
   Model,
   Table,
 } from "sequelize-typescript";
 import differenceInMinutes from "date-fns/difference_in_minutes";
 import { generatePasswordHash } from "../utils";
+import { AddInfo } from "./SAddInfo";
+
+export type TUser = typeof User;
 
 export interface UserCreationAttributes {
   email: string;
@@ -14,7 +19,7 @@ export interface UserCreationAttributes {
   password: string;
 }
 
-@Table({ tableName: "user" })
+@Table({ tableName: "user", underscored: true })
 export class User extends Model<User, UserCreationAttributes> {
   @Column({
     type: DataType.INTEGER,
@@ -54,4 +59,7 @@ export class User extends Model<User, UserCreationAttributes> {
       new Date().toString()
     )) as string;
   }
+
+  @HasOne(() => AddInfo)
+  info: AddInfo;
 }

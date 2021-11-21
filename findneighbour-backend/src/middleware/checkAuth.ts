@@ -1,8 +1,13 @@
 import express from "express";
+import { User } from "../models/SUser";
 import { verifyJWToken } from "../utils";
 import { DecodedData } from "../utils/verifyJWToken";
 
 const swaggerRegExp = new RegExp("/api-docs(.*)");
+
+export interface ExtendedRequest extends express.Request {
+  user: User;
+}
 
 export function isDecodedData(object: unknown): object is DecodedData {
   return Object.prototype.hasOwnProperty.call(object, "data");

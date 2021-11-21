@@ -20,16 +20,16 @@ const MessageSchema = new Schema(
   {
     text: { type: String, require: Boolean },
     dialog: { type: Schema.Types.ObjectId, ref: "Dialog", require: true },
-    user: { type: Schema.Types.ObjectId, ref: "User", require: true },
+    user: { type: Schema.Types.Number, require: true },
     readed: {
       type: Boolean,
-      default: false
+      default: false,
     },
     attachments: [{ type: Schema.Types.ObjectId, ref: "Upload" }],
   },
   {
     timestamps: true,
-    usePushEach: true
+    usePushEach: true,
   }
 );
 

@@ -3,7 +3,7 @@ import { User } from "../models/SUser";
 
 export interface DecodedData {
   data: {
-    dataValues: typeof User;
+    dataValues: User;
   };
 }
 

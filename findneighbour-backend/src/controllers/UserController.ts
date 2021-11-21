@@ -1,11 +1,10 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import socket from "socket.io";
-import { Op } from "sequelize";
+import { Op, UniqueConstraintError } from "sequelize";
 import { validationResult } from "express-validator";
 import { SentMessageInfo } from "nodemailer/lib/sendmail-transport";
 
-import { UserModel } from "../models";
 import { User } from "../models/SUser";
 import { sequelize } from "../core/dbconfig";
 import { createJWToken } from "../utils";
@@ -30,7 +29,7 @@ class UserController {
     const userInstance = req.user;
     if (!userInstance) {
       return res.status(404).json({
-        message: "User not found",
+        message: "Sorry, User not found",
       });
     }
     return res.json(userInstance);
@@ -46,6 +45,7 @@ class UserController {
             { email: { [Op.iRegexp]: query } },
           ],
         },
+        include: { all: true },
       });
       return res.json(users);
     } catch (error) {
@@ -109,11 +109,18 @@ class UserController {
             }
           );
         })
-        .catch((reason) => {
-          res.status(500).json({
-            status: "error",
-            message: reason,
-          });
+        .catch((err) => {
+          if (err instanceof UniqueConstraintError) {
+            res.status(500).json({
+              status: "error",
+              message: "Such user already exists",
+            });
+          } else {
+            res.status(500).json({
+              status: "error",
+              message: err,
+            });
+          }
         });
     }
   };
