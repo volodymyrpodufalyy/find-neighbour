@@ -9,7 +9,7 @@ export default async (
   if (req.user) {
     const user = await User.findByPk(Number(req.user.id));
     if (user) {
-      user.last_seen = new Date();
+      user.last_seen = new Date().toISOString();
       user.save();
     }
   }

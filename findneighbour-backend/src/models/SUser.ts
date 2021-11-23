@@ -45,7 +45,7 @@ export class User extends Model<User, UserCreationAttributes> {
   confirm_hash!: string;
 
   @Column({ type: DataType.STRING, defaultValue: new Date().toUTCString() })
-  last_seen!: Date;
+  last_seen!: string;
 
   @Column({ type: DataType.VIRTUAL })
   get isOnline() {

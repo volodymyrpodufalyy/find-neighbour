@@ -1,40 +1,58 @@
 import express from "express";
 import socket from "socket.io";
+import { sequelize } from "../core/dbconfig";
 
 import { DialogModel, MessageModel } from "../models";
+import { IDialog } from "../models/Dialog";
+import { User } from "../models/SUser";
 
 class DialogController {
   io: socket.Server;
+  userRepository = sequelize.getRepository(User);
 
   constructor(io: socket.Server) {
     this.io = io;
   }
 
-  index = (req: any, res: express.Response) => {
-    const userId = req.user.id;
+  index = async (req: express.Request, res: express.Response) => {
+    const userId = (req.user as User).id;
 
-    DialogModel.find()
-      .or([{ author: userId }, { partner: userId }])
-      .populate({
-        path: "lastMessage",
-      })
-      .exec(function (err, dialogs) {
-        if (err || !dialogs) {
-          return res.status(404).json({
-            message: "Dialogs not found",
-          });
-        }
-        return res.json(dialogs);
+    try {
+      DialogModel.find()
+        .or([{ author: userId }, { partner: userId }])
+        .populate({
+          path: "lastMessage",
+        })
+        .exec(function (err, dialogs) {
+          if (err || !dialogs) {
+            return res.status(404).json({
+              message: "Dialogs not found",
+            });
+          }
+          console.log(dialogs, "dialogs");
+          const upd = dialogs[dialogs.length - 1];
+          (upd.author as any) = 33434;
+          return res.json(upd);
+        });
+    } catch (error) {
+      return res.status(404).json({
+        message: error,
       });
+    }
   };
 
-  create = (req: any, res: express.Response) => {
+  create = async (req: any, res: express.Response) => {
     const postData = {
-      author: req.user.id,
+      author: req.user,
       partner: req.body.partner,
     };
 
-    const dialog = new DialogModel(postData);
+    const partner = await User.findByPk(Number(postData.partner));
+
+    const dialog = new DialogModel({
+      author: postData.author,
+      partner: partner,
+    });
 
     dialog
       .save()
