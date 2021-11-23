@@ -1,9 +1,8 @@
 import React from 'react';
 import { Avatar } from "components";
-import { Emoji } from 'emoji-mart';
 
 const CardItem = ({ card }) => {
-    const adress = card.adress.split(',');
+    const address = card.address.split(',');
     return (
         <div className="users__list-card">
 
@@ -23,7 +22,7 @@ const CardItem = ({ card }) => {
                     </div>
                     <div className="users__list-card-info-bottom-item">
                         <h5>MICTO</h5>
-                        <h6 className='item_card_text'>{adress[0]}</h6>
+                        <h6 className='item_card_text'>{address[0]}</h6>
                     </div>
                 </div>
             </div>

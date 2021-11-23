@@ -24,9 +24,6 @@ class AddInfoController {
       phoneNumber: req.body.phoneNumber,
       moreAbout: req.body.moreAboutUser,
     };
-
-    console.log(user, "user");
-
     try {
       const addInfo = await AddInfo.create(postData).catch((error) => {
         if (error instanceof UniqueConstraintError) {
@@ -53,7 +50,7 @@ class AddInfoController {
       }
       return res.json(addInfo);
     } catch (error) {
-      return res.json({
+      return res.status(500).json({
         status: "error",
         message: error,
       });
@@ -70,12 +67,14 @@ class AddInfoController {
       });
       if (!additionalInfo) {
         return res.status(404).json({
+          status: "error",
           message: "additionalInfo not found",
         });
       }
       return res.json(additionalInfo);
     } catch (err) {
       return res.status(404).json({
+        status: "error",
         message: err,
       });
     }
@@ -88,8 +87,6 @@ class AddInfoController {
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const totalCount = Number((await AddInfo.findAndCountAll()).count);
-
-    console.log(totalCount, "totalCount");
 
     const results = {
       totalCount,

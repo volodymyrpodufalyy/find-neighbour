@@ -15,24 +15,24 @@ class DialogController {
   }
 
   index = async (req: express.Request, res: express.Response) => {
-    const userId = (req.user as User).id;
+    const user = req.user as User;
 
     try {
       DialogModel.find()
-        .or([{ author: userId }, { partner: userId }])
+        .or([
+          { author: { id: Number(user.id), fullname: user.fullname } },
+          { partner: { id: Number(user.id), fullname: user.fullname } },
+        ])
         .populate({
           path: "lastMessage",
         })
         .exec(function (err, dialogs) {
-          if (err || !dialogs) {
+          if (err || !dialogs.length) {
             return res.status(404).json({
               message: "Dialogs not found",
             });
           }
-          console.log(dialogs, "dialogs");
-          const upd = dialogs[dialogs.length - 1];
-          (upd.author as any) = 33434;
-          return res.json(upd);
+          return res.json(dialogs);
         });
     } catch (error) {
       return res.status(404).json({
@@ -47,19 +47,32 @@ class DialogController {
       partner: req.body.partner,
     };
 
+    let dialog = {};
+
     const partner = await User.findByPk(Number(postData.partner));
 
-    const dialog = new DialogModel({
-      author: postData.author,
-      partner: partner,
-    });
+    if (partner) {
+      dialog = new DialogModel({
+        author: {
+          id: postData.author.id,
+          fullname: postData.author.fullname,
+        },
+        partner: {
+          id: partner.id,
+          fullname: partner.fullname,
+        },
+      });
+    }
 
-    dialog
+    (dialog as IDialog)
       .save()
       .then((dialogObj: any) => {
         const message = new MessageModel({
           text: req.body.text,
-          user: req.user.id,
+          user: {
+            id: req.user.id,
+            fullname: req.user.fullname,
+          },
           dialog: dialogObj._id,
         });
 

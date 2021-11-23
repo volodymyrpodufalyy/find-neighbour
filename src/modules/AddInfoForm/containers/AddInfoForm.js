@@ -21,10 +21,10 @@ export default withFormik({
   }),
   validate: values => {
     let errors = {};
-    validateForm({ isAuth: true, values, errors });
     return errors;
   },
   handleSubmit: (values, { setSubmitting, props }) => {
+    console.log(values, 'values');
     store
       .dispatch(addinfoActions.fetchUserAddInfoCreate(values))
       .then(({ status }) => {

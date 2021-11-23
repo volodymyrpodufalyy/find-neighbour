@@ -32,10 +32,12 @@ const UserList = ({ fetchUserAddInfos, results, pageSize, totalCount, isLoading 
         );
     }
 
+    console.log(results, 'res');
+
     return (
         <div>
             <ul className="users__list">
-                {results.map((userInfo) => (
+                {results?.map((userInfo) => (
                   <li key={userInfo._id}>
                     <CardItem card={userInfo} />
                   </li>

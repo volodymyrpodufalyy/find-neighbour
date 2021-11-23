@@ -20,7 +20,10 @@ const MessageSchema = new Schema(
   {
     text: { type: String, require: Boolean },
     dialog: { type: Schema.Types.ObjectId, ref: "Dialog", require: true },
-    user: { type: Schema.Types.Number, require: true },
+    user: {
+      id: { type: Schema.Types.Number },
+      fullname: { type: Schema.Types.String },
+    },
     readed: {
       type: Boolean,
       default: false,

@@ -2,112 +2,109 @@ import { addinfoApi } from "utils/api";
 import { openNotification } from "utils/helpers";
 
 const Actions = {
-  setAddInfo: data => ({
+  setAddInfo: (data) => ({
     type: "ADDINFO:SET_DATA",
-    payload: data
+    payload: data,
   }),
-  setAuthInfo: bool => ({
+  setAuthInfo: (bool) => ({
     type: "ADDINFO:SET_AUTH",
-    payload: bool
+    payload: bool,
   }),
-  setAddInfos: items => ({
+  setAddInfos: (items) => ({
     type: "ADDINFO:SET_ITEMS",
-    payload: items
+    payload: items,
   }),
-  setAddInfosResults: results => ({
+  setAddInfosResults: (results) => ({
     type: "ADDINFO:SET_RESULTS",
-    payload: results
+    payload: results,
   }),
-  setAddInfosCount: count => ({
+  setAddInfosCount: (count) => ({
     type: "ADDINFO:SET_TOTAL_COUNT",
-    payload: count
+    payload: count,
   }),
- 
-  setIsLoading: bool => ({
+
+  setIsLoading: (bool) => ({
     type: "ADDINFO:SET_IS_LOADING",
-    payload: bool
+    payload: bool,
   }),
-  fetchUserAddInfo: () => dispatch => {
-      dispatch(Actions.setIsLoading(true));
+  fetchUserAddInfo: () => (dispatch) => {
+    dispatch(Actions.setIsLoading(true));
     addinfoApi
       .getInfo()
       .then(({ data }) => {
         dispatch(Actions.setAddInfo(data));
         dispatch(Actions.setAuthInfo(true));
       })
-      .catch(err => {
-          dispatch(Actions.setIsLoading(false));
-            if (err.response.status === 403 || 404) {
-                openNotification({
-                    title: "Помилка авторизації",
-                    text: "Невірні дані",
-                    type: "error"
-                });
-        }
+      .catch((err) => {
+        dispatch(Actions.setIsLoading(false));
+        openNotification({
+          title: "Помилка ",
+          text: "Невірні дані",
+          type: "error",
+        });
       });
   },
-  fetchUserAddInfos: (page, limit) => dispatch => {
-      dispatch(Actions.setIsLoading(true));
+  fetchUserAddInfos: (page, limit) => (dispatch) => {
+    dispatch(Actions.setIsLoading(true));
     addinfoApi
       .getAll(page, limit)
       .then(({ data }) => {
         dispatch(Actions.setAddInfos(data));
         dispatch(Actions.setAddInfosResults(data.results));
         dispatch(Actions.setAddInfosCount(data.totalCount));
-        dispatch(Actions.setIsLoading(false));
+        data.results.length && dispatch(Actions.setIsLoading(false));
       })
-      .catch(err => {
-          dispatch(Actions.setIsLoading(false));
-            if (err.response.status === 403 || 404) {
-                openNotification({
-                    title: "Помилка авторизації",
-                    text: "Невірні дані",
-                    type: "error"
-                });
-        }
+      .catch((err) => {
+        dispatch(Actions.setIsLoading(false));
+        dispatch(Actions.setAddInfosResults([]));
+        dispatch(Actions.setAddInfos(null));
+        openNotification({
+          title: "Помилка ",
+          text: "Невірні дані",
+          type: "error",
+        });
       });
   },
-  filterAddInfos: (startAge, endAge, sex, pets, badHabits) => dispatch => {
-      dispatch(Actions.setIsLoading(true));
+  filterAddInfos: (startAge, endAge, sex, pets, badHabits) => (dispatch) => {
+    dispatch(Actions.setIsLoading(true));
     addinfoApi
       .filterUsers(startAge, endAge, sex, pets, badHabits)
       .then(({ data }) => {
         dispatch(Actions.setAddInfosResults(data));
         dispatch(Actions.setIsLoading(false));
       })
-      .catch(err => {
-          dispatch(Actions.setIsLoading(false));
-            if (err.response.status === 403 || 404) {
-                openNotification({
-                    title: "Помилка",
-                    text: "",
-                    type: "error"
-                });
+      .catch((err) => {
+        dispatch(Actions.setIsLoading(false));
+        openNotification({
+          title: "Помилка",
+          text: "",
+          type: "error",
+        });
+      });
+  },
+  fetchUserAddInfoCreate: (postData) => (dispatch) => {
+    return addinfoApi
+      .addInfo(postData)
+      .then(({ data }) => {
+        openNotification({
+          title: "Авторизація успішна",
+          text: "Посилання з підтвердженням акаунту надіслано на вашу пошту  ",
+          type: "success",
+        });
+        dispatch(Actions.fetchUserAddInfo());
+        dispatch(Actions.setAuthInfo(true));
+        return data;
+      })
+      .catch(({ response }) => {
+        if (response.status === 403 || 404) {
+          openNotification({
+            title: "Помилка авторизації",
+            text: "Заповніть всі поля",
+            type: "error",
+          });
         }
       });
   },
-  fetchUserAddInfoCreate: postData => dispatch => {
-    return addinfoApi
-    .addInfo(postData).then(({ data }) => {
-        openNotification({
-            title: "Авторизація успішна",
-            text: "Посилання з підтвердженням акаунту надіслано на вашу пошту  ",
-            type: "success"
-          });
-      dispatch(Actions.fetchUserAddInfo());
-      dispatch(Actions.setAuthInfo(true));
-      return data;
-    })
-    .catch(({ response }) => {
-      if (response.status === 403||404) {
-        openNotification({
-          title: "Помилка авторизації",
-          text: "Заповніть всі поля",
-          type: "error"
-        });
-      }
-    });
-  }
 };
 
 export default Actions;
