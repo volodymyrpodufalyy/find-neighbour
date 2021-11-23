@@ -1,12 +1,13 @@
+import { User } from "./SUser";
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IDialog extends Document {
   partner: {
-    type: Schema.Types.Number;
+    type: User;
     require: true;
   };
   author: {
-    type: Schema.Types.Number;
+    type: User;
     require: true;
   };
   messages: [
@@ -19,8 +20,8 @@ export interface IDialog extends Document {
 
 const DialogSchema = new Schema(
   {
-    partner: { type: Schema.Types.Number },
-    author: { type: Schema.Types.Number },
+    partner: {},
+    author: User,
     lastMessage: { type: Schema.Types.ObjectId, ref: "Message" },
   },
   {
