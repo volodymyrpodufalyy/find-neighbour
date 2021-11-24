@@ -5,6 +5,15 @@ import { sequelize } from "../core/dbconfig";
 import { AddInfo, AddInfoCreationAttributes } from "../models/SAddInfo";
 import { User } from "../models/SUser";
 
+interface FilterQuery {
+  address: string;
+  sex: string;
+  badHabits: boolean;
+  pets: boolean;
+  startAge: number;
+  endAge: number;
+}
+
 class AddInfoController {
   userRepository = sequelize.getRepository(User);
   addInfoRepository = sequelize.getRepository(AddInfo);
@@ -116,59 +125,72 @@ class AddInfoController {
     return res.json(results);
   };
 
-  filterUsers = (req: any, res: express.Response) => {
+  filterUsers = async (req: any, res: express.Response) => {
     const startAge = req.query.startAge;
     const endAge = req.query.endAge;
 
     const pets = req.query.pets;
     const badHabits = req.query.badHabits;
     const sex = req.query.sex;
-    const adress = req.query.adress;
+    const address = req.query.adress;
 
-    let queryObj: any = {};
+    const queryObj: FilterQuery = {} as FilterQuery;
+    const queryArray = [];
+
+    const isTrueQuery = (value: string) => value === "true";
 
     if (
       (endAge && startAge) !== "undefined" &&
       (endAge && startAge) !== undefined
     ) {
-      let ageRange = range(parseInt(startAge), parseInt(endAge) + 1);
-      queryObj.age = ageRange;
+      queryObj.startAge = parseInt(startAge);
+      queryObj.endAge = parseInt(endAge);
+      queryArray.push({
+        age: {
+          [Op.and]: {
+            [Op.gt]: queryObj.startAge,
+            [Op.lt]: queryObj.endAge,
+          },
+        },
+      });
     }
 
-    if (adress !== "undefined" && adress !== undefined) {
-      queryObj.adress = adress;
+    if (address !== "undefined" && address !== undefined) {
+      queryObj.address = address;
+      queryArray.push({
+        address: queryObj.address,
+      });
     }
 
     if (pets !== "undefined" && pets !== undefined) {
-      queryObj.pets = pets;
+      isTrueQuery(pets) ? (queryObj.pets = true) : (queryObj.pets = false);
+      queryArray.push({
+        hasPets: queryObj.pets,
+      });
     }
     if (badHabits !== "undefined" && badHabits !== undefined) {
-      queryObj.badHabits = badHabits;
+      isTrueQuery(badHabits)
+        ? (queryObj.badHabits = true)
+        : (queryObj.badHabits = false);
+      queryArray.push({
+        hasBadHabits: queryObj.badHabits,
+      });
     }
     if (sex !== "undefined" && sex !== undefined) {
       queryObj.sex = sex;
+      queryArray.push({
+        sex: queryObj.sex,
+      });
     }
 
     try {
-      const addinfos = AddInfo.findAll({
+      const addInfos = await AddInfo.findAll({
         where: {
-          [Op.or]: [
-            { hasPets: queryObj.pets },
-            { hasBadHabits: queryObj.badHabits },
-            { address: queryObj.adress },
-            { sex: queryObj.sex },
-            {
-              age: {
-                [Op.and]: {
-                  [Op.gt]: startAge,
-                  [Op.lt]: endAge,
-                },
-              },
-            },
-          ],
+          [Op.and]: queryArray,
         },
+        include: { all: true },
       });
-      return res.json(addinfos);
+      return res.json(addInfos);
     } catch (err) {
       return res.status(404).json({
         message: "Users not found",

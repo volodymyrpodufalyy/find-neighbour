@@ -9,7 +9,7 @@ const Search = () => {
     <section className="search__neighbour">
         <div className="search__neighbour-content">
         <div className="search__neighbour-content-sidebar">
-            {/* <Filters /> */}
+            <Filters />
           </div>
           <div className="search__neighbour-content-list">
             <UserList/>
