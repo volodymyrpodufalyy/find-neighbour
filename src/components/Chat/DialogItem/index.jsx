@@ -20,7 +20,7 @@ const renderLastMessage = (message, userId) => {
   } else {
     text = message.text;  
   }
-  return `${message.user._id === userId ? "Ви: " : "" }${text}`;
+  return `${message.user.id === userId ? "Ви: " : "" }${text}`;
 }
 
 

@@ -1,4 +1,3 @@
-  
 import express from "express";
 import socket from "socket.io";
 
@@ -14,17 +13,17 @@ class MessageController {
 
   index = (req: any, res: express.Response) => {
     const dialogId: string = req.query.dialog;
-    const userId = req.user._id;
+    const userId = req.user.id;
 
     MessageModel.updateMany(
-      { dialog: dialogId, user: { $ne: userId } },
+      { dialog: dialogId, user: { $ne: Number(userId) } },
       { $set: { readed: true } },
       (err: any) => {
         if (err) {
           console.log(err);
           return res.status(500).json({
             status: "error",
-            message: err
+            message: err,
           });
         }
       }
@@ -32,19 +31,19 @@ class MessageController {
 
     MessageModel.find({ dialog: dialogId })
       .populate(["dialog", "user", "attachments"])
-      .exec(function(err, messages) {
+      .exec(function (err, messages) {
         if (err) {
           return res.status(404).json({
             status: "error",
-            message: "Messages not found"
+            message: "Messages not found",
           });
         }
         return res.json(messages);
       });
   };
 
-  create = (req:any, res: express.Response): void => {
-    const userId: string = req.user._id;
+  create = (req: any, res: express.Response): void => {
+    const userId: string = req.user.id;
 
     const postData = {
       text: req.body.text,
@@ -96,14 +95,14 @@ class MessageController {
   };
 
   delete = (req: any, res: express.Response) => {
-    const id: string = req.query.id ;
-    const userId: string = req.user._id;
+    const id: string = req.query.id;
+    const userId: string = req.user.id;
 
     MessageModel.findById(id, (err, message: any) => {
       if (err || !message) {
         return res.status(404).json({
           status: "error",
-          message: "Message not found"
+          message: "Message not found",
         });
       }
 
@@ -119,7 +118,7 @@ class MessageController {
             if (err) {
               res.status(500).json({
                 status: "error",
-                message: err
+                message: err,
               });
             }
 
@@ -127,7 +126,7 @@ class MessageController {
               if (err) {
                 res.status(500).json({
                   status: "error",
-                  message: err
+                  message: err,
                 });
               }
 
@@ -139,17 +138,16 @@ class MessageController {
 
         return res.json({
           status: "success",
-          message: "Message deleted"
+          message: "Message deleted",
         });
       } else {
         return res.status(403).json({
           status: "error",
-          message: "Not have permission"
+          message: "Not have permission",
         });
       }
     });
   };
-   
 }
 
 export default MessageController;

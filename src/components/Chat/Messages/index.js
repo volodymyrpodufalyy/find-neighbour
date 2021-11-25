@@ -27,7 +27,7 @@ const Messages = ({
                 items.length > 0 ? (
                     items.map(item =>( <Message key={item._id} 
                         {...item} 
-                        isMe={user &&  user._id === item.user._id}
+                        isMe={user &&  user.id == item.user.id}
                         onRemoveMessage={onRemoveMessage.bind(this, item._id)} 
                         setPreviewImage={setPreviewImage}
                         />))
