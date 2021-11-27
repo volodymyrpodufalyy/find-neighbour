@@ -153,6 +153,7 @@ class AddInfoController {
           },
         },
       });
+
     }
 
     if (address !== "undefined" && address !== undefined) {
@@ -168,6 +169,7 @@ class AddInfoController {
         hasPets: queryObj.pets,
       });
     }
+
     if (badHabits !== "undefined" && badHabits !== undefined) {
       isTrueQuery(badHabits)
         ? (queryObj.badHabits = true)
@@ -182,6 +184,7 @@ class AddInfoController {
         sex: queryObj.sex,
       });
     }
+
 
     try {
       const addInfos = await AddInfo.findAll({

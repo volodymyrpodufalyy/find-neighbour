@@ -2,6 +2,7 @@ import React from "react";
 import { UserList } from "components";
 import { Filters } from "containers";
 import "./Search.scss";
+import FooterSearch from "../../components/Search/FooterSearch/FooterSearch";
 
 const Search = () => {  
 
@@ -15,6 +16,7 @@ const Search = () => {
             <UserList/>
           </div>
         </div>
+        <FooterSearch/>
     </section>
   );
 };
