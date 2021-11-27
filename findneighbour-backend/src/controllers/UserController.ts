@@ -1,12 +1,14 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import socket from "socket.io";
+import { Op, UniqueConstraintError } from "sequelize";
 import { validationResult } from "express-validator";
-import { IUser } from "../models/User";
-import { UserModel } from "../models";
+import { SentMessageInfo } from "nodemailer/lib/sendmail-transport";
+
+import { User } from "../models/SUser";
+import { sequelize } from "../core/dbconfig";
 import { createJWToken } from "../utils";
 import transporter from "../core/mailer";
-import { SentMessageInfo } from "nodemailer/lib/sendmail-transport";
 
 class UserController {
   io: socket.Server;
@@ -15,59 +17,58 @@ class UserController {
     this.io = io;
   }
 
-  show = (req: express.Request, res: express.Response) => {
+  userRepository = sequelize.getRepository(User);
+
+  show = async (req: express.Request, res: express.Response) => {
     const id: string = req.params.id;
-    UserModel.findById(id, (err, user) => {
-      if (err) {
-        return res.status(404).json({
-          message: "User not found"
-        });
-      }
-      res.json(user);
-    });
+    const user = await User.findByPk(id);
+    return res.json(user);
   };
 
-  getMe = (req: any, res: express.Response) => {
-    const id: string = req.user._id;
-    UserModel.findById(id, (err, user: any) => {
-      if (err || !user) {
-        return res.status(404).json({
-          message: "User not found"
-        });
-      }
-      res.json(user);
-    });
-  };
-
-  findUsers = (req: any, res: express.Response) => {
-    const query: string = req.query.query;
-    UserModel.find()
-      .or([
-        { fullname: new RegExp(query, "i") },
-        { email: new RegExp(query, "i") }
-      ])
-      .then((users: any) => res.json(users))
-      .catch((err: any) => {
-        return res.status(404).json({
-          status: "error",
-          message: err
-        });
+  getMe = (req: express.Request, res: express.Response) => {
+    const userInstance = req.user;
+    if (!userInstance) {
+      return res.status(404).json({
+        message: "Sorry, User not found",
       });
+    }
+    return res.json(userInstance);
+  };
+
+  findUsers = async (req: any, res: express.Response) => {
+    const query: string = req.query.query;
+    try {
+      const users = await User.findAll({
+        where: {
+          [Op.or]: [
+            { fullname: { [Op.iRegexp]: query } },
+            { email: { [Op.iRegexp]: query } },
+          ],
+        },
+        include: { all: true },
+      });
+      return res.json(users);
+    } catch (error) {
+      return res.status(404).json({
+        status: "error",
+        message: error,
+      });
+    }
   };
 
   delete = (req: express.Request, res: express.Response) => {
     const id: string = req.params.id;
-    UserModel.findOneAndRemove({ _id: id })
-      .then(user => {
+    User.destroy({ where: { id: id } })
+      .then((user) => {
         if (user) {
           res.json({
-            message: `User ${user.fullname} deleted`
+            message: `User deleted`,
           });
         }
       })
       .catch(() => {
         res.json({
-          message: `User not found`
+          message: `User not found`,
         });
       });
   };
@@ -84,18 +85,17 @@ class UserController {
     if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
     } else {
-      const user = new UserModel(postData);
-
-      user
-        .save()
-        .then((obj: IUser) => {
+      this.userRepository
+        .create(postData)
+        .then((obj) => {
           const token = createJWToken(obj);
           res.json({
-            obj, 
-            token
+            obj,
+            token,
           });
           transporter.sendMail(
             {
+              from: process.env.GMAIL_USER,
               to: postData.email,
               subject: "Підтвердження пошти від FindNeighbour",
               html: `Для того, щоб підтвердити пошту, перейдіть на <a href="http://localhost:3000/signup/verify?hash=${obj.confirm_hash}">за цим посиланням</a>`,
@@ -109,79 +109,87 @@ class UserController {
             }
           );
         })
-        .catch((reason) => {
-          res.status(500).json({
-            status: "error",
-            message: reason,
-          });
+        .catch((err) => {
+          if (err instanceof UniqueConstraintError) {
+            res.status(500).json({
+              status: "error",
+              message: "Such user already exists",
+            });
+          } else {
+            res.status(500).json({
+              status: "error",
+              message: err,
+            });
+          }
         });
     }
   };
 
-  verify = (req: express.Request, res: express.Response) => {
+  verify = async (req: express.Request, res: express.Response) => {
     const hash = req.query.hash;
 
     if (!hash) {
       return res.status(422).json({ errors: "Invalid hash" });
     }
 
-    UserModel.findOne({ confirm_hash: hash }, (err, user) => {
-      if (err || !user) {
-        return res.status(404).json({
-          status: "error",
-          message: "Hash not found"
-        });
-      }
-
-      user.confirmed = true;
-      user.save(err => {
-        if (err) {
-          return res.status(404).json({
-            status: "error",
-            message: err
-          });
-        }
-
+    try {
+      const user = await User.findOne({ where: { confirm_hash: hash } });
+      if (user) {
+        user.confirmed = true;
+        user.save();
         res.json({
           status: "success",
-          message: "Аккаунт успішно підтверджено!"
+          message: "Аккаунт успішно підтверджено!",
         });
+      } else {
+        return res.status(404).json({
+          status: "error",
+          message: "User not found",
+        });
+      }
+    } catch (error) {
+      return res.status(404).json({
+        status: "error",
+        message: "Hash not found",
       });
-    });
+    }
   };
 
-  login = (req: express.Request, res: express.Response) => {
+  login = async (req: express.Request, res: express.Response) => {
     const postData = {
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     };
-
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
 
-    UserModel.findOne({ email: postData.email }, (err, user: any) => {
-      if (err || !user) {
-        return res.status(404).json({
-          message: "User not found"
-        });
-      }
-
-      if (bcrypt.compareSync(postData.password, user.password)) {
-        const token = createJWToken(user);
-        res.json({
-          status: "success",
-          token
-        });
+    try {
+      const user = await User.findOne({ where: { email: postData.email } });
+      if (user) {
+        if (bcrypt.compareSync(postData.password, user.password)) {
+          const token = createJWToken(user);
+          res.json({
+            status: "success",
+            token,
+          });
+        } else {
+          res.status(403).json({
+            status: "error",
+            message: "Incorrect password or email",
+          });
+        }
       } else {
-        res.status(403).json({
-          status: "error",
-          message: "Incorrect password or email"
+        return res.status(404).json({
+          message: "User not found",
         });
       }
-    });
+    } catch (error) {
+      return res.status(404).json({
+        message: error,
+      });
+    }
   };
 }
 

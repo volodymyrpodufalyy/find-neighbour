@@ -21,6 +21,7 @@ const Filters = ({ results, filterAddInfos, fetchUserAddInfos, pageSize  }) => {
 
     useEffect(() => {  
         fetchUserAddInfos(1, pageSize )
+        filterUsers();
     }, [])
 
     useEffect(() => {

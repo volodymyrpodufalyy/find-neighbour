@@ -6,6 +6,7 @@ import {openNotification} from 'utils/helpers';
 import store from "redux/store";
 
 export default withFormik({
+
     enableReinitialize: true,
 
     mapPropsToValues: () => ({

@@ -19,7 +19,7 @@ const Dialogs = ({ author, items, userId, onSearch, inputValue, currentDialogId 
       orderBy(items, ["created_at"], ["desc"]).map(item => (
         <DialogItem
           key={item._id}
-          isMe={item.author._id === userId}
+          isMe={item.author.id === userId}
           userId={userId}
           currentDialogId={currentDialogId}
           {...item}

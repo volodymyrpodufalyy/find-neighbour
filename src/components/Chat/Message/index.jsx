@@ -111,7 +111,7 @@ const Message = ({ avatar,
     })}>
        
       <div className="message__content">
-        <IconReaded isMe={isMe} isReaded={readed} />
+        {/* <IconReaded isMe={isMe} isReaded={readed} /> */}
          <Popover              
                 content={
                     <div>
