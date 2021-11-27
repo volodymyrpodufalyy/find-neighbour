@@ -93,7 +93,7 @@ class MessageController {
 
   delete = (req: any, res: express.Response) => {
     const id: string = req.query.id;
-    const userId: string = req.user._id;
+    const userId: string = req.user.id;
 
     MessageModel.findById(id, (err, message: any) => {
       if (err || !message) {
