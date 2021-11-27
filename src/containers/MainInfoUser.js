@@ -1,65 +1,31 @@
-import React, {useState, useEffect} from "react";
-import {connect} from "react-redux";
-import {MainInfoUser} from "components"
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { MainInfoUser } from "components";
 import { addinfoActions } from "redux/actions";
-import {userActions} from "../redux/actions";
-import { Spin } from 'antd';
-const MainInfoUserContainer = ({ user,results,isLoading,fetchUserData,filterUserById,fetchUserAddInfoCreate}) => {
+import { userActions } from "../redux/actions";
+import { Spin } from "antd";
+const MainInfoUserContainer = ({ user, isLoading, fetchUserData }) => {
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
-    let [userId,setUserId] = useState()
+  console.log(user, "user");
 
-    try {
-        console.log(user.id)
-        userId = user.id
-    }catch (e){
-        console.log(e)
-    }
-
-    const getMe = ()=>{
-        fetchUserData()
-    }
-
-    useEffect(() => {
-        getMe()
-    }, [])
-
-
-    const searchUserById = () =>{
-        filterUserById('617e9cb93981bf176cc9d923')
-        //fetchUserAddInfoCreate([])
-
-    }
-
-    useEffect(()=>{
-        searchUserById()
-    },[userId])
-
-
-
-    console.log(results)
-
-
-
-    if (isLoading) {
-        return (
-            <div className="spin-load">
-                <Spin size="large" tip="Завантаження..."/>
-            </div>
-        );
-    }
-
-
+  if (isLoading) {
     return (
-        <MainInfoUser/>
-    )
-}
+      <div className="spin-load">
+        <Spin size="large" tip="Завантаження..." />
+      </div>
+    );
+  }
+
+  return <MainInfoUser user={user} />;
+};
 
 export default connect(
-    ({ addinfo,user }) => ({
-        user: user.data,
-        results: addinfo.results,
-        isLoading: addinfo.isLoading
-    }),
+  ({ user }) => ({
+    user: user.data,
+  }),
 
-    {...userActions,...addinfoActions}
+  { ...userActions, ...addinfoActions }
 )(MainInfoUserContainer);
