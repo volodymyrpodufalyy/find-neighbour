@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { connect } from 'react-redux';
-import { Empty } from 'antd';
-import find from 'lodash/find';
+import React, { useEffect, useState, useRef } from "react";
+import { connect } from "react-redux";
+import { Empty } from "antd";
+import find from "lodash/find";
 
-import { messagesActions } from 'redux/actions';
-import socket from 'core/socket';
+import { messagesActions, dialogsActions } from "redux/actions";
+import socket from "core/socket";
 
-import { Messages as BaseMessages } from 'components';
+import { Messages as BaseMessages } from "components";
 
-const Dialogs = ({
+const Messages = ({
   currentDialog,
   fetchMessages,
   addMessage,
@@ -17,9 +17,8 @@ const Dialogs = ({
   isLoading,
   removeMessageById,
   attachments,
+  fetchDialogs,
 }) => {
-
-
   const [previewImage, setPreviewImage] = useState(null);
   const [blockHeight, setBlockHeight] = useState(135);
   const [isTyping, setIsTyping] = useState(false);
@@ -27,7 +26,7 @@ const Dialogs = ({
 
   const messagesRef = useRef(null);
 
-  const onNewMessage = data => {
+  const onNewMessage = (data) => {
     addMessage(data);
   };
 
@@ -40,7 +39,7 @@ const Dialogs = ({
   };
 
   useEffect(() => {
-    socket.on('DIALOGS:TYPING', toggleIsTyping);
+    socket.on("DIALOGS:TYPING", toggleIsTyping);
   }, []);
 
   useEffect(() => {
@@ -51,15 +50,18 @@ const Dialogs = ({
     }
   }, [attachments]);
 
+  useEffect(() => {
+    fetchDialogs()
+  }, [])
 
   useEffect(() => {
     if (currentDialog) {
-      fetchMessages(currentDialog._id);
+      fetchMessages(currentDialog.id);
     }
 
-    socket.on('SERVER:NEW_MESSAGE', onNewMessage);
+    socket.on("SERVER:NEW_MESSAGE", onNewMessage);
 
-    return () => socket.removeListener('SERVER:NEW_MESSAGE', onNewMessage);
+    return () => socket.removeListener("SERVER:NEW_MESSAGE", onNewMessage);
   }, [currentDialog]);
 
   useEffect(() => {
@@ -67,7 +69,9 @@ const Dialogs = ({
       messagesRef.current.scrollTo(0, 999999);
     }
   }, [items, isTyping]);
-  
+
+  console.log(currentDialog, "currentDialog");
+
   if (!currentDialog) {
     return <Empty description="Відкрийте діалог" />;
   }
@@ -84,7 +88,9 @@ const Dialogs = ({
       blockHeight={blockHeight}
       isTyping={isTyping}
       partner={
-        user._id !== currentDialog.partner._id ? currentDialog.author : currentDialog.partner
+        user.id !== currentDialog.partner.id
+          ? currentDialog.author
+          : currentDialog.partner
       }
     />
   );
@@ -92,11 +98,14 @@ const Dialogs = ({
 
 export default connect(
   ({ dialogs, messages, user, attachments }) => ({
-    currentDialog: find(dialogs.items, { _id: dialogs.currentDialogId }),
+    currentDialog: find(dialogs.items, { id: Number(dialogs.currentDialogId) }),
     items: messages.items,
     isLoading: messages.isLoading,
     attachments: attachments.items,
     user: user.data,
   }),
-  messagesActions,
-)(Dialogs);
+  {
+    ...messagesActions,
+    ...dialogsActions,
+  }
+)(Messages);

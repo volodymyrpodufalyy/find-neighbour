@@ -1,3 +1,5 @@
+import { Dialog } from "./../models/SDialog";
+import { User } from "./../models/SUser";
 import express from "express";
 import socket from "socket.io";
 
@@ -11,12 +13,14 @@ class MessageController {
     this.io = io;
   }
 
-  index = (req: any, res: express.Response) => {
-    const dialogId: string = req.query.dialog;
-    const userId = req.user.id;
+  index = async (req: express.Request, res: express.Response) => {
+    const dialogId = Number(req.query.dialog);
+    const userId = (req.user as User).id;
+
+    console.log(dialogId, "dialog id");
 
     MessageModel.updateMany(
-      { dialog: dialogId, user: { $ne: Number(userId) } },
+      { dialog: dialogId, "user.id": { $ne: Number(userId) } },
       { $set: { readed: true } },
       (err: any) => {
         if (err) {
@@ -29,8 +33,12 @@ class MessageController {
       }
     );
 
+    const dialog = await Dialog.findByPk(dialogId);
+    dialog &&
+      dialog.update({ lastMessage: { ...dialog.lastMessage, readed: true } });
+
     MessageModel.find({ dialog: dialogId })
-      .populate(["dialog", "user", "attachments"])
+      .populate(["attachments"])
       .exec(function (err, messages) {
         if (err) {
           return res.status(404).json({
@@ -43,51 +51,46 @@ class MessageController {
   };
 
   create = (req: any, res: express.Response): void => {
-    const userId: string = req.user.id;
+    const user = req.user;
 
     const postData = {
       text: req.body.text,
-      dialog: req.body.dialog_id,
+      dialog: Number(req.body.dialog_id),
       attachments: req.body.attachments,
-      user: userId,
+      user: {
+        id: user.id,
+        fullname: user.fullname,
+      },
     };
 
     const message = new MessageModel(postData);
 
-    // this.updateReadStatus(res, userId, req.body.dialog_id);
-
     message
       .save()
       .then((obj: IMessage) => {
-        obj.populate(
-          "dialog user attachments",
-          (err: any, message: IMessage) => {
-            if (err) {
-              return res.status(500).json({
-                status: "error",
-                message: err,
-              });
-            }
-
-            DialogModel.findOneAndUpdate(
-              { _id: postData.dialog },
-              { lastMessage: message._id },
-              { upsert: true },
-              function (err) {
-                if (err) {
-                  return res.status(500).json({
-                    status: "error",
-                    message: err,
-                  });
-                }
-              }
-            );
-
-            res.json(message);
-
-            this.io.emit("SERVER:NEW_MESSAGE", message);
+        obj.populate("attachments", async (err: any, message: IMessage) => {
+          if (err) {
+            return res.status(500).json({
+              status: "error",
+              message: err,
+            });
           }
-        );
+
+          await Dialog.update(
+            {
+              lastMessage: {
+                text: postData.attachments.length ? "Media" : postData.text,
+                user: Number(postData.user.id),
+                createdAt: obj.createdAt,
+              },
+            },
+            { where: { id: postData.dialog } }
+          );
+
+          res.json(message);
+
+          this.io.emit("SERVER:NEW_MESSAGE", message);
+        });
       })
       .catch((reason) => {
         res.json(reason);

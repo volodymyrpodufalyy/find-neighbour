@@ -9,7 +9,7 @@ const Actions = {
     const { dialogs } = getState();
     const { currentDialogId } = dialogs;
 
-    if (currentDialogId === message.dialog._id) {
+    if (currentDialogId === message.dialog.id) {
       dispatch({
         type: "MESSAGES:ADD_MESSAGE",
         payload: message

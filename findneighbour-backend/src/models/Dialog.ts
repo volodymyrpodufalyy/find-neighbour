@@ -26,6 +26,7 @@ const DialogSchema = new Schema(
     author: {
       id: { type: Schema.Types.Number },
       fullname: { type: Schema.Types.String },
+      isOnline: { type: Schema.Types.Boolean },
     },
     lastMessage: { type: Schema.Types.ObjectId, ref: "Message" },
   },

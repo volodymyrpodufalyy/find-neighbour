@@ -6,20 +6,25 @@ export interface IMessage extends Document {
     require: boolean;
   };
   dialog: {
-    type: Schema.Types.ObjectId;
-    ref: string;
+    type: Schema.Types.Number;
     require: true;
+  };
+  user: {
+    id: { type: Schema.Types.Number };
+    fullname: { type: Schema.Types.String };
   };
   readed: {
     type: boolean;
     default: boolean;
   };
+  createdAt: { type: Schema.Types.Date };
+  attachments: { type: Schema.Types.Array; ref: string };
 }
 
 const MessageSchema = new Schema(
   {
     text: { type: String, require: Boolean },
-    dialog: { type: Schema.Types.ObjectId, ref: "Dialog", require: true },
+    dialog: { type: Schema.Types.Number, require: true },
     user: {
       id: { type: Schema.Types.Number },
       fullname: { type: Schema.Types.String },

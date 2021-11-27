@@ -16,7 +16,7 @@ const Messages = ({
      setPreviewImage, 
      isTyping,
      partner }) => {
-
+console.log(items, 'ites');
    
     return   <div className="chat__dialog-messages" style={{'height' : `calc(100% - ${blockHeight}px)`}}>
     <div ref={blockRef} className={classNames('messages',{'messages--loading': isLoading})}>

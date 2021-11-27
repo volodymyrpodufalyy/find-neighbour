@@ -1,10 +1,13 @@
+import { Dialog, DialogMessage } from "./../models/SDialog";
 import express from "express";
 import socket from "socket.io";
 import { sequelize } from "../core/dbconfig";
+import { Op } from "sequelize";
 
 import { DialogModel, MessageModel } from "../models";
 import { IDialog } from "../models/Dialog";
 import { User } from "../models/SUser";
+import Message from "../models/Message";
 
 class DialogController {
   io: socket.Server;
@@ -18,22 +21,29 @@ class DialogController {
     const user = req.user as User;
 
     try {
-      DialogModel.find()
-        .or([
-          { author: { id: Number(user.id), fullname: user.fullname } },
-          { partner: { id: Number(user.id), fullname: user.fullname } },
-        ])
-        .populate({
-          path: "lastMessage",
-        })
-        .exec(function (err, dialogs) {
-          if (err || !dialogs.length) {
-            return res.status(404).json({
-              message: "Dialogs not found",
-            });
-          }
-          return res.json(dialogs);
-        });
+      Dialog.findAll({
+        where: {
+          [Op.or]: [
+            {
+              authorId: Number(user.id),
+            },
+            {
+              partnerId: Number(user.id),
+            },
+          ],
+        },
+        include: [
+          { model: User, as: "author" },
+          { model: User, as: "partner" },
+        ],
+      }).then((dialogs) => {
+        if (!dialogs.length) {
+          return res.status(404).json({
+            message: "Dialogs not found",
+          });
+        }
+        return res.json(dialogs);
+      });
     } catch (error) {
       return res.status(404).json({
         message: error,
@@ -47,54 +57,58 @@ class DialogController {
       partner: req.body.partner,
     };
 
-    let dialog = {};
-
     const partner = await User.findByPk(Number(postData.partner));
 
     if (partner) {
-      dialog = new DialogModel({
-        author: {
-          id: postData.author.id,
-          fullname: postData.author.fullname,
-        },
-        partner: {
-          id: partner.id,
-          fullname: partner.fullname,
-        },
+      const dialog = new Dialog({
+        authorId: Number(postData.author.id),
+        partnerId: partner.id,
+        lastMessage: {} as DialogMessage,
       });
-    }
 
-    (dialog as IDialog)
-      .save()
-      .then((dialogObj: any) => {
-        const message = new MessageModel({
-          text: req.body.text,
-          user: {
-            id: req.user.id,
-            fullname: req.user.fullname,
-          },
-          dialog: dialogObj._id,
-        });
+      dialog.$set("partner", [partner.id]);
+      dialog.$set("author", [Number(postData.author.id)]);
+      dialog
+        .save()
+        .then(async (dialogObj: any) => {
+          const message = new MessageModel({
+            text: req.body.text,
+            user: {
+              id: req.user.id,
+              fullname: req.user.fullname,
+            },
+            dialog: dialogObj.id,
+          });
 
-        message
-          .save()
-          .then(() => {
-            dialogObj.lastMessage = message._id;
-            dialogObj.save().then(() => {
+          await message.save().catch((err) =>
+            res.json({
+              error: err,
+            })
+          );
+
+          dialog
+            .update({
+              lastMessage: {
+                text: message.text,
+                user: message.user.id,
+                createdAt: message.createdAt,
+              },
+            })
+            .then(() => {
               res.json(dialogObj);
               this.io.emit("SERVER:DIALOG_CREATED", {
                 ...postData,
                 dialog: dialogObj,
               });
+            })
+            .catch((reason) => {
+              res.json(reason);
             });
-          })
-          .catch((reason) => {
-            res.json(reason);
-          });
-      })
-      .catch((reason) => {
-        res.json(reason);
-      });
+        })
+        .catch((reason) => {
+          res.json(reason);
+        });
+    }
   };
 
   delete = (req: express.Request, res: express.Response) => {

@@ -14,18 +14,13 @@ const getMessageTime = createdAt => {
 };
 
 const renderLastMessage = (message, userId) => {
-  let text = '';
-  if(!message.text && message.attachments.length) {
-    text = 'Media';
-  } else {
-    text = message.text;  
-  }
-  return `${message.user.id === userId ? "Ви: " : "" }${text}`;
+  let text = message.text;
+  return `${message.user === userId ? "Ви: " : "" }${text}`;
 }
 
 
 const DialogItem = ({
-    _id,
+    id,
     unread,
     createdAt,
     text,
@@ -37,16 +32,16 @@ const DialogItem = ({
     author,
     userId
   }) => {
-    
-        return (<Link to={`/chat/dialog/${_id}`}>
+    console.log(partner, 'partner');
+        return (<Link to={`/chat/dialog/${id}`}>
         <div
           className={classNames("dialogs__item", {
             "dialogs__item--online": partner.isOnline,
-            "dialogs__item--selected": currentDialogId === _id
+            "dialogs__item--selected": currentDialogId === id
           })}
         >
           <div className="dialogs__item-avatar">
-            <Avatar user={author.id === userId ? partner : author} />
+            <Avatar user={author.id == userId ? partner : author} />
           </div>
           <div className="dialogs__item-info">
             <div className="dialogs__item-info-top">

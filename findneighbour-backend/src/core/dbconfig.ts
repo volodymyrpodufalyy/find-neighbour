@@ -1,3 +1,4 @@
+import { Dialog } from "./../models/SDialog";
 import { Sequelize } from "sequelize-typescript";
 import { AddInfo } from "../models/SAddInfo";
 import { User } from "../models/SUser";
@@ -9,5 +10,5 @@ export const sequelize = new Sequelize({
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   storage: ":memory:",
-  models: [User, AddInfo],
+  models: [User, AddInfo, Dialog],
 });

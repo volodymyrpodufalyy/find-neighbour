@@ -15,7 +15,7 @@
 
         window.socket = socket;        
         socket.on("SERVER:NEW_MESSAGE", function(msg) {
-          if (window.user !== msg.user) {
+          if (window.user.id !== msg.user.id) {
             console.log(msg);
           }
         });

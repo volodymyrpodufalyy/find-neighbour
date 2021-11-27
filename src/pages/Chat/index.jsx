@@ -14,7 +14,7 @@ const Chat = (props) => {
       location: { pathname },
     } = props;
     const dialogId = pathname.split("/");
-    setCurrentDialogId(dialogId[3]);
+    setCurrentDialogId(Number(dialogId[3]));
   }, [props, props.location.pathname, setCurrentDialogId]);
 
   return (
