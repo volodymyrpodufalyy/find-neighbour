@@ -2,13 +2,11 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface IDialog extends Document {
   partner: {
-    type: Schema.Types.ObjectId;
-    ref: string;
+    type: Object;
     require: true;
   };
   author: {
-    type: Schema.Types.ObjectId;
-    ref: string;
+    type: Object;
     require: true;
   };
   messages: [
@@ -21,12 +19,18 @@ export interface IDialog extends Document {
 
 const DialogSchema = new Schema(
   {
-    partner: { type: Schema.Types.ObjectId, ref: "User" },
-    author: { type: Schema.Types.ObjectId, ref: "User" },
-    lastMessage: { type: Schema.Types.ObjectId, ref: "Message" }
+    partner: {
+      id: { type: Schema.Types.Number },
+      fullname: { type: Schema.Types.String },
+    },
+    author: {
+      id: { type: Schema.Types.Number },
+      fullname: { type: Schema.Types.String },
+    },
+    lastMessage: { type: Schema.Types.ObjectId, ref: "Message" },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

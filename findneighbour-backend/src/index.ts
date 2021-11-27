@@ -1,11 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import { createServer } from "http";
-const sequelize = require("../db");
+import swaggerUi from "swagger-ui-express";
+import swaggerJSDoc from "swagger-jsdoc";
 
 dotenv.config();
 
+import { sequelize } from "./core/dbconfig";
 import "./core/db";
+import swaggerDocument from "./core/swagger";
 import createRoutes from "./core/routes";
 import createSocket from "./core/socket";
 
@@ -14,6 +17,15 @@ const http = createServer(app);
 const io = createSocket(http);
 
 createRoutes(app, io);
+
+const options = {
+  definition: swaggerDocument,
+  apis: ["./src/core/*.ts", "./src/swagger/*.ts"],
+};
+
+const swaggerSpec = swaggerJSDoc(options);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const start = async () => {
   try {

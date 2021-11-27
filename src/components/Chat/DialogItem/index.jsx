@@ -15,12 +15,12 @@ const getMessageTime = createdAt => {
 
 const renderLastMessage = (message, userId) => {
   let text = '';
-  if(!message.text && message.attachments.length) {
+  if(!message.text && message?.attachments?.length) {
     text = 'Media';
   } else {
     text = message.text;  
   }
-  return `${message.user._id === userId ? "Ви: " : "" }${text}`;
+  return `${message?.user?.id === userId ? "Ви: " : "" }${text}`;
 }
 
 
@@ -55,7 +55,7 @@ const DialogItem = ({
             </div>
             <div className="dialogs__item-info-bottom">
               <p>{renderLastMessage(lastMessage, userId)}</p>
-              {isMe && <IconReaded isMe={isMe} isReaded={lastMessage.readed} />}
+              {/* {isMe && <IconReaded isMe={isMe} isReaded={lastMessage.readed} />} */}
               {unread > 0 && (
                 <div className="dialogs__item-info-bottom-count">
                   {unread > 9 ? "+9" : unread}
