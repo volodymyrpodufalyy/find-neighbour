@@ -1,34 +1,6 @@
-.main{
-    /* Rectangle 1 */
-
+.main_info_user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
 }
-
-
-.info {
-    position: absolute;
-    left: 10%;
-}
-
-
-
-.main.h1{
-    position: absolute;
-    height: 30%;
-    left: 25%;
-    top: 71%;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    line-height: 29px;
-
-    color: #152046;
-}
-
-.posts{
-    position: absolute;
-    top: 75%;
-    left: 16%;
-}
-

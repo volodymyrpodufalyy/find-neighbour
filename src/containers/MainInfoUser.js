@@ -4,9 +4,9 @@ import {MainInfoUser} from "components"
 import { addinfoActions } from "redux/actions";
 import {userActions} from "../redux/actions";
 import { Spin } from 'antd';
-const MainInfoUserContainer = ({ user,results,isLoading,fetchUserData,filterUserById}) => {
+const MainInfoUserContainer = ({ user,results,isLoading,fetchUserData,filterUserById,fetchUserAddInfoCreate}) => {
 
-    let userId = useState()
+    let [userId,setUserId] = useState()
 
     try {
         console.log(user.id)
@@ -25,8 +25,11 @@ const MainInfoUserContainer = ({ user,results,isLoading,fetchUserData,filterUser
 
 
     const searchUserById = () =>{
-        filterUserById(userId)
+        filterUserById('617e9cb93981bf176cc9d923')
+        //fetchUserAddInfoCreate([])
+
     }
+
     useEffect(()=>{
         searchUserById()
     },[userId])
