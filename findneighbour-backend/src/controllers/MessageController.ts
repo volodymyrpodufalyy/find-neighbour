@@ -75,6 +75,7 @@ class MessageController {
               message: err,
             });
           }
+          this.io.emit("SERVER:NEW_MESSAGE", message);
 
           await Dialog.update(
             {
@@ -88,8 +89,6 @@ class MessageController {
           );
 
           res.json(message);
-
-          this.io.emit("SERVER:NEW_MESSAGE", message);
         });
       })
       .catch((reason) => {
