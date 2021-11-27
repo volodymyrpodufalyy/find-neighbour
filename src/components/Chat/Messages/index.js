@@ -27,7 +27,7 @@ console.log(items, 'ites');
                 items.length > 0 ? (
                     items.map(item =>( <Message key={item._id} 
                         {...item} 
-                        isMe={true}
+                        isMe={user &&  user.id == item.user.id}
                         onRemoveMessage={onRemoveMessage.bind(this, item._id)} 
                         setPreviewImage={setPreviewImage}
                         />))

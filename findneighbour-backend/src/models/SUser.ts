@@ -1,4 +1,3 @@
-import { Dialog } from "./SDialog";
 import {
   BeforeCreate,
   Column,
@@ -63,10 +62,4 @@ export class User extends Model<User, UserCreationAttributes> {
 
   @HasOne(() => AddInfo)
   info: AddInfo;
-
-  @HasMany(() => Dialog)
-  authoredDialogs: Dialog[];
-
-  @HasMany(() => Dialog)
-  partneredDialogs: Dialog[];
 }

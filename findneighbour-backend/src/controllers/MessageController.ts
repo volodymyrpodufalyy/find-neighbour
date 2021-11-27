@@ -16,7 +16,7 @@ class MessageController {
     const userId = req.user.id;
 
     MessageModel.updateMany(
-      { dialog: dialogId, user: { $ne: userId } },
+      { dialog: dialogId, "user.id": { $ne: Number(userId) } },
       { $set: { readed: true } },
       (err: any) => {
         if (err) {
