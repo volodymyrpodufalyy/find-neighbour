@@ -24,7 +24,7 @@ const SideBar = ({
   onModalOk
 }) => {
   const options = users.map(user => (
-    <Option key={user._id}>{user.fullname}</Option>
+    <Option key={user.id}>{user.fullname}</Option>
   ));
 
   return (
@@ -34,11 +34,11 @@ const SideBar = ({
         <TeamOutlined />
           <span>Список діалогів</span>
         </div>
-        <Button onClick={onShow} icon={<FormOutlined />} onClick={onShow}/>
+        <Button onClick={onShow} icon={<FormOutlined />}/>
       </div>
 
       <div className="chat__sidebar-dialogs">
-        <Dialogs userId={user && user._id} />
+        <Dialogs userId={user && user.id} />
       </div>
       <Modal
         title="Створити діалог"

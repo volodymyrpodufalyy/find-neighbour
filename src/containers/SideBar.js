@@ -42,6 +42,7 @@ const SideBarContainer = ({ user }) => {
       .then(onClose)
       .catch(() => {
         setIsLoading(false);
+        console.log('error')
       });
   };
 
@@ -54,8 +55,9 @@ const SideBarContainer = ({ user }) => {
   };
 
   const onSelectUser = userId => {
-    setSelectedUserId(userId);
+    setSelectedUserId(parseInt(userId));
   };
+
 
   return (
     <SideBar

@@ -11,14 +11,17 @@ const Status = ({ currentDialogId, user,dialogs }) => {
     const currentDialogObj = dialogs.filter(dialog => dialog._id === currentDialogId)[0];
     let partner = {};
 
-    if(user && currentDialogObj.author._id === user._id) {
+
+    if(user && currentDialogObj.author.id === user.id) {
         partner = currentDialogObj.partner;
     } else {
         partner = currentDialogObj.author;
     }
 
   return (
-    <StatusBase online={partner.isOnline} fullname={partner.fullname} />
+    <React.Fragment>
+      <StatusBase online={partner.isOnline} fullname={partner.fullname} />
+    </React.Fragment>
   );
 };
 

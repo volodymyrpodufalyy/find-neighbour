@@ -16,7 +16,7 @@ const Messages = ({
      setPreviewImage, 
      isTyping,
      partner }) => {
-
+console.log(items, 'ites');
    
     return   <div className="chat__dialog-messages" style={{'height' : `calc(100% - ${blockHeight}px)`}}>
     <div ref={blockRef} className={classNames('messages',{'messages--loading': isLoading})}>
@@ -27,7 +27,7 @@ const Messages = ({
                 items.length > 0 ? (
                     items.map(item =>( <Message key={item._id} 
                         {...item} 
-                        isMe={user &&  user._id === item.user._id}
+                        isMe={true}
                         onRemoveMessage={onRemoveMessage.bind(this, item._id)} 
                         setPreviewImage={setPreviewImage}
                         />))

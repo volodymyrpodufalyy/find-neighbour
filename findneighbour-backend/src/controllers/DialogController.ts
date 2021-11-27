@@ -20,8 +20,8 @@ class DialogController {
     try {
       DialogModel.find()
         .or([
-          { author: { id: Number(user.id), fullname: user.fullname } },
-          { partner: { id: Number(user.id), fullname: user.fullname } },
+          { "author.id": Number(user.id) },
+          { "partner.id": Number(user.id) },
         ])
         .populate({
           path: "lastMessage",

@@ -15,12 +15,12 @@ const getMessageTime = createdAt => {
 
 const renderLastMessage = (message, userId) => {
   let text = '';
-  if(!message.text && message.attachments.length) {
+  if(!message.text && message?.attachments?.length) {
     text = 'Media';
   } else {
     text = message.text;  
   }
-  return `${message.user._id === userId ? "Ви: " : "" }${text}`;
+  return `${message?.user?.id === userId ? "Ви: " : "" }${text}`;
 }
 
 

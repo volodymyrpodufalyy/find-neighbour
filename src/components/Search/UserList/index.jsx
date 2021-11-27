@@ -39,7 +39,7 @@ const UserList = ({
     <div>
       <ul className="users__list">
         {results?.map((userInfo) => (
-          <li key={userInfo._id}>
+          <li key={userInfo.id}>
             <CardItem card={userInfo} />
           </li>
         ))}
