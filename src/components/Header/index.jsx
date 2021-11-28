@@ -36,16 +36,16 @@ const Header = ({  user }) => {
                                     </div>
                                 </Menu.Item>
                                 <Menu.Item key="/search" className={s.menuItemSearch} >
-                                    <Link to={"/search"}  className={s.link}>Пошук</Link>
+                                    <Link to={"/search"}  className={s.link}>Find</Link>
                                 </Menu.Item>
                                 <Menu.Item key="/profile" className={s.menuItemProfile} >
-                                    <Link to={"/profile"}  className={s.link}>Профіль</Link>
+                                    <Link to={"/profile"}  className={s.link}>My profile</Link>
                                 </Menu.Item>
                                 <Menu.Item key="/chat" className={s.menuItemChat} >
-                                    <Link  to={"/chat"} className={s.link}>Чат</Link>
+                                    <Link  to={"/chat"} className={s.link}>Chat</Link>
                                 </Menu.Item>
                                 <Menu.Item  key="/logout" className={s.menuItemLogOut} >
-                                    <Link to={"/"} onClick={handleLogOut} className={s.link}>Вийти</Link>
+                                    <Link to={"/"} onClick={handleLogOut} className={s.link}>Sign out</Link>
                                 </Menu.Item>
                     </Menu>
                 </div>
@@ -56,10 +56,10 @@ const Header = ({  user }) => {
                 <div className={s.header}>
                     <Menu className={s.menuLogOut} mode="horizontal" defaultSelectedKeys={['2']}>
                         <Menu.Item key="1" >
-                            <Link to={"/signup"} className={s.link}>Зареєструватись</Link>
+                            <Link to={"/signup"} className={s.link}>Sign up</Link>
                         </Menu.Item>
                         <Menu.Item key="2" >
-                            <Link to={"/signin"} className={s.link}>Ввійти</Link>
+                            <Link to={"/signin"} className={s.link}>Sign in</Link>
                         </Menu.Item>
                     </Menu>
                 </div>
