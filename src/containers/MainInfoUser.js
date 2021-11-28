@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { MainInfoUser } from "components";
-import { addinfoActions } from "redux/actions";
-import { userActions } from "../redux/actions";
+import { addinfoActions, userActions } from "redux/actions";
 import { Spin } from "antd";
 const MainInfoUserContainer = ({ user, isLoading, fetchUserData }) => {
   useEffect(() => {
