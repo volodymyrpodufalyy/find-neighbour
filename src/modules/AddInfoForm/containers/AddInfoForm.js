@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 
 
 export default withFormik({
+
     enableReinitialize: true,
 
     mapPropsToValues: () => ({

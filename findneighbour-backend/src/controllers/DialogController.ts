@@ -1,52 +1,79 @@
 import express from "express";
 import socket from "socket.io";
+import { sequelize } from "../core/dbconfig";
 
 import { DialogModel, MessageModel } from "../models";
+import { IDialog } from "../models/Dialog";
+import { User } from "../models/SUser";
 
 class DialogController {
   io: socket.Server;
+  userRepository = sequelize.getRepository(User);
 
   constructor(io: socket.Server) {
     this.io = io;
   }
 
-  index = (req: any, res: express.Response) => {
-    const userId = req.user._id;
+  index = async (req: express.Request, res: express.Response) => {
+    const user = req.user as User;
 
-    DialogModel.find()
-      .or([{ author: userId }, { partner: userId }])
-      .populate(["author", "partner"])
-      .populate({
-        path: "lastMessage",
-        populate: {
-          path: "user"
-        }
-      })
-      .exec(function(err, dialogs) {
-        if (err) {
-          return res.status(404).json({
-            message: "Dialogs not found"
-          });
-        }
-        return res.json(dialogs);
+    try {
+      DialogModel.find()
+        .or([
+          { "author.id": Number(user.id) },
+          { "partner.id": Number(user.id) },
+        ])
+        .populate({
+          path: "lastMessage",
+        })
+        .exec(function (err, dialogs) {
+          if (err || !dialogs.length) {
+            return res.status(404).json({
+              message: "Dialogs not found",
+            });
+          }
+          return res.json(dialogs);
+        });
+    } catch (error) {
+      return res.status(404).json({
+        message: error,
       });
+    }
   };
 
-  create = (req: any, res: express.Response) => {
+  create = async (req: any, res: express.Response) => {
     const postData = {
-      author: req.user._id,
-      partner: req.body.partner
+      author: req.user,
+      partner: req.body.partner,
     };
 
-    const dialog = new DialogModel(postData);
+    let dialog = {};
 
-    dialog
+    const partner = await User.findByPk(Number(postData.partner));
+
+    if (partner) {
+      dialog = new DialogModel({
+        author: {
+          id: postData.author.id,
+          fullname: postData.author.fullname,
+        },
+        partner: {
+          id: partner.id,
+          fullname: partner.fullname,
+        },
+      });
+    }
+
+    (dialog as IDialog)
       .save()
       .then((dialogObj: any) => {
         const message = new MessageModel({
           text: req.body.text,
-          user: req.user._id,
-          dialog: dialogObj._id
+          user: {
+            id: req.user.id,
+            fullname: req.user.fullname,
+          },
+          dialog: dialogObj._id,
         });
 
         message
@@ -57,15 +84,15 @@ class DialogController {
               res.json(dialogObj);
               this.io.emit("SERVER:DIALOG_CREATED", {
                 ...postData,
-                dialog: dialogObj
+                dialog: dialogObj,
               });
             });
           })
-          .catch(reason => {
+          .catch((reason) => {
             res.json(reason);
           });
       })
-      .catch(reason => {
+      .catch((reason) => {
         res.json(reason);
       });
   };
@@ -73,16 +100,16 @@ class DialogController {
   delete = (req: express.Request, res: express.Response) => {
     const id: string = req.params.id;
     DialogModel.findOneAndRemove({ _id: id })
-      .then(dialog => {
+      .then((dialog) => {
         if (dialog) {
           res.json({
-            message: `Dialog deleted`
+            message: `Dialog deleted`,
           });
         }
       })
       .catch(() => {
         res.json({
-          message: `Dialog not found`
+          message: `Dialog not found`,
         });
       });
   };

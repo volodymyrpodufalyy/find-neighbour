@@ -18,10 +18,12 @@ const MainInfo = (props) => {
 
 const Info = (props) => {
 
+    console.log(props, 'props');
+
     return (
 
         <div>
-            <div className={s.div1}>             
+            {/* <div className={s.div1}>             
                     <div className={s.user_img}><p><a href="#"><img src={imge} alt="User img" /></a></p></div>
                 <div className={s.div2}>
                     <div className={s.user_name}><p>{props.profile.user.fullname}</p></div>
@@ -36,7 +38,7 @@ const Info = (props) => {
 
                     </div>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )
