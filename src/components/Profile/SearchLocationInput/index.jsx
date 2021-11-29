@@ -1,69 +1,29 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import "./SearchLocationInput.scss";
+import AlgoliaPlaces from 'algolia-places-react';
 
-let autoComplete;
+// npm install algolia-places-react --save
+// https://github.com/kontrollanten/algolia-places-react
 
-const loadScript = (url, callback) => {
-  let script = document.createElement("script");
-  script.type = "text/javascript";
+const SearchLocationInput = ({parentCallback}) => {
 
-  if (script.readyState) {
-    script.onreadystatechange = function() {
-      if (script.readyState === "loaded" || script.readyState === "complete") {
-        script.onreadystatechange = null;
-        callback();
-      }
-    };
-  } else {
-    script.onload = () => callback();
-  }
+    const [query, setQuery] = useState("");
 
-  script.src = url;
-  document.getElementsByTagName("head")[0].appendChild(script);
-};
+    parentCallback(query)
 
-
-
-const SearchLocationInput = ({ parentCallback }) => {
-  const [query, setQuery] = useState("");
-  const autoCompleteRef = useRef(null);
-
-  function handleScriptLoad(updateQuery, autoCompleteRef) {
-    autoComplete = new window.google.maps.places.Autocomplete(
-      autoCompleteRef.current,
-      { types: ["(cities)"], componentRestrictions: { country: "ua" } }
-  );
-    autoComplete.setFields(["address_components", "formatted_address"]);
-    autoComplete.addListener("place_changed", () =>
-      handlePlaceSelect(updateQuery)
+    return (
+        <AlgoliaPlaces placeholder='Введіть своє місто'
+                       onChange={({
+                                      query,
+                                      rawAnswer,
+                                      suggestion,
+                                      suggestionIndex
+                                  }) =>
+                           setQuery(suggestion.value)}/>
     );
-  }
 
-  async function handlePlaceSelect(updateQuery) {
-    const addressObject = autoComplete.getPlace();
-    const query = addressObject.formatted_address;
-    updateQuery(query);
-    const childAdress = query.toString();
-    parentCallback(childAdress);
-  }
-
-  useEffect(() => {
-    loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=AIzaSyCobo6SWG5n_vXTsHTJ4xM-j-OF0HI8dJU&libraries=places`,
-      () => handleScriptLoad(setQuery, autoCompleteRef)
-    );
-  }, []);
-
-  return (
-    <div className="search-location-input">
-      <input
-        ref={autoCompleteRef}
-        onChange={event => setQuery(event.target.value)}
-        placeholder="Введіть своє місто"
-        value={query}  
-      />
-    </div>
-  );
 }
 
+
 export default SearchLocationInput;
+

@@ -4,6 +4,9 @@ import {addinfoActions} from "redux/actions";
 import validateForm from "utils/validate";
 import {openNotification} from 'utils/helpers';
 import store from "redux/store";
+import {connect} from "react-redux";
+
+
 
 export default withFormik({
     enableReinitialize: true,
@@ -20,6 +23,8 @@ export default withFormik({
         phoneNumber: '',
         moreAboutUser: ''
     }),
+
+
 
     validate: values => {
         let errors = {};
@@ -45,6 +50,8 @@ export default withFormik({
                 });
                 setSubmitting(false);
             });
+        // console.log("WTF")
+
     },
     displayName: 'AddInfoForm'
 

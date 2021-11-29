@@ -18,6 +18,10 @@ const Actions = {
         type: "ADDINFO:SET_RESULTS",
         payload: results
     }),
+    setAddUserInfo: userInfo => ({
+        type: "ADDINFO:SET_USERINFO",
+        payload: userInfo
+    }),
     setAddInfosCount: count => ({
         type: "ADDINFO:SET_TOTAL_COUNT",
         payload: count
@@ -34,6 +38,7 @@ const Actions = {
             .then(({data}) => {
                 dispatch(Actions.setAddInfo(data));
                 dispatch(Actions.setAuthInfo(true));
+                dispatch(Actions.setIsLoading(false));
             })
             .catch(err => {
                 dispatch(Actions.setIsLoading(false));
@@ -88,6 +93,7 @@ const Actions = {
     },
     filterUserById: (userId) => dispatch => {
         dispatch(Actions.setIsLoading(true));
+
         addinfoApi
             .getUserById(userId)
             .then(({data}) => {

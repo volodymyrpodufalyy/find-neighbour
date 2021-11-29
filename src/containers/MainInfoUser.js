@@ -1,46 +1,87 @@
 import React, {useState, useEffect} from "react";
 import {connect} from "react-redux";
 import {MainInfoUser} from "components"
-import { addinfoActions } from "redux/actions";
+import {addinfoActions} from "redux/actions";
 import {userActions} from "../redux/actions";
-import { Spin } from 'antd';
-const MainInfoUserContainer = ({ user,results,isLoading,fetchUserData,filterUserById,fetchUserAddInfoCreate}) => {
+import {Spin} from 'antd';
+import {load} from "dotenv";
 
-    let [userId,setUserId] = useState()
+const MainInfoUserContainer = ({user, userInfo, isLoading, setIsLoading, fetchUserData, filterUserById}) => {
 
-    try {
-        console.log(user.id)
-        userId = user.id
-    }catch (e){
-        console.log(e)
+    const userTmp = {
+        _id: 0,
+        confirmed: true,
+        last_seen: '',
+        email: '',
+        fullname: '',
+        password: '',
+        createdAt: '',
+        updatedAt: '',
+        confirm_hash: '',
+        __v: 0
     }
 
-    const getMe = ()=>{
-        fetchUserData()
+    const addInfoTmp = [{
+        _id: 0,
+        age: 0,
+        adress: "",
+        sex: false,
+        pets: false,
+        badHabits: false,
+        kindOfActivity: false,
+        haveJobOrJobless: false,
+        maritalStatus: false,
+        phoneNumber: "",
+        moreAboutUser: "",
+        user: {userTmp},
+        createdAt: '',
+        updatedAt: '',
+        __v: 0
+    }
+        , {}]
+
+    const [userId, setUserId] = useState(null)
+    const [state, setState] = useState(addInfoTmp)
+    const [loading,setLoading] = useState(false)
+
+    const searchUserById = (userID) => {
+        filterUserById(userID)
+
     }
 
     useEffect(() => {
-        getMe()
+        fetchUserData()
     }, [])
 
+    useEffect(() => {
+        setLoading(true)
+        if (user) {
+            setUserId(user.id)
+        }
+        setLoading(false)
 
-    const searchUserById = () =>{
-        filterUserById('617e9cb93981bf176cc9d923')
-        //fetchUserAddInfoCreate([])
+    }, [user])
 
-    }
+    useEffect(() => {
+        setLoading(true)
+        if (userId) {
+            searchUserById(userId)
+        }
+        setLoading(false)
 
-    useEffect(()=>{
-        searchUserById()
-    },[userId])
+    }, [userId])
+
+    useEffect(() => {
+        setLoading(true)
+        if (userInfo.length !== 0) {
+            setState(userInfo)
+        }
+        setLoading(false)
+
+    }, [userInfo])
 
 
-
-    console.log(results)
-
-
-
-    if (isLoading) {
+    if (loading) {
         return (
             <div className="spin-load">
                 <Spin size="large" tip="Завантаження..."/>
@@ -50,16 +91,16 @@ const MainInfoUserContainer = ({ user,results,isLoading,fetchUserData,filterUser
 
 
     return (
-        <MainInfoUser/>
+        <MainInfoUser state={state}/>
     )
 }
 
 export default connect(
-    ({ addinfo,user }) => ({
+    ({addinfo, user}) => ({
         user: user.data,
-        results: addinfo.results,
+        userInfo: addinfo.results,
         isLoading: addinfo.isLoading
     }),
 
-    {...userActions,...addinfoActions}
+    {...userActions, ...addinfoActions}
 )(MainInfoUserContainer);
