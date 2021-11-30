@@ -135,7 +135,7 @@ const SettingsInfo = (props) => {
                 </Form>
                 <Form.Item>
                     <Button className={s.save}>
-                        <Link to="/profile">Зберегти</Link>
+                        <Link >Зберегти</Link>
                     </Button>
                 </Form.Item>
             </div>

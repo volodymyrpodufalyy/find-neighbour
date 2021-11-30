@@ -7,8 +7,8 @@ import img from "../../assets/img/account-avatar-profile-human-man-user-30448.pn
 const MainInfoUser = props => {
 
     const {fullname} = props.state[0].user
-    const {moreAboutUser, age, kindOfActivity, adress} = props.state[0]
-    let addressDetail = adress.replace(/(^\s+)|(\s+$)/g, '').split(',')
+    const {moreAboutUser, age, kindOfActivity, address} = props.state[0]
+    let addressDetail = address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 
     return (
         <div>
@@ -36,7 +36,7 @@ const MainInfoUser = props => {
                     </div>
                     <div className={s.city}>
                         <h5>City</h5>
-                        <p>{adress ? addressDetail[0] : <Link to={'/addinfo'}>Вкажіть <br/> адресу</Link>}</p>
+                        <p>{address ? addressDetail[0] : <Link to={'/addinfo'}>Вкажіть <br/> адресу</Link>}</p>
                     </div>
                 </div>
                 <div className={s.btn_cont}>

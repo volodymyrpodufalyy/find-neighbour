@@ -97,7 +97,7 @@ const Actions = {
         addinfoApi
             .getUserById(userId)
             .then(({data}) => {
-                dispatch(Actions.setAddInfosResults(data));
+                dispatch(Actions.setAddUserInfo(data));
                 dispatch(Actions.setIsLoading(false));
             })
             .catch(err => {

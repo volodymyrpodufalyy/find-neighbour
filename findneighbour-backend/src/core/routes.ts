@@ -103,6 +103,7 @@ const createRoutes = (app: express.Express, io: socket.Server) => {
   app.post("/files", multer.single("file"), UploadController.create);
 
   app.post("/user/addinfo", AddInfoController.create);
+  app.put("/user/addinfo/:id", AddInfoController.update);
   app.get("/addinfo", AddInfoController.index);
   app.get("/addinfos", AddInfoController.getAll);
   app.get("/addinfos/filterUsers", AddInfoController.filterUsers);

@@ -8,45 +8,13 @@ import {load} from "dotenv";
 
 const MainInfoUserContainer = ({user, userInfo, isLoading, setIsLoading, fetchUserData, filterUserById}) => {
 
-    const userTmp = {
-        _id: 0,
-        confirmed: true,
-        last_seen: '',
-        email: '',
-        fullname: '',
-        password: '',
-        createdAt: '',
-        updatedAt: '',
-        confirm_hash: '',
-        __v: 0
-    }
-
-    const addInfoTmp = [{
-        _id: 0,
-        age: 0,
-        adress: "",
-        sex: false,
-        pets: false,
-        badHabits: false,
-        kindOfActivity: false,
-        haveJobOrJobless: false,
-        maritalStatus: false,
-        phoneNumber: "",
-        moreAboutUser: "",
-        user: {userTmp},
-        createdAt: '',
-        updatedAt: '',
-        __v: 0
-    }
-        , {}]
 
     const [userId, setUserId] = useState(null)
-    const [state, setState] = useState(addInfoTmp)
-    const [loading,setLoading] = useState(false)
+    const [state, setState] = useState(userInfo)
+    const [loading, setLoading] = useState(false)
 
     const searchUserById = (userID) => {
         filterUserById(userID)
-
     }
 
     useEffect(() => {
@@ -98,7 +66,7 @@ const MainInfoUserContainer = ({user, userInfo, isLoading, setIsLoading, fetchUs
 export default connect(
     ({addinfo, user}) => ({
         user: user.data,
-        userInfo: addinfo.results,
+        userInfo: addinfo.userInfo,
         isLoading: addinfo.isLoading
     }),
 

@@ -1,9 +1,37 @@
+
 const initialState = {
     data: null,
     isLoading: false,
     items: [],
     results: [],
-    userInfo: [],
+    userInfo: [{
+        _id: 0,
+        age: 0,
+        address: "",
+        sex: false,
+        pets: false,
+        badHabits: false,
+        kindOfActivity: false,
+        haveJobOrJobless: false,
+        maritalStatus: false,
+        phoneNumber: "",
+        moreAboutUser: "",
+        user: {
+            _id: 0,
+            confirmed: true,
+            last_seen: '',
+            email: '',
+            fullname: '',
+            password: '',
+            createdAt: '',
+            updatedAt: '',
+            confirm_hash: '',
+            __v: 0
+        },
+        createdAt: '',
+        updatedAt: '',
+        __v: 0
+    }],
     totalCount: 0,
     pageSize: 9,
     isInfo: window.localStorage.info
