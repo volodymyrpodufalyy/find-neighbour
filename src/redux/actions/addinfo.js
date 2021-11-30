@@ -115,7 +115,7 @@ const Actions = {
     updateUserAddInfo: (postData,id) => dispatch =>{
         return addinfoApi
             .updateInfo(postData,id).then(({data}) => {
-                console.log(postData)
+                console.log(postData,data)
                 dispatch(Actions.fetchUserAddInfo());
                 return data;
 

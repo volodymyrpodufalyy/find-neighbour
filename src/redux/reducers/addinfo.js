@@ -15,7 +15,7 @@ const initialState = {
         haveJobOrJobless: false,
         maritalStatus: false,
         phoneNumber: "",
-        moreAboutUser: "",
+        moreAbout: "",
         user: {
             _id: 0,
             confirmed: true,

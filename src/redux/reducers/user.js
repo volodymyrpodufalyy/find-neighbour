@@ -1,5 +1,5 @@
 const initialState = {
-  data: null,
+  data: {id:0,},
   token: window.localStorage.token,
   isAuth: !!window.localStorage.token,
   isLoading: false,

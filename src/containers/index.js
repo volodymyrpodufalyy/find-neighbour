@@ -6,3 +6,4 @@ export {default as SideBar } from "./SideBar";
 export {default as MainInfoUser } from "./MainInfoUser";
 
 export {default as Filters } from "./Filters";
+export {default as Settings } from "./settings"

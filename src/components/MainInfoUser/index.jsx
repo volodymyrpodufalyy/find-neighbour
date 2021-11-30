@@ -7,7 +7,7 @@ import img from "../../assets/img/account-avatar-profile-human-man-user-30448.pn
 const MainInfoUser = props => {
 
     const {fullname} = props.state[0].user
-    const {moreAboutUser, age, kindOfActivity, address} = props.state[0]
+    const {moreAbout, age, kindOfActivity, address} = props.state[0]
     let addressDetail = address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 
     return (
@@ -23,7 +23,7 @@ const MainInfoUser = props => {
                 <div className={s.user_title}>
                     <h3>{fullname}</h3>
 
-                    <h5>{moreAboutUser ? moreAboutUser : <Link to={'/settings'}>Add more info</Link>}</h5>
+                    <h5>{moreAbout ? moreAbout : <Link to={'/settings'}>Add more info</Link>}</h5>
                 </div>
                 <div className={s.additional_info}>
                     <div className={s.age}>
