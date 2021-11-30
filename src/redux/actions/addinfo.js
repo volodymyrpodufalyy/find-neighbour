@@ -111,6 +111,27 @@ const Actions = {
                 }
             });
     },
+
+    updateUserAddInfo: (postData,id) => dispatch =>{
+        return addinfoApi
+            .updateInfo(postData,id).then(({data}) => {
+                console.log(postData)
+                dispatch(Actions.fetchUserAddInfo());
+                return data;
+
+            })
+            .catch(({response}) => {
+                if (response.status === 403 || 404) {
+                    openNotification({
+                        title: "Помилка ",
+                        text: "Заповніть всі поля",
+                        type: "error"
+                    });
+                }
+            });
+    },
+
+
     fetchUserAddInfoCreate: postData => dispatch => {
         return addinfoApi
             .addInfo(postData).then(({data}) => {
