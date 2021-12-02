@@ -54,8 +54,6 @@ class MessageController {
 
     const message = new MessageModel(postData);
 
-    // this.updateReadStatus(res, userId, req.body.dialog_id);
-
     message
       .save()
       .then((obj: IMessage) => {
