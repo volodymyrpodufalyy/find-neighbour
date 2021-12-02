@@ -127,6 +127,24 @@ class UserController {
     }
   };
 
+  addAvatar = async (req: express.Request, res: express.Response) => {
+    const userId = (req.user as User).id;
+
+    const file: string = req.body.link;
+    try {
+      await User.update({ avatar: file }, { where: { id: Number(userId) } });
+      res.json({
+        status: "success",
+        message: "Avatar added!",
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: "error",
+        message: err,
+      });
+    }
+  };
+
   verify = async (req: express.Request, res: express.Response) => {
     const hash = req.query.hash;
 
