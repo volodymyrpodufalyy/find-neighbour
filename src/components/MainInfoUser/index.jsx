@@ -11,7 +11,6 @@ const MainInfoUser = props => {
     let addressDetail = address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 
     return (
-        <div>
 
             <div className={s.main_info_container}>
 
@@ -47,9 +46,7 @@ const MainInfoUser = props => {
 
 
             </div>
-        </div>
-    );
-}
+  );
+};
 
 export default MainInfoUser;
-

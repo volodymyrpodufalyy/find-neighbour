@@ -1,3 +1,5 @@
+import { sequelize } from "./../core/dbconfig";
+import { User } from "./../models/SUser";
 import express from "express";
 import bcrypt from "bcrypt";
 import socket from "socket.io";
@@ -5,8 +7,6 @@ import { Op, UniqueConstraintError } from "sequelize";
 import { validationResult } from "express-validator";
 import { SentMessageInfo } from "nodemailer/lib/sendmail-transport";
 
-import { User } from "../models/SUser";
-import { sequelize } from "../core/dbconfig";
 import { createJWToken } from "../utils";
 import transporter from "../core/mailer";
 
@@ -25,14 +25,16 @@ class UserController {
     return res.json(user);
   };
 
-  getMe = (req: express.Request, res: express.Response) => {
-    const userInstance = req.user;
-    if (!userInstance) {
+  getMe = async (req: express.Request, res: express.Response) => {
+    const id = (req.user as User).id;
+    const user = await User.findByPk(Number(id), { include: { all: true } });
+
+    if (!user) {
       return res.status(404).json({
         message: "Sorry, User not found",
       });
     }
-    return res.json(userInstance);
+    return res.json(user);
   };
 
   findUsers = async (req: any, res: express.Response) => {

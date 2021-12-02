@@ -1,10 +1,20 @@
 import React from "react";
 import { Avatar } from "components";
+import { useHistory } from "react-router";
 
 const CardItem = ({ card }) => {
   const address = card && card.address.split(",");
+  const history =  useHistory();
+
+
+  const navigateToProfile = () => {
+    history.push(`/user/${card.user.id}`, {
+      info: card
+    })
+  }
+
   return (
-    <div className="users__list-card">
+    <div onClick={navigateToProfile} className="users__list-card">
       {card && (
         <>
           <div className="users__list-card-image">

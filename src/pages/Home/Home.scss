@@ -22,25 +22,22 @@
     margin-bottom: 100% !important;
 
     &__top {
-
       height: 4rem !important;
       width: 100%;
       border-radius: 0 !important;
 
       p {
-
         text-align: center !important;
         font-size: 6rem !important;
-
       }
     }
 
     &__bottom {
       position: relative;
       background: linear-gradient(
-                      to right bottom,
-                      rgba(221, 19, 19, 1),
-                      rgba(221, 19, 19, 0.7)
+        to right bottom,
+        rgba(221, 19, 19, 1),
+        rgba(221, 19, 19, 0.7)
       );
       border-radius: 0 !important;
       top: 20% !important;
@@ -49,7 +46,6 @@
 
       p {
         font-size: 5rem !important;
-
       }
     }
 
@@ -61,13 +57,11 @@
     .join-button :hover {
       color: #ea2626 !important;
       background-color: white;
-
     }
   }
 
-
   .welcome__top {
-    background-color: #1E2F51 !important;
+    background-color: #1e2f51 !important;
     padding: 0 !important;
     margin: 0 !important;
     max-width: 100% !important;
@@ -80,10 +74,9 @@
     left: 0 !important;
     right: 0 !important;
     top: 0 !important;
-
   }
   .search__block-wrapper {
-    background-color: #F8F8F8 !important;
+    background-color: #f8f8f8 !important;
     position: absolute !important;
     left: 0 !important;
     right: 0 !important;
@@ -93,7 +86,7 @@
     width: 100% !important;
 
     h1 {
-      font-family: Karla !important;;
+      font-family: Karla !important;
       font-style: normal !important;
       width: 100%;
       text-align: center !important;
@@ -109,7 +102,6 @@
     background-color: #3674ff;
     margin: 0;
     padding: 0;
-
   }
 
   .welcome {
@@ -119,12 +111,14 @@
     all: revert;
     padding-top: 100px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     justify-items: center;
+    list-style-type: none;
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
   }
-
 
   .about__div__img {
     max-width: 100%;
@@ -146,7 +140,7 @@
   .examples {
     margin: 0;
     padding: 0;
-    display: flex!important;
+    display: flex !important;
     flex-direction: column;
 
     width: 100%;
@@ -156,18 +150,15 @@
     justify-content: center;
 
     &__list {
-
-      display: flex!important;
+      display: flex !important;
       position: relative;
       width: 100%;
       height: 100% !important;
     }
-
   }
   .examples__see-more {
     padding-top: -50px;
     margin-bottom: 50px;
-
   }
 
   .about {
@@ -186,12 +177,10 @@
         all: revert;
         border-radius: 15px;
 
-
         max-width: 100%;
       }
     }
   }
-
 
   .footer {
     max-width: 100%;
@@ -201,21 +190,17 @@
   .footer_info {
     display: flex;
     flex-direction: column;
-
-
   }
   .footer__info-top {
-
     display: flex !important;
     flex-direction: column !important;
     align-items: center;
   }
   .contacts {
-    padding: 0!important;
+    padding: 0 !important;
     text-align: center;
   }
   .about-us {
-
     text-align: center;
   }
   .about_us_text {
@@ -223,7 +208,6 @@
     font-size: 15px;
   }
 }
-
 
 .home-page {
   max-width: 100%;
@@ -233,9 +217,9 @@
     min-height: fit-content;
     width: 100%;
     background: linear-gradient(
-                    to right bottom,
-                    rgba(9, 10, 85, 0.9),
-                    rgba(9, 10, 85, 0.6)
+      to right bottom,
+      rgba(9, 10, 85, 0.9),
+      rgba(9, 10, 85, 0.6)
     );
 
     &__top {
@@ -258,7 +242,7 @@
           h1 {
             text-align: center;
             padding-top: 1rem;
-            font-family: 'Montserrat Regular', sans-serif;
+            font-family: "Montserrat Regular", sans-serif;
             font-size: 1.25em;
           }
         }
@@ -280,9 +264,9 @@
         &__top {
           position: relative;
           background: linear-gradient(
-                          to right bottom,
-                          rgba(221, 19, 19, 1),
-                          rgba(221, 19, 19, 0.7)
+            to right bottom,
+            rgba(221, 19, 19, 1),
+            rgba(221, 19, 19, 0.7)
           );
           height: 8rem;
           width: 100%;
@@ -294,7 +278,7 @@
             text-align: center;
             bottom: 3rem;
             font-style: italic;
-            font-family: 'Built Titling', sans-serif;
+            font-family: "Built Titling", sans-serif;
             font-size: 9rem;
             z-index: 1;
           }
@@ -303,9 +287,9 @@
         &__bottom {
           position: relative;
           background: linear-gradient(
-                          to right bottom,
-                          rgba(221, 19, 19, 1),
-                          rgba(221, 19, 19, 0.7)
+            to right bottom,
+            rgba(221, 19, 19, 1),
+            rgba(221, 19, 19, 0.7)
           );
           border-radius: 5px;
           top: 15%;
@@ -318,7 +302,7 @@
             text-align: center;
             bottom: 2.5rem;
             font-style: italic;
-            font-family: 'Built Titling', sans-serif;
+            font-family: "Built Titling", sans-serif;
             font-size: 6rem;
             z-index: 1;
           }
@@ -350,7 +334,6 @@
         .join-button:hover {
           color: #ea2626 !important;
           background-color: white;
-
         }
       }
     }
@@ -391,7 +374,7 @@
             text-align: center;
             position: relative;
             font-weight: 700;
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 2.5rem;
           }
         }
@@ -405,13 +388,12 @@
   }
 
   .examples {
-
     display: flex;
     flex-direction: column;
     background: linear-gradient(
-                    to right bottom,
-                    rgba(216, 213, 213, 0.9),
-                    rgba(216, 213, 213, 0.4)
+      to right bottom,
+      rgba(216, 213, 213, 0.9),
+      rgba(216, 213, 213, 0.4)
     );
     width: 100%;
     height: 100%;
@@ -419,7 +401,6 @@
     padding-top: 5rem;
     padding-bottom: 5rem;
     &__list {
-
       display: grid;
       grid: repeat(2, 200px) / auto-flow 400px;
       max-width: 100%;
@@ -475,7 +456,7 @@
         position: relative;
         margin-bottom: 1.5rem;
         line-height: 1.75rem;
-        font-family: 'Montserrat Regular', sans-serif;
+        font-family: "Montserrat Regular", sans-serif;
         font-size: 1.25em;
       }
     }
@@ -497,9 +478,8 @@
       height: fit-content;
       z-index: 1;
       padding-top: 1rem;
-      background-color: #1E2F51;
+      background-color: #1e2f51;
       color: #fff;
-
 
       &-top {
         display: flex;
@@ -513,7 +493,7 @@
 
           p {
             margin-bottom: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 1.25em;
           }
         }
@@ -527,7 +507,7 @@
           span {
             position: relative;
             margin-left: 10rem;
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 2rem;
           }
 
@@ -539,10 +519,9 @@
             line-height: 30px;
             justify-content: center;
             margin-bottom: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 1.25em;
           }
-
         }
       }
 
@@ -561,27 +540,23 @@
           color: #ffffff;
           margin-bottom: 1.5rem;
           line-height: 1.75rem;
-          font-family: 'Montserrat', sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 2em;
           bottom: 1rem;
         }
-
       }
     }
   }
-
 }
-
 
 .about_us_text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 25px;
-
 }
 
-.home_item_list_2{
+.home_item_list_2 {
   padding-left: 10%;
   display: grid;
   grid: repeat(2, 200px) / auto-flow 400px;
@@ -590,7 +565,7 @@
   width: 100px;
   font-weight: 500;
   letter-spacing: 0.1px;
-  background-color: #EA2626;
+  background-color: #ea2626;
   border: transparent;
   border-radius: 5px;
   cursor: pointer;
@@ -599,6 +574,6 @@
 }
 .search__submit__button:hover {
   background-color: #fff;
-  border: 1px solid #EA2626;
-  color: #EA2626;
+  border: 1px solid #ea2626;
+  color: #ea2626;
 }

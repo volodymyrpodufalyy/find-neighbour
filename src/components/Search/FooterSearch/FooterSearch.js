@@ -10,9 +10,8 @@ const FooterSearch = () => {
             <div className="footer__eblock"/>
             <div className="footer__search-info">
                 <div className="search__contact__us">
-                    <h3>Contuct us:</h3>
+                    <h3>Contact us:</h3>
                     <h3>Gmail: propositumtop@gmail.com</h3>
-                    <h3>Mobile: +380993598947</h3>
                 </div>
                 <div className="search__about__us">
                     <img src={instagram} className="sau__i"/>

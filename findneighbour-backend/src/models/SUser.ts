@@ -2,7 +2,6 @@ import {
   BeforeCreate,
   Column,
   DataType,
-  HasMany,
   HasOne,
   Model,
   Table,

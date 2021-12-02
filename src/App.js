@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect, Switch } from "react-router-dom";
-import { Auth, Home, Chat, Search,Settings, Profile } from "pages";
+import { Auth, Home, Chat, Search,Settings, Profile, UserInfo } from "pages";
 import { Header } from "components";
 import { Layout } from "antd";
 
@@ -16,6 +16,7 @@ const App = props => {
           <Switch>
             <Route exact path={["/signin", "/signup", "/signup/verify", "/addinfo"]} component={Auth} />
             <Route path="/chat" render={() => (isAuth ? <Chat /> : <Redirect to="/signin" />)} />
+            <Route path="/user" render={() => (isAuth ? <UserInfo /> : <Redirect to="/signin" />)} />
             <Route path="/search" render={() => (isAuth ? <Search /> : <Redirect to="/signin" />)} />
             <Route path="/profile" render={() => (isAuth ? <Profile /> : <Redirect to="/signin" />)} />
             <Route exact path="/" render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)} />

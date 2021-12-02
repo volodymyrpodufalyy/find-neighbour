@@ -63,6 +63,7 @@
   justify-content: center;
   list-style-type: none;
   &-card {
+    cursor: pointer;
     display: flex;
     box-shadow: 0 0 10px 5px rgba(123, 123, 129, 0.2);
     border-radius: 8px;
@@ -149,6 +150,7 @@
 
     &-card {
       all: revert;
+      cursor: pointer;
       border: 0;
       background: linear-gradient(
         to right bottom,
