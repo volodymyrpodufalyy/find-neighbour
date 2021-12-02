@@ -18,6 +18,10 @@ const Actions = {
         type: "ADDINFO:SET_RESULTS",
         payload: results
     }),
+    setAddUserInfo: userInfo => ({
+        type: "ADDINFO:SET_USERINFO",
+        payload: userInfo
+    }),
     setAddInfosCount: count => ({
         type: "ADDINFO:SET_TOTAL_COUNT",
         payload: count
@@ -34,6 +38,7 @@ const Actions = {
             .then(({data}) => {
                 dispatch(Actions.setAddInfo(data));
                 dispatch(Actions.setAuthInfo(true));
+                dispatch(Actions.setIsLoading(false));
             })
             .catch(err => {
                 dispatch(Actions.setIsLoading(false));
@@ -88,10 +93,11 @@ const Actions = {
     },
     filterUserById: (userId) => dispatch => {
         dispatch(Actions.setIsLoading(true));
+
         addinfoApi
             .getUserById(userId)
             .then(({data}) => {
-                dispatch(Actions.setAddInfosResults(data));
+                dispatch(Actions.setAddUserInfo(data));
                 dispatch(Actions.setIsLoading(false));
             })
             .catch(err => {
@@ -105,6 +111,27 @@ const Actions = {
                 }
             });
     },
+
+    updateUserAddInfo: (postData,id) => dispatch =>{
+        return addinfoApi
+            .updateInfo(postData,id).then(({data}) => {
+                console.log(postData,data)
+                dispatch(Actions.fetchUserAddInfo());
+                return data;
+
+            })
+            .catch(({response}) => {
+                if (response.status === 403 || 404) {
+                    openNotification({
+                        title: "Помилка ",
+                        text: "Заповніть всі поля",
+                        type: "error"
+                    });
+                }
+            });
+    },
+
+
     fetchUserAddInfoCreate: postData => dispatch => {
         return addinfoApi
             .addInfo(postData).then(({data}) => {

@@ -28,8 +28,8 @@ export default ({ isAuth, values, errors }) => {
         errors.age = "Вкажіть свій вік";
       }
     },
-    adress: value => {
-      if (isAuth && !value) {
+    adress: value => { // fixed or hardcoded
+      if (isAuth && value) {
         errors.adress = "Вкажіть своє місто";
       }
     },
