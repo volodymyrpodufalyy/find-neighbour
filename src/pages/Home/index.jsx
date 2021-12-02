@@ -103,20 +103,23 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
                                 <Form>
                                     <Form.Item hasFeedback>
                                             <div className="check__picker">
-                                                <p>Стать:</p>
-                                                <Checkbox
+                                                <div><p>Стать:</p></div>
+                                                <div><Checkbox
                                                     onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
                                                     className="check__picker-item">Чоловік</Checkbox>
-                                                <Checkbox
-                                                    onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)}
-                                                    className="check__picker-item check__picker-item--female">Жінка</Checkbox>
+                                                    <Checkbox
+                                                        onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)}
+                                                        className="check__picker-item check__picker-item--female">Жінка</Checkbox>
+                                                </div>
                                             </div>
-                                        <button onClick={filterUsers}
-                                                className="search__submit__button"
-                                                type="primary"
-                                                htmltype="submit"
-                                        ><p> OK </p>
-                                        </button>
+                                        <div className="filter__submit">
+                                            <button onClick={filterUsers}
+                                                    className="search__submit__button"
+                                                    type="primary"
+                                                    htmltype="submit"
+                                            ><p> OK </p>
+                                            </button>
+                                        </div>
                                     </Form.Item>
                                 </Form>
                             </div>
