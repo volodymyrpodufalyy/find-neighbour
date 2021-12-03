@@ -57,14 +57,14 @@
     text-decoration: none;
     font-family: 'Sukar', sans-serif;
     font-style: italic;
-	font-size: 28px ;  
+	font-size: 28px ;
 	font-weight: 900;
-	text-shadow: 
+	text-shadow:
 		-0.0075em 0.0075em 0 mix(#fff, #EA2626, 94%),
 		0.005em 0.005em 0 mix(#fff, #EA2626, 60%),
-		0.01em 0.01em 0 mix(#fff, #EA2626, 62%), 
-		0.015em 0.015em mix(#fff, #EA2626, 64%), 
-		0.02em 0.02em 0 mix(#fff, #EA2626, 66%), 
+		0.01em 0.01em 0 mix(#fff, #EA2626, 62%),
+		0.015em 0.015em mix(#fff, #EA2626, 64%),
+		0.02em 0.02em 0 mix(#fff, #EA2626, 66%),
 		0.025em 0.025em 0 mix(#fff, #EA2626, 68%),
 		0.03em 0.03em 0 mix(#fff, #EA2626, 70%),
 		0.035em 0.035em 0 mix(#fff, #EA2626, 72%);
@@ -101,4 +101,19 @@
     font-weight: 500;
     font-size: 17px;
     text-decoration: none;
+}
+
+
+.navbar-primary .nav-item:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom: 1px solid black;
+    transition: 0.4s;
+}
+
+.navbar-primary .nav-item:hover:before {
+    width: 100%;
 }

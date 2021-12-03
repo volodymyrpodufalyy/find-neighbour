@@ -6,6 +6,7 @@ import { userActions } from "redux/actions";
 import { Menu } from 'antd';
 import houselogo from "../../assets/img/house-logo.svg"
 import s from "./Header.Module.scss";
+import "./Navbar.css"
 import { SearchOutlined } from '@ant-design/icons';
 
 
@@ -22,33 +23,36 @@ const Header = ({  user }) => {
 
     if(user.isAuth){
         return(
+                    <nav className="navbar navbar-expand-lg navbar-light bg-white" style={{boxShadow: "1px 1px 1px  rgba(25, 25, 29, 0.2)"}}>
+                        <a className="navbar-brand">
+                            <img src={houselogo} alt="House" />
+                            <i className="fas fa-search fa-lg" style={{color: "#ea1717"}}/>
+                            <Link to={"/"} className={s.homeTitle} >NEIGHBOUR
+                            </Link>
+                        </a>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"/>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarNav">
+                            <ul className="navbar-nav ml-auto">
+                                <li className="nav-item active mr-5">
+                                    <Link to={"/search"}  className="h4 text-dark nav-link ">Search</Link>
+                                </li>
+                                <li className="nav-item mr-5">
+                                    <Link to={"/profile"}  className="h4 text-dark nav-link">Profile</Link>
+                                </li>
+                                <li className="nav-item mr-5">
+                                    <Link  to={"/chat"} className="h4 text-dark nav-link">Chat</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={"/"} onClick={handleLogOut} className="h4 text-dark nav-link">Log Out</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
 
-                <div className={s.header}>
-                    <Menu style={{ color: "red" }} className={s.menu} mode="horizontal">
-                                <Menu.Item key="/homepage" className={s.homeMenuItem} >
-                                    <div className={s.homelink} >
-                                        <div  className={s.houselogo} > <img src={houselogo} alt="House" /> </div>
-                                        <SearchOutlined className={s.searchIcon}
-                                        style={{ fontSize: "15px", color: "#da1212" }}
-                                        />
-                                        <Link to={"/"} className={s.homeTitle} >NEIGHBOUR
-                                        </Link>
-                                    </div>
-                                </Menu.Item>
-                                <Menu.Item key="/search" className={s.menuItemSearch} >
-                                    <Link to={"/search"}  className={s.link}>Пошук</Link>
-                                </Menu.Item>
-                                <Menu.Item key="/profile" className={s.menuItemProfile} >
-                                    <Link to={"/profile"}  className={s.link}>Профіль</Link>
-                                </Menu.Item>
-                                <Menu.Item key="/chat" className={s.menuItemChat} >
-                                    <Link  to={"/chat"} className={s.link}>Чат</Link>
-                                </Menu.Item>
-                                <Menu.Item  key="/logout" className={s.menuItemLogOut} >
-                                    <Link to={"/"} onClick={handleLogOut} className={s.link}>Вийти</Link>
-                                </Menu.Item>
-                    </Menu>
-                </div>
+
         );
     }
     else {
@@ -66,5 +70,7 @@ const Header = ({  user }) => {
             );
         }
 }
+
+
 
 export default connect( ({ user }) => ( { user: user }) )(Header);
