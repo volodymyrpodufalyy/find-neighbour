@@ -1,12 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
 import { createServer } from "http";
 import swaggerUi from "swagger-ui-express";
 import swaggerJSDoc from "swagger-jsdoc";
 
 dotenv.config();
 
-import { sequelize } from "./core/dbconfig";
+import sequelize from "./core/dbconfig";
 import "./core/db";
 import swaggerDocument from "./core/swagger";
 import createRoutes from "./core/routes";
@@ -26,6 +27,10 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "client/build")));
+// }
 
 const start = async () => {
   try {
