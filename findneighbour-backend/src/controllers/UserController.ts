@@ -1,4 +1,4 @@
-import { sequelize } from "./../core/dbconfig";
+import sequelize from "./../core/dbconfig";
 import { User } from "./../models/SUser";
 import express from "express";
 import bcrypt from "bcrypt";
