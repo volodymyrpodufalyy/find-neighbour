@@ -72,7 +72,7 @@ const Filter = props => {
             </Form.Item>
         </Form>
             <div id="accordion">
-                <div className="card">
+                <div className="card border-0">
                     <div className="card-header bg-white border-0" id="headingOne">
                         <h5 className="mb-0 text-center">
                             <button className="more__options__btn" data-toggle="collapse" data-target="#collapseOne"
