@@ -9,9 +9,9 @@ const Search = () => {
   return (
     <section className="search__neighbour">
         <div className="search__neighbour-content">
-        <div className="search__neighbour-content-sidebar">
-            <Filters />
-          </div>
+            <div className="search__neighbour-content-sidebar">
+                <Filters />
+            </div>
           <div className="search__neighbour-content-list">
             <UserList/>
           </div>
