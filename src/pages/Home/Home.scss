@@ -1,4 +1,4 @@
-@media screen and (max-width: 520px) {
+@media only screen and(max-width: 520px){
   .home-page {
     max-width: 100% !important;
 
@@ -12,7 +12,6 @@
     justify-content: center;
     flex-direction: column-reverse;
   }
-
   .slogan {
     top: 15rem !important;
     float: none !important;
@@ -30,7 +29,7 @@
       p {
 
         text-align: center !important;
-        font-size: 6rem !important;
+        font-size: 5rem !important;
 
       }
     }
@@ -117,7 +116,7 @@
   }
   .examples__list {
     display: grid;
-    grid-template-columns:repeat(2, 200px) !important;
+    grid-template-columns:repeat(1, 200px) !important;
     grid-column-gap: 10px !important;
     grid-row-gap: 10px !important;
     flex-wrap: wrap;

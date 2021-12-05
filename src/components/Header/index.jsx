@@ -45,7 +45,7 @@ const Header = ({  user }) => {
                                 <li className="nav-item mr-5">
                                     <Link  to={"/chat"} className="h4 text-dark nav-link">Chat</Link>
                                 </li>
-                                <li className="nav-item">
+                                <li className="nav-item mr">
                                     <Link to={"/"} onClick={handleLogOut} className="h4 text-dark nav-link">Log Out</Link>
                                 </li>
                             </ul>
@@ -57,15 +57,13 @@ const Header = ({  user }) => {
     }
     else {
             return(
-                <div className={s.header}>
-                    <Menu className={s.menuLogOut} mode="horizontal" defaultSelectedKeys={['2']}>
-                        <Menu.Item key="1" >
-                            <Link to={"/signup"} className={s.link}>Зареєструватись</Link>
-                        </Menu.Item>
-                        <Menu.Item key="2" >
-                            <Link to={"/signin"} className={s.link}>Ввійти</Link>
-                        </Menu.Item>
-                    </Menu>
+                <div style={{backgroundColor:"white"}}>
+                    <a className="navbar-brand">
+                        <img src={houselogo} alt="House" />
+                        <i className="fas fa-search fa-lg" style={{color: "#ea1717"}}/>
+                        <Link className={s.homeTitle} >NEIGHBOUR
+                        </Link>
+                    </a>
                 </div>
             );
         }
@@ -74,3 +72,5 @@ const Header = ({  user }) => {
 
 
 export default connect( ({ user }) => ( { user: user }) )(Header);
+
+

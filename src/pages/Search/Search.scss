@@ -32,13 +32,14 @@
 @media screen and (max-width: 520px) {
   .users__list{
       display: grid !important;
-      grid-template-columns:repeat(2, 200px);
+      grid-template-columns:repeat(1, 200px);
       grid-row-gap: 30px;
       column-gap: 15px;
       row-gap: 145px;
       flex-wrap: wrap;
-      padding-left: 0;
-      margin-left: -1px;
+      padding: 0;
+      margin: 0;
+    justify-content: center;
   }
   .search__neighbour .pages__chooser {
     display: flex;
