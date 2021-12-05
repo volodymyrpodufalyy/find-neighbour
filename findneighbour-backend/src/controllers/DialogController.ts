@@ -1,6 +1,6 @@
 import express from "express";
 import socket from "socket.io";
-import { sequelize } from "../core/dbconfig";
+import sequelize from "../core/dbconfig";
 
 import { DialogModel, MessageModel } from "../models";
 import { IDialog } from "../models/Dialog";
