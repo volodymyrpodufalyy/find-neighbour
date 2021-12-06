@@ -107,9 +107,9 @@ const AddInfoForm = props => {
                     >
                         <div className="checkbox">
                             <p>Стать:</p>
-                            <Checkbox onChange={e => values.sex = e.target.checked}
+                            <Checkbox onChange={() => values.sex = "Male"}
                                       className="checkbox-item checkbox-item--male">Чоловік</Checkbox>
-                            <Checkbox onChange={e => values.sex = !e.target.checked}
+                            <Checkbox onChange={() => values.sex = "Female"}
                                       className="checkbox-item">Жінка</Checkbox>
                         </div>
                     </Form.Item>
