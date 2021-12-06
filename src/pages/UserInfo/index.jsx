@@ -1,131 +1,213 @@
-import React, { useEffect } from "react";
-import { Card } from "antd";
-import { Avatar, CardItem } from "components";
-import { useLocation } from "react-router";
-import "./UserInfo.scss";
-import { connect } from "react-redux";
-import { addinfoActions } from "redux/actions";
-import { Spin } from "antd";
+import React, {useEffect, useState} from "react";
+import {Card} from "antd";
+import {Avatar, CardItem} from "components";
+import {useLocation} from "react-router";
+import s from "./UserInfo.module.scss";
+import {connect} from "react-redux";
+import {addinfoActions} from "redux/actions";
+import {Spin} from "antd";
+//import s from "../../components/MainInfoUser/mainInfoUser.module.scss";
+import img from "../../assets/img/account-avatar-profile-human-man-user-30448.png";
+import {Link} from "react-router-dom";
+import FooterSearch from "../../components/Search/FooterSearch/FooterSearch";
 
 const UserInfo = (props) => {
-  const { fetchUserAddInfos, results, isLoading } = props;
-  const { state } = useLocation();
+    const {fetchUserAddInfos, results, isLoading} = props;
+    const {state} = useLocation();
 
-  const { user } = state.info;
+    const {user} = state.info;
 
-  useEffect(() => {
-    fetchUserAddInfos(1, 6);
-  }, []);
+    const [showMore, setShowMore] = useState(false)
 
-  if (isLoading) {
+    const ShowMoreHandler = () => {
+        showMore ? setShowMore(false) : setShowMore(true)
+    }
+
+    useEffect(() => {
+        fetchUserAddInfos(1, 6);
+    }, []);
+
+    if (isLoading) {
+        return (
+            <div className="spin-load">
+                <Spin size="large" tip="Завантаження..."/>
+            </div>
+        );
+    }
+
+    let addressDetail = state.info?.address.replace(/(^\s+)|(\s+$)/g, '').split(',')
+
+
+    const details = [
+        {
+            label: "Age",
+            value: state.info?.age,
+        },
+        {
+            label: "Phone number",
+            value: state.info?.phoneNumber,
+        },
+        {
+            label: "City",
+            value: state.info?.address.split(",")[0],
+        },
+        {
+            label: "Sex",
+            value: state.info?.sex,
+        },
+        {
+            label: "Bad habits",
+            value: state.info?.hasBadHabits ? "Yes" : "No",
+        },
+        {
+            label: "Has job",
+            value: state.info?.hasJob ? "Yes" : "No",
+        },
+        {
+            label: "Is married",
+            value: state.info?.isMarried ? "Yes" : "No",
+        },
+        {
+            label: "Is student",
+            value: state.info?.isStudent ? "Yes" : "No",
+        },
+    ];
+    console.log(state.info)
+
     return (
-      <div className="spin-load">
-        <Spin size="large" tip="Завантаження..." />
-      </div>
-    );
-  }
+        <div className={s.container}>
+            <div className={s.main}>
+                <div className={s.main_info_container}>
 
-  const details = [
-    {
-      label: "Age",
-      value: state.info?.age,
-    },
-    {
-      label: "Phone number",
-      value: state.info?.phoneNumber,
-    },
-    {
-      label: "City",
-      value: state.info?.address.split(",")[0],
-    },
-    {
-      label: "Sex",
-      value: state.info?.sex,
-    },
-    {
-      label: "Bad habits",
-      value: state.info?.hasBadHabits ? "Yes" : "No",
-    },
-    {
-      label: "Has job",
-      value: state.info?.hasJob ? "Yes" : "No",
-    },
-    {
-      label: "Is married",
-      value: state.info?.isMarried ? "Yes" : "No",
-    },
-    {
-      label: "Is student",
-      value: state.info?.isStudent ? "Yes" : "No",
-    },
-  ];
+                    <div className={s.user_img}>
+                        <a href="#">
+                            <img src={img} alt="User_img"/>
+                        </a>
+                    </div>
+                    <div className={s.user_title}>
+                        <h3>{user?.fullname}</h3>
 
-  return (
-    <div className="user-page">
-      <div className="user-page__header">
-        <div className="header-content">
-          <Card
-            bordered
-            style={{
-              width: 240,
-              height: 240,
-              borderRadius: 20,
-              boxShadow: "5px 15px 15px rgb(196, 196, 196)",
-            }}
-          >
-            <div className="card-image">
-              <div className="card-image__avatar">
-                <Avatar user={user} />
-              </div>
-            </div>
-            <h2 className="card-title centered">{user?.fullname}</h2>
-            <h2 className="card-subtitle centered">{user?.email}</h2>
-          </Card>
-          <Card
-            bordered
-            style={{
-              width: "80%",
-              height: 240,
-              borderRadius: 20,
-              boxShadow: "5px 15px 15px rgb(196, 196, 196)",
-              padding: "20px 30px",
-            }}
-          >
-            <h2 className="card-title">Information</h2>
-            <p className="card-article">{state.info?.moreAbout}</p>
-            <hr />
-            <div className="card-details">
-              {details.map((item) => (
-                <div className="card-details__item">
-                  <h3 className="card-title centered">{item.label}</h3>
-                  <h3 className="card-subtitle centered">{item.value}</h3>
+                        <h5>{state.info?.moreAbout}</h5>
+                    </div>
+                    <div className={s.additional_info}>
+                        <div className={s.age}>
+                            <h5>Age</h5>
+                            <p>{state.info?.age} Year</p>
+                        </div>
+                        <div className={s.kind_of}>
+                            <h5>Статус</h5>
+                            <p>{state.info?.user.isOnline ? "Онлай" : "Офлайн"}</p>
+
+                        </div>
+                        <div className={s.city}>
+                            <h5>City</h5>
+                            <p>{addressDetail[0]}</p>
+                        </div>
+                    </div>
+                    {!showMore ?
+                        <div className={s.btn_cont}>
+                            <button className={s.btn} onClick={ShowMoreHandler}>More info</button>
+                        </div> : null
+                    }
+                    {showMore ?
+                        <div className={s.modal_window}>
+                            <div className={s.modal_info}>
+
+                                <div className={s.age}>
+                                    <h5>Погані звички</h5>
+                                    <p>{state.info?.badHabits === true ? 'Так' : (state.info?.badHabits === false) ? "Немає" : "Невідомо"}</p>
+                                </div>
+                                <div className={s.kind_of}>
+                                    <h5>Стосунки</h5>
+                                    <p>{state.info?.isMarried === true ? 'Так' : (state.info?.isMarried === false) ? "Немає" : "Невідомо"}</p>
+                                </div>
+
+
+                                <div className={s.city}>
+                                    <h5>Студент</h5>
+                                    <p>{state.info?.isStudent === true ? 'Так' : (state.info?.isStudent === false) ? "Немає" : "Невідомо"}</p>
+                                </div>
+                                <div className={s.city}>
+                                    <h5>Тваринки</h5>
+                                    <p>{state.info?.hasPets === true ? 'Так' : (state.info?.hasPets === false) ? "Немає" : "Невідомо"}</p>
+                                </div>
+
+                            </div>
+                            <div className={s.btn_cont}>
+                                <button className={s.btn} onClick={ShowMoreHandler}>Less info</button>
+                            </div>
+                        </div> : null}
                 </div>
-              ))}
+
+                <div>
+                    <h2 className={s.card_title}>Ваші рекомендації</h2>
+                    <ul className={s.examples_list}>
+                        {results.map((userInfo) => (
+                            <li key={userInfo.id}>
+                                <CardItem card={userInfo}/>
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+
             </div>
-          </Card>
-        </div>
-      </div>
-      <div className="user-page__content">
-        <h2 className="card-title">Find neighbour</h2>
-          <ul className="examples-list">
-            {results.map((userInfo) => (
-              <li key={userInfo.id}>
-                <CardItem card={userInfo} />
-              </li>
-            ))}
-          </ul>
-      </div>
-    </div>
-  );
+            <FooterSearch/></div>
+    );
 };
 
 export default connect(
-  ({ addinfo }) => ({
-    items: addinfo.items,
-    results: addinfo.results,
-    pageSize: addinfo.pageSize,
-    totalCount: addinfo.totalCount,
-    isLoading: addinfo.isLoading,
-  }),
-  addinfoActions
+    ({addinfo}) => ({
+        items: addinfo.items,
+        results: addinfo.results,
+        pageSize: addinfo.pageSize,
+        totalCount: addinfo.totalCount,
+        isLoading: addinfo.isLoading,
+    }),
+    addinfoActions
 )(UserInfo);
+
+
+// <div className="user-page__header">
+//     <div className="header-content">
+//         <Card
+//             bordered
+//             style={{
+//                 width: 240,
+//                 height: 240,
+//                 borderRadius: 20,
+//                 boxShadow: "5px 15px 15px rgb(196, 196, 196)",
+//             }}
+//         >
+//             <div className="card-image">
+//                 <div className="card-image__avatar">
+//                     <Avatar user={user}/>
+//                 </div>
+//             </div>
+//             <h2 className="card-title centered">{user?.fullname}</h2>
+//             <h2 className="card-subtitle centered">{user?.email}</h2>
+//         </Card>
+//         <Card
+//             bordered
+//             style={{
+//                 width: "80%",
+//                 height: 240,
+//                 borderRadius: 20,
+//                 boxShadow: "5px 15px 15px rgb(196, 196, 196)",
+//                 padding: "20px 30px",
+//             }}
+//         >
+//             <h2 className="card-title">Informatison</h2>
+//             <p className="card-article">{state.info?.moreAbout}</p>
+//             <hr/>
+//             <div className="card-details">
+//                 {details.map((item) => (
+//                     <div className="card-details__item">
+//                         <h3 className="card-title centered">{item.label}</h3>
+//                         <h3 className="card-subtitle centered">{item.value}</h3>
+//                     </div>
+//                 ))}
+//             </div>
+//         </Card>
+//     </div>
+// </div>

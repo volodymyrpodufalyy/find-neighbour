@@ -51,3 +51,8 @@
 .search__contact__us {
     margin-top: 10px;
 }
+@media screen and (min-width: 1000px){
+    .footer__search {
+        margin-top: 500px;
+    }
+}

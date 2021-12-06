@@ -16,15 +16,17 @@
       margin-top: 23px;
       margin-left: 10px;
       flex: 0 250px;
-      border-right: 1px solid #c9c3c3;
-      border-top: 1px solid #c9c3c3;
+      border-right: 1px solid #c9c3c3 ;
+      border-top: 1px solid #c9c3c3 ;
       border-top-right-radius: 8px;
       background-color: #fff;
       height: 40rem;
     }
   }
+
   .pages__chooser {
     display: flex;
+
     justify-content: center;
     margin-top: 2em;
     margin-bottom: 40px;
@@ -34,12 +36,15 @@
       list-style-type: none;
       &-link {
         color: #000;
-        border: none;
-        background-color: #fff;
       }
       &-link--selected {
         color: #000;
+        background-color: white;
+        border-left: 0;
+        border-top: 0;
+        border-right: 0;
         border-bottom: 2.5px solid #da1212;
+
       }
       &-link:hover {
         border-bottom: 2.5px solid #da1212;
@@ -63,12 +68,11 @@
   justify-content: center;
   list-style-type: none;
   &-card {
-    cursor: pointer;
     display: flex;
-    box-shadow: 0 0 10px 5px rgba(123, 123, 129, 0.2);
+    box-shadow: 0 0 10px 5px  rgba(123, 123, 129, 0.2);
     border-radius: 8px;
     height: 150px;
-    width: 340px;
+    width: 300px;
     padding: 10px;
     background-color: #fff;
     &-image {
@@ -113,7 +117,7 @@
           p {
             padding-top: 14px;
             font-size: 15px;
-            color: #797a7e;
+            color: #797A7E;
             font-weight: 500;
             width: 70px;
             height: 20px;
@@ -124,91 +128,7 @@
   }
 }
 
-@media screen and (max-width: 520px) {
-  h5 {
-    padding-top: 15px;
-    margin: 0;
-    text-align: center;
-    font-size: 18px;
-  }
 
-  .item_card_text {
-    text-align: center;
-    padding-top: 8px;
-    font-size: 15px;
-  }
-
-  h6 {
-    padding: 0;
-    margin: 0;
-  }
-
-  .users__list {
-    all: revert;
-    list-style: none;
-    height: 100%;
-
-    &-card {
-      all: revert;
-      cursor: pointer;
-      border: 0;
-      background: linear-gradient(
-        to right bottom,
-        rgb(241, 23, 99),
-        rgba(14, 17, 217, 0.6)
-      );
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      width: 200px;
-      height: 300px;
-      margin-bottom: 100px;
-      &-image {
-        all: revert;
-        width: 100px;
-        height: 100px;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-        padding-top: 25px;
-      }
-
-      &-info {
-        all: revert;
-        padding-top: 20px;
-        &-top {
-          all: revert;
-        }
-        &-bottom {
-          all: revert;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          justify-items: center;
-
-          &-item {
-            all: revert;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            justify-items: center;
-          }
-        }
-      }
-    }
-  }
-
-  .item_card_text_name {
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-  }
-}
 
 .users__list li {
   flex: 0 1 10rem;

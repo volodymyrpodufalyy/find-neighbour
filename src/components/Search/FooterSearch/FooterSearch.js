@@ -1,26 +1,32 @@
 import React from "react";
-import "./FooterSearch.css";
-import gmail from "./gmail.png"
-import instagram from "./instagram.svg"
-import facebook from "./facebook.svg"
 
 const FooterSearch = () => {
     return(
-        <div className="footer__search">
-            <div className="footer__eblock"/>
-            <div className="footer__search-info">
-                <div className="search__contact__us">
-                    <h3>Contact us:</h3>
-                    <h3>Gmail: propositumtop@gmail.com</h3>
+        <footer className="text-center text-lg-start text-muted mt-5 border-top">
+            <section
+                className="d-flex justify-content-center justify-content-lg-between p-3 border-bottom">
+                <div className="me-5 d-none d-lg-block blockquote">
+                    <span>Get connected with us on social networks:</span>
                 </div>
-                <div className="search__about__us">
-                    <img src={instagram} className="sau__i"/>
-                    <img src={facebook} className="sau__f"/>
-                    <img src={gmail} className="sau__g"/>
+
+                <div>
+                    <a href="" className="me-4 text-reset mr-3">
+                        <i className="fab fa-facebook-f fa-2x"/>
+                    </a>
+                    <a href="" className="me-4 text-reset mr-3">
+                        <i className="fab fa-google fa-2x"/>
+                    </a>
+                    <a href="" className="me-4 text-reset mr-3">
+                        <i className="fab fa-telegram-plane fa-2x"/>
+                    </a>
                 </div>
+            </section>
+
+
+            <div className="text-center p-5 lead" >
+                2021 IoT © Made By Propositum
             </div>
-            <h3 className="mbp">©Made By Propositum</h3>
-        </div>
+        </footer>
     );
 }
 

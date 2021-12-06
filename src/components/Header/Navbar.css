@@ -1,0 +1,25 @@
+.nav-link:hover,
+.nav-link:active {
+    animation: breathing 0.4s ease-out forwards;
+}
+.navbar-brand:hover,
+.navbar-brand:active {
+    animation: breathing 0.4s ease-out forwards;
+}
+@keyframes breathing {
+    0% {
+        box-shadow: 0 3px 0 0 #d7bcbb;
+    }
+    25% {
+        box-shadow: 0 3px 0 0 #dca0a0;
+    }
+    50% {
+        box-shadow: 0 3px 0 0 #D75858FF;
+    }
+    75% {
+        box-shadow: 0 3px 0 0 #DB2F2FFF;
+    }
+    100% {
+        box-shadow: 0 3px 0 0 #da1212;
+    }
+}

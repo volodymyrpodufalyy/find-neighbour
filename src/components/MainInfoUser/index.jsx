@@ -11,6 +11,7 @@ const MainInfoUser = props => {
     let addressDetail = address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 
     return (
+        <div className={s.container}>
 
             <div className={s.main_info_container}>
 
@@ -40,13 +41,14 @@ const MainInfoUser = props => {
                 </div>
                 <div className={s.btn_cont}>
                     <Link to={"/settings"} className={s.link}>
-                        <button className={s.btn} >Change Info</button>
+                        <button className={s.btn}>Change Info</button>
                     </Link>
                 </div>
 
-
             </div>
-  );
+
+        </div>
+    );
 };
 
 export default MainInfoUser;

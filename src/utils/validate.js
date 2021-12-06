@@ -29,7 +29,7 @@ export default ({ isAuth, values, errors }) => {
       }
     },
     adress: value => { // fixed or hardcoded
-      if (isAuth && value) {
+      if (isAuth && !value) {
         errors.adress = "Вкажіть своє місто";
       }
     },
