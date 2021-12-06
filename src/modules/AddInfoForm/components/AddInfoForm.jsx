@@ -18,11 +18,6 @@ const AddInfoForm = (props) => {
     isValid,
   } = props;
 
-  const handleSubmit1 = () => {
-    console.log(values, "values");
-    handleSubmit();
-  };
-
   const [userAddress, setUserAddress] = useState("");
   const [day, setDay] = useState("День");
   const [month, setMonth] = useState("Місяць");
@@ -338,7 +333,7 @@ const AddInfoForm = (props) => {
             {isSubmitting && !isValid && <span>Помилка</span>}
             <Button
               disabled={false}
-              onClick={handleSubmit1}
+              onClick={handleSubmit}
               size="large"
               type="primary"
               htmlType="submit"
