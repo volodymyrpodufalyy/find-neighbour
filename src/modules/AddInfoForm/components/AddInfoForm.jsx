@@ -1,12 +1,13 @@
-import React, {useState} from "react";
-import {Form, Button, Checkbox, Space, Dropdown, Menu, Input} from "antd";
-import {DownOutlined} from "@ant-design/icons";
-import {Block, SearchLocationInput} from "components";
-import {Link} from "react-router-dom";
+import React, { useState } from "react";
+import { Form, Button, Checkbox, Space, Dropdown, Menu, Input } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+import { Block, SearchLocationInput } from "../../../components";
+import { Link } from "react-router-dom";
 import "./AddInfoForm.scss";
-import {validateField, convertDate, getAge} from "utils/helpers";
+import { validateField, convertDate, getAge } from "../../../utils/helpers";
 
 const AddInfoForm = (props) => {
+    console.log(props)
     const {
         values,
         touched,
@@ -52,7 +53,7 @@ const AddInfoForm = (props) => {
     const DropdownMenu = (dateType) => {
         if (dateType === "day") {
             return (
-                <Menu >
+                <Menu className="dropdown_menu">
                     {dayRange.map((num) => {
                         return (
                             <Menu.Item key={num} onClick={(e) => setDay(e.key)}>
@@ -64,7 +65,7 @@ const AddInfoForm = (props) => {
             );
         } else if (dateType === "month") {
             return (
-                <Menu >
+                <Menu className="dropdown_menu">
                     {monthRange.map((month, index) => {
                         return (
                             <Menu.Item
@@ -82,7 +83,7 @@ const AddInfoForm = (props) => {
             );
         } else if (dateType === "year") {
             return (
-                <Menu >
+                <Menu className="dropdown_menu">
                     {yearRange.map((year) => {
                         return (
                             <Menu.Item key={year} onClick={(e) => setYear(e.key)}>
@@ -104,7 +105,7 @@ const AddInfoForm = (props) => {
             <Block className="addinfo-block">
                 <Form
                     className="login-form"
-                    initialValues={{remember: true}}
+                    initialValues={{ remember: true }}
                     onSubmit={handleSubmit}
                 >
                     <Form.Item
@@ -125,7 +126,7 @@ const AddInfoForm = (props) => {
                                 >
                                     <Button size="large">
                                         {" "}
-                                        {day} <DownOutlined/>
+                                        {day} <DownOutlined />
                                     </Button>
                                 </Dropdown>
                                 <Dropdown
@@ -136,7 +137,7 @@ const AddInfoForm = (props) => {
                                 >
                                     <Button size="large">
                                         {" "}
-                                        {month} <DownOutlined/>
+                                        {month} <DownOutlined />
                                     </Button>
                                 </Dropdown>
                                 <Dropdown
@@ -147,7 +148,7 @@ const AddInfoForm = (props) => {
                                 >
                                     <Button size="large">
                                         {" "}
-                                        {year} <DownOutlined/>
+                                        {year} <DownOutlined />
                                     </Button>
                                 </Dropdown>
                             </Space>
@@ -183,7 +184,7 @@ const AddInfoForm = (props) => {
                     <Form.Item
                         validateStatus={validateField("phoneNumber", touched, errors)}
                         help={!touched.phoneNumber ? "" : errors.phoneNumber}
-                        rules={[{required: true, message: "Номер телефону"}]}
+                        rules={[{ required: true, message: "Номер телефону" }]}
                         hasFeedback
                     >
                         <div className="birthdate">
@@ -193,7 +194,7 @@ const AddInfoForm = (props) => {
                             id="phoneNumber"
                             size="large"
                             addonBefore="+380"
-                            style={{width: "100%"}}
+                            style={{ width: "100%" }}
                             value={values.phoneNumber}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -207,7 +208,7 @@ const AddInfoForm = (props) => {
                         <div className="birthdate">
                             <p>Місто:</p>
                         </div>
-                        <SearchLocationInput onChange={onChangeAddress}/>
+                        <SearchLocationInput onChange={onChangeAddress} />
                     </Form.Item>
                     <Form.Item
                         validateStatus={validateField("kindOfActivity", touched, errors)}
@@ -326,7 +327,7 @@ const AddInfoForm = (props) => {
                             value={values.moreAboutUser}
                             onChange={handleChange("moreAboutUser")}
                             onBlur={handleBlur("moreAboutUser")}
-                            style={{width: "100%"}}
+                            style={{ width: "100%" }}
                         />
                     </Form.Item>
                     <Form.Item>

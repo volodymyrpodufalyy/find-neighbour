@@ -19,7 +19,7 @@ const Filter = props => {
 
     const DropdownMenu = (age) => {
         return (
-            <Menu className="dropdown-menu">
+            <Menu className="dropdown_menu">
                 {ageRange.map((num) => {
                     if(age === "startAge") {
                         return ( <Menu.Item key={num} onClick={e => setStartAge(e.key)} > {num} </Menu.Item> );
@@ -71,59 +71,76 @@ const Filter = props => {
                     </div>
                 </Form.Item>
             </Form>
-            <Form >
-                <Form.Item hasFeedback>
-                    <div className="check__picker">
-                        <div><p>Стать:</p></div>
-                        <div><Checkbox
-                            onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
-                            className="check__picker-item">Чоловік</Checkbox>
-                            <Checkbox
-                                onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)}
-                                className="check__picker-item check__picker-item--female">Жінка</Checkbox>
-                        </div>
-                    </div>
-                </Form.Item>
-            </Form>
-            <Form  >
-                <Form.Item hasFeedback>
-                    <div className="check__picker">
-                        <div><p>Погані звички:</p></div>
-                        <div>
-                            <Checkbox
-                                onChange={e => e.target.checked ? setBadHabits(e.target.checked) : setBadHabits()}
-                                className="check__picker-item">Так</Checkbox>
-                            <Checkbox
-                                onChange={e => e.target.checked ? setBadHabits(!e.target.checked) : setBadHabits()}
-                                className="check__picker-item check__picker-item--female">Ні</Checkbox>
-                        </div>
-                    </div>
-                </Form.Item>
-            </Form>
-            <Form >
-                <Form.Item hasFeedback>
-                    <div className="check__picker">
-                        <div><p>Домашні тваринки:</p></div>
-                        <div><Checkbox
-                            onChange={e => e.target.checked ? setPets(e.target.checked) : setPets()}
-                            className="check__picker-item">Так</Checkbox>
-                            <Checkbox
-                                onChange={e => e.target.checked ? setPets(!e.target.checkede) : setPets()}
-                                className="check__picker-item check__picker-item--female">Ні</Checkbox>
-                        </div>
-                    </div>
-                    <div className="filter__submit">
-                        <button onClick={filterUsers}
-                                className="submit"
-                                type="primary"
-                                htmltype="submit"
-                        >
-                            OK
-                        </button>
+            <div id="accordion">
+                <div className="card border-0">
+                    <div className="card-header bg-white border-0" id="headingOne">
+                        <h5 className="mb-0 text-center">
+                            <button className="more__options__btn" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                More Options
+                            </button>
+                        </h5>
                     </div>
 
-                </Form.Item>
-            </Form>
+                    <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <Form >
+                            <Form.Item hasFeedback>
+                                <div className="check__picker">
+                                    <div><p>Стать:</p></div>
+                                    <div><Checkbox
+                                        onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
+                                        className="check__picker-item">Чоловік</Checkbox>
+                                        <Checkbox
+                                            onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)}
+                                            className="check__picker-item check__picker-item--female">Жінка</Checkbox>
+                                    </div>
+                                </div>
+                            </Form.Item>
+                        </Form>
+                        <Form  >
+                            <Form.Item hasFeedback>
+                                <div className="check__picker">
+                                    <div><p>Погані звички:</p></div>
+                                    <div>
+                                        <Checkbox
+                                            onChange={e => e.target.checked ? setBadHabits(e.target.checked) : setBadHabits()}
+                                            className="check__picker-item">Так</Checkbox>
+                                        <Checkbox
+                                            onChange={e => e.target.checked ? setBadHabits(!e.target.checked) : setBadHabits()}
+                                            className="check__picker-item check__picker-item--female">Ні</Checkbox>
+                                    </div>
+                                </div>
+                            </Form.Item>
+                        </Form>
+                        <Form >
+                            <Form.Item hasFeedback>
+                                <div className="check__picker">
+                                    <div><p>Домашні тваринки:</p></div>
+                                    <div><Checkbox
+                                        onChange={e => e.target.checked ? setPets(e.target.checked) : setPets()}
+                                        className="check__picker-item">Так</Checkbox>
+                                        <Checkbox
+                                            onChange={e => e.target.checked ? setPets(!e.target.checkede) : setPets()}
+                                            className="check__picker-item check__picker-item--female">Ні</Checkbox>
+                                    </div>
+                                </div>
+
+
+                            </Form.Item>
+                        </Form>
+                    </div>
+                </div>
+            </div>
+            <div className="filter__submit">
+                <button onClick={filterUsers}
+                        className="submit"
+                        type="primary"
+                        htmltype="submit"
+                >
+                    OK
+                </button>
+            </div>
+
         </div>
     );
 };

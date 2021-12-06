@@ -73,6 +73,7 @@
 }
 .submit {
     width: 100px;
+    height: 25px;
     font-weight: 500;
     letter-spacing: 0.1px;
     background-color: #EA2626;
@@ -81,10 +82,33 @@
     cursor: pointer;
     color: #fff;
     margin-top: 30px;
-    margin-left: 8px;
+    margin-bottom: 40px;
 }
 .submit:hover {
     background-color: #fff;
     border: 1px solid #EA2626;
     color: #EA2626;
+}
+.more__options__btn {
+    width: 170px;
+    height: 25px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    background-color: #EA2626;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    border:0;
+}
+.more__options__btn:hover{
+    background-color: #fff;
+    border: 1px solid #EA2626;
+    color: #EA2626;
+}
+.filter__submit {
+    display: flex;
+    justify-content: center;
+}
+.search__neighbour-content-sidebar {
+    height: auto;
 }

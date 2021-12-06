@@ -133,6 +133,7 @@ const Actions = {
 
 
     fetchUserAddInfoCreate: postData => dispatch => {
+        console.log(postData)
         return addinfoApi
             .addInfo(postData).then(({data}) => {
                 openNotification({

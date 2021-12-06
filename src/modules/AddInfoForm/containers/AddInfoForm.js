@@ -1,18 +1,17 @@
-import { withFormik } from "formik";
+import {withFormik} from "formik";
 import AddInfoForm from "../components/AddInfoForm";
-import { addinfoActions } from "redux/actions";
-import validateForm from "utils/validate";
-import { openNotification } from 'utils/helpers';
-import store from "redux/store";
+import {addinfoActions} from "../../../redux/actions";
+import validateForm from "../../../utils/validate";
+import {openNotification} from '../../../utils/helpers';
+import store from "../../../redux/store";
 
 export default withFormik({
-    enableReinitialize: true,
     mapPropsToValues: () => ({
         age: 0,
         address: '',
         sex: "00",
         pets: "00",
-        badHabits : "00",
+        badHabits: "00",
         kindOfActivity: "00",
         haveJobOrJobless: "00",
         maritalStatus: "00",
@@ -21,14 +20,14 @@ export default withFormik({
     }),
     validate: values => {
         let errors = {};
-        validateForm({ isAuth: true, values, errors });
-        console.log(errors, 'errors');
+        validateForm({isAuth: true, values, errors});
+        console.log(values)
         return errors;
     },
-    handleSubmit: (values, { setSubmitting, props }) => {
+    handleSubmit: (values, {setSubmitting, props}) => {
         store
             .dispatch(addinfoActions.fetchUserAddInfoCreate(values))
-            .then(({ status }) => {
+            .then(({status}) => {
                 if (status === "success") {
                     props.history.push("/signup/verify");
                 }

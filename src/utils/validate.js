@@ -12,8 +12,8 @@ export default ({ isAuth, values, errors }) => {
       if (!value) {
         errors.password = "Введіть пароль";
       } else if (
-        !isAuth &&
-        !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(value)
+          !isAuth &&
+          !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(value)
       ) {
         errors.password = "Надто легкий пароль";
       }
@@ -28,7 +28,7 @@ export default ({ isAuth, values, errors }) => {
         errors.age = "Вкажіть свій вік";
       }
     },
-    adress: value => { // fixed or hardcoded
+    adress: value => {
       if (isAuth && !value) {
         errors.adress = "Вкажіть своє місто";
       }
