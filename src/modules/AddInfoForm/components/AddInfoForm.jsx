@@ -14,7 +14,7 @@ const AddInfoForm = props => {
         handleSubmit()
     }
 
-    const [userAdress, setUserAdress] = useState("");
+    const [userAddress, setUserAddress] = useState("");
     const [day, setDay] = useState("День");
     const [month, setMonth] = useState("Місяць");
     const [monthKey, setMonthKey] = useState("");
@@ -26,11 +26,11 @@ const AddInfoForm = props => {
     const yearRange = [...Array(2020).keys()].slice(1970, 2020);
 
     const selectedDate = convertDate(day, monthKey, year);
-    const callbackAdress = (childAdress) => {
-        setUserAdress(childAdress);
+    const onChangeAddress = (value) => {
+        setUserAddress(value);
     }
 
-    values.adress = userAdress;
+    values.address = userAddress;
     values.age = getAge(selectedDate);
 
     const DropdownMenu = (dateType) => {
@@ -139,7 +139,7 @@ const AddInfoForm = props => {
                         <div className="birthdate">
                             <p>Місто:</p>
                         </div>
-                        <SearchLocationInput parentCallback={callbackAdress} onChange={() => null}/>
+                        <SearchLocationInput onChange={onChangeAddress} />
                     </Form.Item>
                     <Form.Item
                         validateStatus={validateField("kindOfActivity", touched, errors)}
@@ -211,8 +211,8 @@ const AddInfoForm = props => {
                         </div>
                         <Input
                             value={values.moreAboutUser}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
+                            onChange={handleChange('moreAboutUser')}
+                            onBlur={handleBlur('moreAboutUser')}
                             style={{width: '100%'}}/>
                     </Form.Item>
                     <Form.Item>
