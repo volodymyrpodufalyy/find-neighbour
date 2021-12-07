@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Settings} from "components"
 import {useSelector, useDispatch} from "react-redux";
-import {addinfoActions, userActions} from "redux/actions";
+import {addinfoActions, userActions,attachmentsActions} from "redux/actions";
 import {Spin} from "antd";
 
 const SettingsContainer = () => {
     const dispatch = useDispatch()
 
     const [isLoading, setIsLoading] = useState(useSelector(state => state.addinfo.isLoading))
+    const [file, setFile] = useState()
 
     let id = useSelector(state => state.user.data.id)
 
@@ -24,6 +25,14 @@ const SettingsContainer = () => {
 
     let data = useSelector(state => state.addinfo.userInfo)
 
+    const uploadOnChange = (e)=>{
+        setFile(e.target.files[0])
+    }
+
+    const uploadBtn = ()=>{
+        console.log(file)
+        dispatch(attachmentsActions.uploadFile(file))
+    }
 
     const updateAddress = (address) => {
         dispatch(addinfoActions.updateUserAddInfo(
@@ -52,7 +61,10 @@ const SettingsContainer = () => {
 
 
     return (
-        <Settings data={data[0]} updateAddress={updateAddress} saveChanges={saveChanges}/>
+        <Settings data={data[0]} updateAddress={updateAddress}
+                  saveChanges={saveChanges}
+                  uploadOnChange={uploadOnChange}
+                  uploadBtn={uploadBtn}/>
     )
 }
 

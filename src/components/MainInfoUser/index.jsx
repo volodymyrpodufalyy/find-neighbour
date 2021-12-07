@@ -7,7 +7,7 @@ import img from "../../assets/img/account-avatar-profile-human-man-user-30448.pn
 const MainInfoUser = props => {
 
     const {fullname} = props.state[0].user
-    const {moreAbout, age, kindOfActivity, address} = props.state[0]
+    const {moreAbout, age, isStudent, hasJob, address, user} = props.state[0]
     let addressDetail = address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 
     return (
@@ -16,9 +16,9 @@ const MainInfoUser = props => {
             <div className={s.main_info_container}>
 
                 <div className={s.user_img}>
-                    <a href="#">
-                        <img src={img} alt="User_img"/>
-                    </a>
+                    <Link to="/settings">
+                        { user.avatar ? <img src={user.avatar}/> : <img src={img} alt="User_img"/>}
+                    </Link>
                 </div>
                 <div className={s.user_title}>
                     <h3>{fullname}</h3>
@@ -32,7 +32,7 @@ const MainInfoUser = props => {
                     </div>
                     <div className={s.kind_of}>
                         <h5>Kind of Activity</h5>
-                        <p>{kindOfActivity ? 'Студент' : 'Працюю'}</p>
+                        <p>{isStudent ? 'Студент' : (hasJob)? 'Працюю': "невідомо"}</p>
                     </div>
                     <div className={s.city}>
                         <h5>City</h5>

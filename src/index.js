@@ -11,7 +11,7 @@ store.dispatch(userActions.fetchUserData());
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router forceRefresh={true}>
+    <Router >
       <App />
     </Router>
   </Provider>,

@@ -10,7 +10,8 @@ export let refFromSettingsInfo = React.createRef();
 const SettingsInfo = (props) => {
 
 
-    const {moreAbout, age, phoneNumber, hasBadHabits, isMarried, hasJob, isStudent, hasPets, address, user} = props.data
+    const {moreAbout, age, phoneNumber, hasBadHabits, isMarried, hasJob,
+        isStudent, hasPets, address, user} = props.data
 
     const [userAddress, setUserAddress] = useState(address);
     const [AboutUser, setAboutUser] = useState(moreAbout);
@@ -58,18 +59,26 @@ const SettingsInfo = (props) => {
     let fullname = user.fullname.replace(/(^\s+)|(\s+$)/g, '').split(' ')
     let lastName = fullname[1] ? fullname[1] : ''
 
+
+
+    const onChange =(e)=>{
+        console.log(e.target.files)
+    }
+
     return (
         <div className={s.container}>
             <div className={s.settings_div}>
                 <Form className={s.form}>
                     <Form.Item>
                         <div className={s.img}>
-                            <Image src={imge} width={150}/>
-                            <Upload className={s.uploadBtn}>
-                                <Button>
-                                    Click to Upload
-                                </Button>
-                            </Upload>
+                            <Image src={user.avatar} width={150}/>
+                            <input type="file" onChange={props.uploadOnChange}/>
+                            <Button onClick={props.uploadBtn}>Upload</Button>
+                            {/*<Upload className={s.uploadBtn} {...upload}>*/}
+                            {/*    <Button >*/}
+                            {/*        Click to Upload*/}
+                            {/*    </Button>*/}
+                            {/*</Upload>*/}
                         </div>
                     </Form.Item>
                     <Form.Item>
