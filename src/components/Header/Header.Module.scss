@@ -1,104 +1,101 @@
 .header {
-    display: flex;
-    height: 50px;
-    width: 100%;
-    right: 0;
-    left: 0;
-    z-index: 1;
-    background-color: #fff;
-    box-shadow: 1px 1px 1px  rgba(25, 25, 29, 0.2);
+  display: flex;
+  height: 50px;
+  max-width: 100%;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px rgba(25, 25, 29, 0.2);
 }
 
 .homeMenuItem {
-    display: flex;
-    position: relative;
-    flex-wrap: wrap;
-    float: left;
-    width: 15rem;
-    margin-right: 30% !important;
-    right: 5.5% !important;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  float: left;
+  width: 15rem;
+  margin-right: 30% !important;
+  right: 5.5% !important;
 }
 
 .menuItemSearch {
-    display: flex;
-    position: relative;
-    left: 13% !important;
+  display: flex;
+  position: relative;
+  left: 13% !important;
 }
 .menuItemProfile {
-    display: flex;
-    position: relative;
-    left: 10.5% !important;
+  display: flex;
+  position: relative;
+  left: 9.5% !important;
 }
 .menuItemChat {
-    display: flex;
-    position: relative;
-    left: 8% !important;
+  display: flex;
+  position: relative;
+  left: 5% !important;
 }
 .menuItemLogOut {
-    display: flex;
-    position: relative;
-    left: 5% !important;
+  display: flex;
+  position: relative;
 }
 .houselogo {
-    padding-top: 8px;
+  padding-top: 8px;
 }
 
 .homelink {
-    display: flex;
-    border: none;
-    height: 50px;
-    text-decoration: none;
+  display: flex;
+  border: none;
+  height: 50px;
+  text-decoration: none;
 }
 
 .homeTitle {
-    padding-top: 3px;
-    font-size: 24px;
-    color: #EA2626 !important;
-    text-decoration: none;
-    font-family: 'Sukar', sans-serif;
-    font-style: italic;
-	font-size: 28px ;  
-	font-weight: 900;
-	text-shadow: 
-		-0.0075em 0.0075em 0 mix(#fff, #EA2626, 94%),
-		0.005em 0.005em 0 mix(#fff, #EA2626, 60%),
-		0.01em 0.01em 0 mix(#fff, #EA2626, 62%), 
-		0.015em 0.015em mix(#fff, #EA2626, 64%), 
-		0.02em 0.02em 0 mix(#fff, #EA2626, 66%), 
-		0.025em 0.025em 0 mix(#fff, #EA2626, 68%),
-		0.03em 0.03em 0 mix(#fff, #EA2626, 70%),
-		0.035em 0.035em 0 mix(#fff, #EA2626, 72%);
+  padding-top: 3px;
+  font-size: 24px;
+  color: #ea2626 !important;
+  text-decoration: none;
+  font-family: "Sukar", sans-serif;
+  font-style: italic;
+  font-size: 28px;
+  font-weight: 900;
+  text-shadow: -0.0075em 0.0075em 0 mix(#fff, #ea2626, 94%),
+    0.005em 0.005em 0 mix(#fff, #ea2626, 60%),
+    0.01em 0.01em 0 mix(#fff, #ea2626, 62%),
+    0.015em 0.015em mix(#fff, #ea2626, 64%),
+    0.02em 0.02em 0 mix(#fff, #ea2626, 66%),
+    0.025em 0.025em 0 mix(#fff, #ea2626, 68%),
+    0.03em 0.03em 0 mix(#fff, #ea2626, 70%),
+    0.035em 0.035em 0 mix(#fff, #ea2626, 72%);
 }
 
 .searchIcon {
-    position: relative;
-    padding-top: 2px;
-    margin-right: 0 !important;
+  position: relative;
+  padding-top: 2px;
+  margin-right: 0 !important;
 }
 
-
-.menu{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    background: none;
-    border: none;
-    height: 50px;
-    text-decoration: none;
+.menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  height: 50px;
+  text-decoration: none;
 }
-.menuLogOut{
-    display: flex;
-    float: right;
-    position: relative;
-    padding-left: 80% !important;
-    background: none;
-    border: none;
-    height: 50px;
-    text-decoration: none;
+.menuLogOut {
+  display: flex;
+  float: right;
+  position: relative;
+  padding-left: 80% !important;
+  background: none;
+  border: none;
+  height: 50px;
+  text-decoration: none;
 }
 
 .link {
-    font-weight: 500;
-    font-size: 17px;
-    text-decoration: none;
+  font-weight: 500;
+  font-size: 17px;
+  text-decoration: none;
 }
