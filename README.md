@@ -28,4 +28,5 @@
 
 ### ◼Redux Thunk
 
+#### Backend: https://github.com/volodymyrpodufalyy/findneighbour-backend
 
