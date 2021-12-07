@@ -1,7 +1,11 @@
 {
-  "name": "chat",
+  "name": "find-neighbour",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.17.5",
+    "npm": "8.1.0"
+  },
   "dependencies": {
     "@babel/core": "7.12.3",
     "@navjobs/upload": "^3.2.0",
