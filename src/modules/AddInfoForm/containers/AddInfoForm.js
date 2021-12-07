@@ -21,17 +21,18 @@ export default withFormik({
     validate: values => {
         let errors = {};
         validateForm({isAuth: true, values, errors});
-        console.log(values)
         return errors;
     },
     handleSubmit: (values, {setSubmitting, props}) => {
+
         store
             .dispatch(addinfoActions.fetchUserAddInfoCreate(values))
             .then(({status}) => {
-                if (status === "success") {
-                    props.history.push("/signup/verify");
+                if (status === 200) {
+                    console.log('SUCCESS')
+                    console.log(props.history.push('/signup/verify'))
                 }
-                setSubmitting(false);
+                setSubmitting(false)
             })
             .catch(err => {
                 openNotification({

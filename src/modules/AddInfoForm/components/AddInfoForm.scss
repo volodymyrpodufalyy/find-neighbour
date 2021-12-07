@@ -2,6 +2,47 @@ body {
     height: fit-content;
 }
 
+.add_info_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addinfo-block {
+    width: 500px !important;
+}
+
+@media screen and (max-width: 520px){
+    .addinfo-block {
+        width: 80% !important;
+        .birthdate{
+            display: flex !important;
+            justify-content: center;
+        }
+
+        .radio{
+            grid-template-columns: 50% 1fr 2fr;
+        }
+
+        .age{
+            display: flex!important;
+            align-items: center;
+        }
+        .ant-space-item{
+
+        }
+    }
+}
+
+.radio{
+    display: grid;
+    grid-template-columns: 200px 1fr 2fr;
+}
+
+
+
+
 .dropdown_menu {
     max-height: 250px;
     overflow-y: scroll;
@@ -39,6 +80,3 @@ body {
     }
 }
 
-.addinfo-block {
-    width: 500px !important;
-}

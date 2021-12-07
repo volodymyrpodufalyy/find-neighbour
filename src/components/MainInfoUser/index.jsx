@@ -36,7 +36,7 @@ const MainInfoUser = props => {
                     </div>
                     <div className={s.city}>
                         <h5>City</h5>
-                        <p>{address ? addressDetail[0] : <Link to={'/addinfo'}>Вкажіть <br/> адресу</Link>}</p>
+                        <p className={s.address}>{address ? addressDetail[0] : <Link to={'/settings'}>Вкажіть <br/> адресу</Link>}</p>
                     </div>
                 </div>
                 <div className={s.btn_cont}>

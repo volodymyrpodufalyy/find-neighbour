@@ -38,6 +38,7 @@ const SettingsInfo = (props) => {
 
 
     const callbackAddress = (childAddress) => {
+        console.log(childAddress)
         setUserAddress(childAddress);
     }
 
@@ -104,8 +105,8 @@ const SettingsInfo = (props) => {
                             <p>Місто:</p>
                             {changeAddress ? <Input value={userAddress}/> :
                                 <SearchLocationInput
-                                    parentCallback={callbackAddress}
-                                    onChange={() => null}/>}
+                                    onChange={callbackAddress}
+                                   />}
                             <Button
                                 className={s.save}
                                 onClick={onChangeAddress}>{changeAddress ? "Change" : "Save"}
@@ -114,12 +115,14 @@ const SettingsInfo = (props) => {
                     </Form.Item>
 
                     <Form.Item>
-                        <div className="birthdate">
-                            <p>Дата народження:</p>
-                        </div>
+                        {/*<div className="birthdate">*/}
+                        {/*    <p>Дата народження:</p>*/}
+                        {/*</div>*/}
 
                     </Form.Item>
+
                     <Form.Item>
+
                         <div className='checkbox'><p>Рід зайнятості:</p></div>
                         <Radio.Group onChange={e => setStudent(e.target.value)}
                                      value={Student}

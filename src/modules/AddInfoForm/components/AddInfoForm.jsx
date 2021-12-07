@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Button, Checkbox, Space, Dropdown, Menu, Input } from "antd";
+import React, {useEffect, useState} from "react";
+import { Form, Button, Checkbox, Space, Dropdown, Menu, Input,Radio,Col,Row } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { Block, SearchLocationInput } from "../../../components";
 import { Link } from "react-router-dom";
@@ -7,7 +7,6 @@ import "./AddInfoForm.scss";
 import { validateField, convertDate, getAge } from "../../../utils/helpers";
 
 const AddInfoForm = (props) => {
-    console.log(props)
     const {
         values,
         touched,
@@ -19,11 +18,18 @@ const AddInfoForm = (props) => {
         isValid,
     } = props;
 
+
     const [userAddress, setUserAddress] = useState("");
     const [day, setDay] = useState("День");
     const [month, setMonth] = useState("Місяць");
     const [monthKey, setMonthKey] = useState("");
     const [year, setYear] = useState("Рік");
+    const [sex, setSex] = useState()
+    const [student, setStudent] = useState()
+    const [job, setJob] = useState()
+    const [married, setMarried] = useState()
+    const [badHabits, setBadHabits] = useState()
+    const [hasPets, setPets] = useState()
 
     const dayRange = [...Array(33).keys()].slice(1, 32);
     const monthRange = [
@@ -46,6 +52,7 @@ const AddInfoForm = (props) => {
     const onChangeAddress = (value) => {
         setUserAddress(value);
     };
+
 
     values.address = userAddress;
     values.age = getAge(selectedDate);
@@ -96,8 +103,15 @@ const AddInfoForm = (props) => {
         }
     };
 
+    console.log(isSubmitting)
+
+    // console.log(values.kindOfActivity,
+    //     values.sex ,values.haveJobOrJobless,
+    //     values.maritalStatus, values.badHabits, values.pets)
+    //
+
     return (
-        <div>
+        <div className='add_info_main'>
             <div className="auth__top">
                 <h2>Роскажіть про себе більше</h2>
                 <p>Щоб ми підібрали для вас найкращі варіанти</p>
@@ -113,18 +127,20 @@ const AddInfoForm = (props) => {
                         help={!touched.age ? "" : errors.age}
                         hasFeedback
                     >
-                        <div className="birthdate">
+                        <div className="birthdate" >
                             <p>Дата народження:</p>
                         </div>
                         <Space direction="vertical">
-                            <Space wrap>
+                            <Space wrap >
+
                                 <Dropdown
                                     className="dropdown"
                                     overlay={DropdownMenu("day")}
                                     placement="bottomLeft"
                                     trigger={["click"]}
                                 >
-                                    <Button size="large">
+
+                                    <Button size="large" >
                                         {" "}
                                         {day} <DownOutlined />
                                     </Button>
@@ -160,25 +176,17 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="checkbox">
-                            <p>Стать:</p>
-                            <Checkbox
-                                onChange={(e) =>
-                                    e.target.checked ? (values.sex = "Male") : (values.sex = "00")
-                                }
-                                className="checkbox-item checkbox-item--male"
-                            >
-                                Чоловік
-                            </Checkbox>
-                            <Checkbox
-                                onChange={(e) =>
-                                    e.target.checked
-                                        ? (values.sex = "Female")
-                                        : (values.sex = "00")
-                                }
-                                className="checkbox-item"
-                            >
-                                Жінка
-                            </Checkbox>
+                            <p className='text_question'>Стать:</p>
+
+                            <Radio.Group className="radio" onChange={(e) =>{
+                                setSex(e.target.value)
+                                values.sex = e.target.value
+                            }} value={sex}>
+                                <Radio value="Male">Чоловік</Radio>
+                                <Radio value="Female">Жінка</Radio>
+                                {/*<Radio value="">Інше</Radio>*/}
+                            </Radio.Group>
+
                         </div>
                     </Form.Item>
                     <Form.Item
@@ -201,8 +209,8 @@ const AddInfoForm = (props) => {
                         />
                     </Form.Item>
                     <Form.Item
-                        validateStatus={validateField("adress", touched, errors)}
-                        help={!touched.adress ? "" : errors.adress}
+                        validateStatus={validateField("address", touched, errors)}
+                        help={!touched.address ? "" : errors.address}
                         hasFeedback
                     >
                         <div className="birthdate">
@@ -218,18 +226,13 @@ const AddInfoForm = (props) => {
                         <div className="checkbox">
                             <p>Рід зайнятості:</p>
                         </div>
-                        <Checkbox
-                            onChange={(e) => (values.kindOfActivity = e.target.checked)}
-                            className="checkbox-item"
-                        >
-                            Студент
-                        </Checkbox>
-                        <Checkbox
-                            onChange={(e) => (values.kindOfActivity = !e.target.checked)}
-                            className="checkbox-item"
-                        >
-                            Закінчив університет/коледж
-                        </Checkbox>
+                        <Radio.Group className="radio"  onChange={(e) =>{
+                            setStudent(e.target.value)
+                            values.kindOfActivity = e.target.value
+                        }} value={student}>
+                            <Radio value={true}>Студент</Radio>
+                            <Radio value={false}>Закінчив</Radio>
+                        </Radio.Group>
                     </Form.Item>
                     <Form.Item
                         validateStatus={validateField("haveJobOrJobless", touched, errors)}
@@ -239,18 +242,14 @@ const AddInfoForm = (props) => {
                         <div className="checkbox">
                             <p>Ви працюєте?</p>
                         </div>
-                        <Checkbox
-                            onChange={(e) => (values.haveJobOrJobless = e.target.checked)}
-                            className="checkbox-item checkbox-item--male"
-                        >
-                            Так
-                        </Checkbox>
-                        <Checkbox
-                            onChange={(e) => (values.haveJobOrJobless = !e.target.checked)}
-                            className="checkbox-item"
-                        >
-                            Ні
-                        </Checkbox>
+                        <Radio.Group className="radio"  onChange={(e) =>{
+                            setJob(e.target.value)
+                            values.haveJobOrJobless = e.target.value
+                        }} value={job}>
+                            <Radio value={true}>Так</Radio>
+                            <Radio  value={false}>Ні</Radio>
+                        </Radio.Group>
+
                     </Form.Item>
                     <Form.Item
                         validateStatus={validateField("maritalStatus", touched, errors)}
@@ -260,18 +259,18 @@ const AddInfoForm = (props) => {
                         <div className="checkbox">
                             <p>Cтатус</p>
                         </div>
-                        <Checkbox
-                            onChange={(e) => (values.maritalStatus = e.target.checked)}
-                            className="checkbox-item"
-                        >
-                            В стосунках
-                        </Checkbox>
-                        <Checkbox
-                            onChange={(e) => (values.maritalStatus = !e.target.checked)}
-                            className="checkbox-item"
-                        >
-                            Не в стосунках
-                        </Checkbox>
+
+                        <Radio.Group className="radio"  onChange={(e) =>{
+                            setMarried(e.target.value)
+                            values.maritalStatus = e.target.value
+                        }} value={married}>
+
+                            <Radio value={true}>В стосунках</Radio>
+
+                            <Radio value={false}>Не в стосунках</Radio>
+
+                        </Radio.Group>
+
                     </Form.Item>
                     <Form.Item
                         validateStatus={validateField("badHabits", touched, errors)}
@@ -281,18 +280,16 @@ const AddInfoForm = (props) => {
                         <div className="checkbox">
                             <p>Шкідливі звички?</p>
                         </div>
-                        <Checkbox
-                            onChange={(e) => (values.badHabits = e.target.checked)}
-                            className="checkbox-item checkbox-item--male"
-                        >
-                            Так, є
-                        </Checkbox>
-                        <Checkbox
-                            onChange={(e) => (values.badHabits = !e.target.checked)}
-                            className="checkbox-item"
-                        >
-                            Ні, немає
-                        </Checkbox>
+
+                        <Radio.Group onChange={(e) =>{
+                            setBadHabits(e.target.value)
+                            values.badHabits = e.target.value
+                        }} value={badHabits}>
+                            <Radio value={true}>Так, є</Radio>
+                            <Radio value={false}>Ні, немає</Radio>
+                            <Radio value={null}>Не хочу відповідати</Radio>
+                        </Radio.Group>
+
                     </Form.Item>
                     <Form.Item
                         validateStatus={validateField("pets", touched, errors)}
@@ -300,20 +297,19 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="checkbox">
-                            <p>Домашні тваринки?</p>
+                            <p>Домашні тварини?</p>
                         </div>
-                        <Checkbox
-                            onChange={(e) => (values.pets = e.target.checked)}
-                            className="checkbox-item checkbox-item--male"
-                        >
-                            Так, є
-                        </Checkbox>
-                        <Checkbox
-                            onChange={(e) => (values.pets = !e.target.checked)}
-                            className="checkbox-item"
-                        >
-                            Ні, немає
-                        </Checkbox>
+                        <Radio.Group onChange={(e) =>{
+                            setPets(e.target.value)
+                            values.pets = e.target.value
+
+                        }} value={hasPets}>
+                            <Radio value={true}>Так, є</Radio>
+                            <Radio value={false}>Ні, немає</Radio>
+                            <Radio value={null}>Не хочу відповідати</Radio>
+                        </Radio.Group>
+
+
                     </Form.Item>
                     <Form.Item
                         validateStatus={validateField("moreAboutUser", touched, errors)}
@@ -333,14 +329,14 @@ const AddInfoForm = (props) => {
                     <Form.Item>
                         {isSubmitting && !isValid && <span>Помилка</span>}
                         <Button
-                            disabled={false}
+                            disabled={isSubmitting}
                             onClick={handleSubmit}
                             size="large"
                             type="primary"
                             htmlType="submit"
                             className="login-form-button"
                         >
-                            <Link to="/signup/verify">Далі</Link>
+                            Далі
                         </Button>
                     </Form.Item>
                 </Form>

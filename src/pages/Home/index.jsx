@@ -40,7 +40,7 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
 
   const DropdownMenu = (age) => {
     return (
-        <Menu className="dropdown-menu">
+        <Menu className="dropdown_menu">
           {ageRange.map((num) => {
             if (age === "startAge") {
               return (<Menu.Item key={num} onClick={e => setStartAge(e.key)}> {num} </Menu.Item>);

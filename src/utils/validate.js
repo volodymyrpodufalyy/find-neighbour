@@ -28,9 +28,10 @@ export default ({ isAuth, values, errors }) => {
         errors.age = "Вкажіть свій вік";
       }
     },
-    adress: value => {
-      if (isAuth && !value) {
-        errors.adress = "Вкажіть своє місто";
+    address: value => {
+      // eslint-disable-next-line no-mixed-operators
+      if (isAuth && value === "" || value === "00" || value === null || value === undefined) {
+        errors.address = "Вкажіть своє місто";
       }
     },
     sex: value => {
@@ -65,7 +66,7 @@ export default ({ isAuth, values, errors }) => {
     },
     phoneNumber: value => {
       if (isAuth && !value) {
-        errors.phoneNumber = "Вкажіть свій номер телефону";
+        errors.phoneNumber = "Ваш номер введений не вірно або вже існує такий номер";
       }
     }
   };

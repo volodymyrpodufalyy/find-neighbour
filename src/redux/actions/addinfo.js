@@ -133,9 +133,8 @@ const Actions = {
 
 
     fetchUserAddInfoCreate: postData => dispatch => {
-        console.log(postData)
         return addinfoApi
-            .addInfo(postData).then(({data}) => {
+            .addInfo(postData).then((data) => {
                 openNotification({
                     title: "Авторизація успішна",
                     text: "Посилання з підтвердженням акаунту надіслано на вашу пошту  ",
