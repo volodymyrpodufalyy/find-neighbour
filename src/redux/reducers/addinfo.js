@@ -17,6 +17,7 @@ const initialState = {
         phoneNumber: "",
         moreAbout: "",
         avatarUrl:"",
+        contactWithMeUrl:"",
         user: {
             _id: 0,
             confirmed: true,

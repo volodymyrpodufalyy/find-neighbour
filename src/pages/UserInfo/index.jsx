@@ -80,7 +80,7 @@ const UserInfo = (props) => {
 
                     <div className={s.user_img}>
                         {
-                            state.info?.avatarUrl==="" ? <img src={img} alt="User_img"/> :
+                            state.info?.avatarUrl === "" ? <img src={img} alt="User_img"/> :
                                 <img src={state.info?.avatarUrl} alt="User_img"/>
                         }
                     </div>
@@ -133,6 +133,15 @@ const UserInfo = (props) => {
                                 </div>
 
                             </div>
+
+                            <div className={s.a}>
+                                <a href={state.info?.contactWithMeUrl}>
+                                    <div className={s.btn_cont}>
+                                        <button className={s.btn}>Contact with me</button>
+                                    </div>
+                                </a>
+                            </div>
+
                             <div className={s.btn_cont}>
                                 <button className={s.btn} onClick={ShowMoreHandler}>Less info</button>
                             </div>

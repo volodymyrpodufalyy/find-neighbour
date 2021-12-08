@@ -57,15 +57,18 @@ const Header = ({user}) => {
         );
     } else {
         return (
-            <div style={{backgroundColor: "white"}}>
-                <a className="navbar-brand d-flex mt-1">
-                    <img src={houselogo} alt="House"/>
-                    <i className="fas fa-search fa-lg mt-2" style={{color: "#ea1717"}}/>
-                    <Link to={"/"} className={s.homeTitle}>NEIGHBOUR
-                    </Link>
-                    <p className="beta">beta</p>
-                </a>
-            </div>
+            <nav className="navbar navbar-expand-lg navbar-light bg-white "
+                 style={{boxShadow: "1px 1px 1px  rgba(25, 25, 29, 0.2)"}}>
+                <div style={{backgroundColor: "white"}}>
+                    <a className="navbar-brand d-flex">
+                        <img src={houselogo} alt="House"/>
+                        <i className="fas fa-search fa-lg mt-2" style={{color: "#ea1717"}}/>
+                        <Link to={"/"} className={s.homeTitle}>NEIGHBOUR
+                        </Link>
+                        <p className="beta">beta</p>
+                    </a>
+                </div>
+            </nav>
         );
     }
 }
