@@ -22,8 +22,8 @@ const LoginForm = props => {
         
         <div>
         <div className="auth__top">
-         <h2>Увійти в акаунт</h2>
-         <p>Будь ласка увійдіть у свій акаунт </p>
+         <h2>Enter Your Account</h2>
+         <p>Please enter your account</p>
        </div>
        <Block>
      <Form
@@ -70,15 +70,15 @@ const LoginForm = props => {
         </Form.Item>
 
       <Form.Item>
-        {isSubmitting && !isValid && <span>Помилка</span>}
+        {isSubmitting && !isValid && <span>Error</span>}
         <Button 
         disabled={isSubmitting}
         onClick={handleSubmit} size="large" type="primary" htmlType="submit" className="login-form-button">
-          Увійти в акаунт
+          Enter Account
         </Button>
           <Button className="auth__register-link">
               <Link to="/signup">
-                Зареєструватись
+                Register
               </Link>
           </Button>
       </Form.Item>

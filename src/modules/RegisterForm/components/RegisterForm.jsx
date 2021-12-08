@@ -21,8 +21,8 @@ const RegisterForm  = props =>  {
     return (
     <div>
     <div className="auth__top">
-      <h2>Реєстрація</h2>
-      <p>Для входу зареєструйтесь</p>
+      <h2>Registration</h2>
+      <p>Register For Enter</p>
     </div>
     <Block>
       {!success ? (
@@ -40,14 +40,14 @@ const RegisterForm  = props =>  {
         touched={touched} errors={errors} values={values} icon={<LockOutlined className="site-form-item-icon" />} />
 
           <Form.Item>
-            {isSubmitting && !isValid && <span>Ошибка!</span>}
+            {isSubmitting && !isValid && <span>Error!</span>}
             <Button onClick={handleSubmit} size="large" type="primary" htmlType="submit" className="login-form-button">
-              Зареєструватись
+              Register
             </Button>
           
           <Button className="auth__register-link">
             <Link to="/signin">
-            Увійти в акаунт
+            Enter Account
             </Link>
           </Button>
           </Form.Item>
@@ -57,9 +57,9 @@ const RegisterForm  = props =>  {
           <div>
           <Form.Item><ExclamationCircleTwoTone style={{ fontSize: '40px' }} /></Form.Item>
           </div>
-          <h2>Підтвердіть свій акаунт</h2>
+          <h2>Confirm your account</h2>
           <p>
-            На Вашу пошту відправлено лист з посиланням на підтвердження акаунта
+            An email has been sent to your email with a link to confirm your account
           </p>
         </div>
       )}
