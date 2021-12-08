@@ -33,7 +33,7 @@ const MainInfoUser = props => {
                     </div>
                     <div className={s.kind_of}>
                         <h5>Kind of Activity</h5>
-                        <p>{isStudent ? 'Студент' : (hasJob)? 'Працюю': "невідомо"}</p>
+                        <p>{isStudent ? 'Student' : (hasJob)? 'Have Job': "невідомо"}</p>
                     </div>
                     <div className={s.city}>
                         <h5>City</h5>

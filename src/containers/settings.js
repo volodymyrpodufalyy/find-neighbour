@@ -46,7 +46,7 @@ const SettingsContainer = () => {
             {'adress': address}, data[0].id))
     }
 
-    const saveChanges = (pets,badHabits,kindOfActivity,job,marital,aboutUser) =>{
+    const saveChanges = (pets,badHabits,kindOfActivity,job,marital,aboutUser,contactWithMeUrl,Number) =>{
         dispatch(addinfoActions.updateUserAddInfo({
             'pets':pets,
             'badHabits':badHabits,
@@ -55,6 +55,8 @@ const SettingsContainer = () => {
             'maritalStatus':marital,
             'moreAboutUser':aboutUser,
             'avatarUrl': fileInfo.file.url,
+            'contactWithMeUrl':contactWithMeUrl,
+            'phoneNumber':Number
         }, data[0].id))
 
     }

@@ -5,7 +5,7 @@ import {Spin, Dropdown, Menu, Form, Button, Checkbox} from "antd";
 import arrow from "../../assets/img/arrow.svg"
 import city from "../../assets/img/cityblue.svg"
 import peopleImage from "../../assets/img/people-image.jpg"
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {addinfoActions} from "redux/actions";
 import {Link} from 'react-router-dom';
 import {SearchOutlined, DownOutlined, SwapOutlined} from '@ant-design/icons';
@@ -22,6 +22,7 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
 
   const [sex, setSex] = useState();
 
+  let isAuth = useSelector(state => state.user.isAuth)
   useEffect(() => {
     fetchUserAddInfos(1, 6);
   }, []);
@@ -133,10 +134,14 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
               <div className="slogan__bottom">
                 <p>NEIGHBOUR</p>
               </div>
-                <Link to={"/signup"} className="join-link">
-                  <button className="join-button">Join us
-                  </button>
-                </Link>
+                {isAuth ? <Link to={"/search"} className="join-link">
+                        <button className="join-button">Search
+                        </button>
+                    </Link> :
+                    <Link to={"/signup"} className="join-link">
+                        <button className="join-button">Join us
+                        </button>
+                    </Link>}
             </div>
 
           </div>

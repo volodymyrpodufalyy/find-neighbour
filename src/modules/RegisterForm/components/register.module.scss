@@ -1,0 +1,40 @@
+.form_item {
+  position: relative;
+  display: block;
+}
+.form_item:hover .hint,
+input:focus ~ div{
+  opacity: 1;
+}
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.hint {
+  z-index: 1;
+  content: "asd";
+  opacity: 0;
+  background: rgba(179, 179, 179, 0.5);
+  position: absolute;
+  top: -60px;
+  width: 200px;
+  left: 200px;
+  padding: 10px;
+  border: 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #404040;
+  border-radius: 7px;
+  transition: opacity 0.4s;
+}
+
+
+
+@media screen and (max-width: 620px) {
+.hint{
+  width: 100px;
+  top: 40px;
+
+  left: 70%;
+}
+}

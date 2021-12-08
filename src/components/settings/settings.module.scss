@@ -1,3 +1,33 @@
+.form_item {
+    position: relative;
+    display: block;
+}
+.form_item:hover .hint,
+input:focus ~ div{
+    opacity: 1;
+}
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.hint {
+    z-index: 1;
+    content: "asd";
+    opacity: 0;
+    background: rgba(179, 179, 179, 0.5);
+    position: absolute;
+    top: 32px;
+    left: 220px;
+    padding: 5px;
+    border: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #404040;
+    border-radius: 7px;
+    transition: opacity 0.4s;
+}
+
+
 
 /*_______Main div and settings______*/
 .container{
@@ -5,13 +35,13 @@
     justify-content: center;
     padding-top: 60px;
     margin: 0;
-    height: 1400px;
+    height: 100%;
     background-color: #f0f2f5;
 }
 
 .settings_div {
     width: 500px;
-    height: 1200px;
+    height: 100%;
     background-color: #ffffff;
 
     border-radius: 5px;
@@ -20,9 +50,46 @@
     align-items: center
 
 }
+
+
+
+.radio{
+    display: grid;
+    grid-template-columns: 150px 1fr 1fr;
+}
+
+.radio3{
+    display: grid;
+    grid-template-columns: 125px 1fr 2fr;
+}
 .form{
     padding-top: 20px;
+    width: 90%;
 }
+
+@media screen and (max-width: 520px){
+    .radio{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .radio3{
+        display: flex;
+        flex-direction: column;
+    }
+    .hint{
+        left: 180px;
+
+    }
+}
+@media screen and (max-width: 320px){
+    .hint{
+        left: 100px;
+
+    }
+}
+
+
 
 .img{
     display: flex;
@@ -37,6 +104,7 @@
 
 .save{
     margin-top: 25px;
+    margin-bottom: 20px;
     border-radius: 5px;
     align-items: center;
     width: 100%;

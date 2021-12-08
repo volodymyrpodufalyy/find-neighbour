@@ -26,7 +26,6 @@ const Header = ({user}) => {
                  style={{boxShadow: "1px 1px 1px  rgba(25, 25, 29, 0.2)"}}>
                 <a className="navbar-brand d-flex">
                     <img src={houselogo} alt="House"/>
-                    <i className="fas fa-search fa-lg mt-2" style={{color: "#ea1717"}}/>
                     <Link to={"/"} className={s.homeTitle}>NEIGHBOUR
                     </Link>
                     <p className="beta">beta</p>
@@ -62,7 +61,6 @@ const Header = ({user}) => {
                 <div style={{backgroundColor: "white"}}>
                     <a className="navbar-brand d-flex">
                         <img src={houselogo} alt="House"/>
-                        <i className="fas fa-search fa-lg mt-2" style={{color: "#ea1717"}}/>
                         <Link to={"/"} className={s.homeTitle}>NEIGHBOUR
                         </Link>
                         <p className="beta">beta</p>

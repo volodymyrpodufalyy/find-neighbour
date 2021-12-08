@@ -10,8 +10,10 @@ export let refFromSettingsInfo = React.createRef();
 const SettingsInfo = (props) => {
 
 
-    const {moreAbout, age, phoneNumber, hasBadHabits, isMarried, hasJob,
-        isStudent, hasPets, address, user,avatarUrl} = props.data
+    const {
+        moreAbout, age, phoneNumber, hasBadHabits, isMarried, hasJob,
+        isStudent, hasPets, address, user, avatarUrl, contactWithMeUrl
+    } = props.data
 
     const [userAddress, setUserAddress] = useState(address);
     const [AboutUser, setAboutUser] = useState(moreAbout);
@@ -23,6 +25,7 @@ const SettingsInfo = (props) => {
     const [BadHabits, setBadHabits] = useState(hasBadHabits)
     const [Number, setNumber] = useState(phoneNumber)
     const [Email, setEmail] = useState(user.email)
+    const [socUrl, setSocUrl] = useState(contactWithMeUrl)
 
     useEffect(() => {
         setUserAddress(address)
@@ -34,12 +37,12 @@ const SettingsInfo = (props) => {
         setBadHabits(hasBadHabits)
         setNumber(phoneNumber)
         setEmail(user.email)
+        setSocUrl(contactWithMeUrl)
 
-    }, [address, user.email, moreAbout, isStudent, hasJob, hasPets, isMarried, hasBadHabits, phoneNumber])
+    }, [address, contactWithMeUrl, user.email, moreAbout, isStudent, hasJob, hasPets, isMarried, hasBadHabits, phoneNumber])
 
 
     const callbackAddress = (childAddress) => {
-        console.log(childAddress)
         setUserAddress(childAddress);
     }
 
@@ -51,18 +54,13 @@ const SettingsInfo = (props) => {
             props.updateAddress(userAddress)
         }
     }
-    const confirmChanges = ()=>{
-        props.saveChanges(Pets,BadHabits,Student,Job,Married,AboutUser)
+    const confirmChanges = () => {
+        props.saveChanges(Pets, BadHabits, Student, Job, Married, AboutUser, socUrl, Number)
     }
 
     let fullname = user.fullname.replace(/(^\s+)|(\s+$)/g, '').split(' ')
     let lastName = fullname[1] ? fullname[1] : ''
 
-
-
-    const onChange =(e)=>{
-        console.log(e.target.files)
-    }
 
     return (
         <div className={s.container}>
@@ -70,29 +68,31 @@ const SettingsInfo = (props) => {
                 <Form className={s.form}>
                     <Form.Item>
                         <div className={s.img}>
-                            <Image src={props.fileUrl === '' ?  avatarUrl: props.fileUrl} className={s.image}/>
-                            <input type="file" onChange={props.uploadOnChange} />
-                            <Button onClick={props.uploadBtn} className={s.upload} disabled={props.disableUpload}>Upload</Button>
+                            <Image src={props.fileUrl === '' ? avatarUrl : props.fileUrl} className={s.image}/>
+                            <input type="file" onChange={props.uploadOnChange} accept="image/png, image/jpeg"/>
+                            <Button onClick={props.uploadBtn} className={s.upload}
+                                    disabled={props.disableUpload}>Upload</Button>
                         </div>
                     </Form.Item>
                     <Form.Item>
                         <Input.Group>
                             <Row gutter={50}>
                                 <Col>
-                                    <div className='checkbox'><p>Ім'я:</p></div>
+                                    <div className='checkbox'><p>First Name:</p></div>
                                     <Input value={fullname[0]} disabled={true}/>
                                 </Col>
                                 <Col>
-                                    <div className='checkbox'><p>Прізвище:</p></div>
+                                    <div className='checkbox'><p>Second Name:</p></div>
 
                                     <Input value={lastName} disabled={true}/>
+
                                 </Col>
                             </Row>
                         </Input.Group>
                     </Form.Item>
 
                     <Form.Item>
-                        <div className='checkbox'><p>Розкажіть про себе:</p></div>
+                        <div className='checkbox'><p>Tell something about yourself:</p></div>
 
                         <Input.TextArea value={AboutUser}
                                         rows={3}
@@ -101,15 +101,16 @@ const SettingsInfo = (props) => {
                                         onChange={event => {
                                             setAboutUser(event.target.value)
                                         }}/>
+
                     </Form.Item>
 
                     <Form.Item>
                         <div className="checkbox">
-                            <p>Місто:</p>
+                            <p>City:</p>
                             {changeAddress ? <Input value={userAddress}/> :
                                 <SearchLocationInput
                                     onChange={callbackAddress}
-                                   />}
+                                />}
                             <Button
                                 className={s.save}
                                 onClick={onChangeAddress}>{changeAddress ? "Change" : "Save"}
@@ -117,98 +118,94 @@ const SettingsInfo = (props) => {
                         </div>
                     </Form.Item>
 
+                    {/*<Form.Item>*/}
+                    {/*    /!*<div className="birthdate">*!/*/}
+                    {/*    /!*    <p>Дата народження:</p>*!/*/}
+                    {/*    /!*</div>*!/*/}
+
+                    {/*</Form.Item>*/}
+
                     <Form.Item>
-                        {/*<div className="birthdate">*/}
-                        {/*    <p>Дата народження:</p>*/}
-                        {/*</div>*/}
 
-                    </Form.Item>
-
-                    <Form.Item>
-
-                        <div className='checkbox'><p>Рід зайнятості:</p></div>
-                        <Radio.Group onChange={e => setStudent(e.target.value)}
+                        <div className='checkbox'><p>Kind of Activity:</p></div>
+                        <Radio.Group className={s.radio} onChange={e => setStudent(e.target.value)}
                                      value={Student}
                         >
-                            <Row gutter={17}>
-                                <Col>
-                                    <Radio value={true}>Студент</Radio>
-                                </Col>
-                                <Col>
-                                    <Radio value={false}>Закінчив університет/коледж</Radio>
-                                </Col>
-                            </Row>
+                            <Radio value={true}>Student</Radio>
+                            <Radio value={false}>Graduated</Radio>
                         </Radio.Group>
                     </Form.Item>
                     <Form.Item>
-                        <Radio.Group onChange={e => setJob(e.target.value)} value={Job}>
-                            <Row gutter={10}>
-                                <Col>
-                                    <Radio value={true}>Працюю</Radio>
-                                </Col>
-                                <Col>
-                                    <Radio value={false}>Не працюю</Radio>
-                                </Col>
-                            </Row>
+                        <Radio.Group className={s.radio} onChange={e => setJob(e.target.value)} value={Job}>
+                            <Radio value={true}>Have job</Radio>
+                            <Radio value={false}>Unemployed</Radio>
                         </Radio.Group>
                     </Form.Item>
 
-                    <Form.Item>
-                        <div className='checkbox'><p>Тваринки:</p></div>
-                        <Radio.Group value={Pets} onChange={e => setPets(e.target.value)}>
-                            <Row gutter={55}>
-                                <Col>
-                                    <Radio value={true}>Люблю</Radio>
-                                </Col>
-                                <Col>
-                                    <Radio value={false}>Не Люблю</Radio>
-                                </Col>
-                                <Col>
-                                    <Radio value={null}>Без різниці</Radio>
-                                </Col>
-                            </Row>
-                        </Radio.Group>
-                    </Form.Item>
+
                     <Form.Item>
                         <div className="checkbox">
-                            <p>Cтатус</p>
+                            <p>Marital Status:</p>
                         </div>
-                        <Radio.Group value={Married} onChange={e => setMarried(e.target.value)}>
-                            <Radio value={true}>В стосунках</Radio>
-                            <Radio value={false}>Не в стосунках</Radio>
+                        <Radio.Group className={s.radio} value={Married} onChange={e => setMarried(e.target.value)}>
+                            <Radio value={true}>In a relationship</Radio>
+                            <Radio value={false}>Single</Radio>
                         </Radio.Group>
 
                     </Form.Item>
                     <Form.Item>
-                        <div className='checkbox'><p>Погані звички:</p></div>
-                        <Radio.Group value={BadHabits} onChange={e => setBadHabits(e.target.value)}>
-                            <Row gutter={45}>
-                                <Col>
-                                    <Radio value={true}>Присутні</Radio>
-                                </Col>
-                                <Col>
-                                    <Radio value={false}>Немає</Radio>
-                                </Col>
-                                <Col>
-                                    <Radio value={null}>Не хочу відповідати</Radio>
-                                </Col>
-                            </Row>
+                        <div className='checkbox'><p>Pets:</p></div>
+                        <Radio.Group value={Pets} className={s.radio3} onChange={e => setPets(e.target.value)}>
+
+                            <Radio value={true}>Yes</Radio>
+
+                            <Radio value={false}>No</Radio>
+
+                            <Radio value={null}>I don't know</Radio>
+
                         </Radio.Group>
                     </Form.Item>
                     <Form.Item>
-                        <div className='checkbox'><p>Номер телефону:</p></div>
-                        <Input disabled={true} value={Number}/>
+                        <div className='checkbox'><p>Bad habits:</p></div>
+                        <Radio.Group className={s.radio3} value={BadHabits}
+                                     onChange={e => setBadHabits(e.target.value)}>
 
+                            <Radio value={true}>Yes</Radio>
+
+                            <Radio value={false}>No</Radio>
+
+                            <Radio value={null}>Unanswered</Radio>
+
+                        </Radio.Group>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <div className='checkbox'>
+                            <p>Links on social networks to contact you ^.^</p></div>
+                        <label className={s.form_item}>
+                            <Input disabled={false} value={socUrl} onChange={event => {
+                                setSocUrl(event.target.value)
+                            }}/>
+                            <div className={s.hint}>The link will help other people contact you</div>
+                        </label>
+                    </Form.Item>
+
+                    <Form.Item>
+                        <div className='checkbox'><p>Phone number:</p></div>
+                        <label className={s.form_item}>
+                            <Input type={"number"} disabled={false} value={Number} maxLength={15}
+                                   onChange={event => setNumber(event.target.value)}/>
+                            <div className={s.hint}>Enter your phone number like this: 380...</div>
+                        </label>
                     </Form.Item>
                     <Form.Item>
-                        <div className='checkbox'><p>Пошта:</p></div>
+                        <div className='checkbox'><p>Email:</p></div>
                         <Input disabled={true} value={Email}/>
-
                     </Form.Item>
                 </Form>
                 <Form.Item>
                     <Button className={s.save} onClick={confirmChanges}>
-                        <Link to="/profile" >Зберегти</Link>
+                        <Link to="/profile">Save</Link>
                     </Button>
                 </Form.Item>
             </div>
