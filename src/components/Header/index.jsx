@@ -1,11 +1,12 @@
 import React from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Route, Switch, Link, useHistory, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import store from 'redux/store';
 import {userActions} from "redux/actions";
 import houselogo from "../../assets/img/house-logo.svg"
 import s from "./Header.Module.scss";
 import "./Navbar.css"
+import {Settings} from "../../pages";
 
 
 const Header = ({user}) => {
@@ -15,7 +16,7 @@ const Header = ({user}) => {
     const handleLogOut = event => {
         event.preventDefault();
         store.dispatch(userActions.fetchUserLogOut());
-        history.push('/');
+        history.push('/signin');
     }
 
 
@@ -46,7 +47,7 @@ const Header = ({user}) => {
                             <Link to={"/chat"} className="h4 text-dark nav-link">Chat</Link>
                         </li>
                         <li className="nav-item mr">
-                            <Link to={"/"} onClick={handleLogOut} className="h4 text-dark nav-link">Log Out</Link>
+                            <Link to={"/signin"} onClick={handleLogOut} className="h4 text-dark nav-link">Log Out</Link>
                         </li>
                     </ul>
                 </div>

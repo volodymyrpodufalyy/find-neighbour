@@ -133,8 +133,10 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
               <div className="slogan__bottom">
                 <p>NEIGHBOUR</p>
               </div>
-              <button className="join-button"><Link to={"/signup"} className="join-link">Join us </Link>
-              </button>
+                <Link to={"/signup"} className="join-link">
+                  <button className="join-button">Join us
+                  </button>
+                </Link>
             </div>
 
           </div>

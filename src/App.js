@@ -19,7 +19,7 @@ const App = props => {
             <Route path="/user" render={() => (isAuth ? <UserInfo /> : <Redirect to="/signin" />)} />
             <Route path="/search" render={() => (isAuth ? <Search /> : <Redirect to="/signin" />)} />
             <Route path="/profile" render={() => (isAuth ? <Profile /> : <Redirect to="/signin" />)} />
-            <Route exact path="/" render={() => (isAuth ? <Home /> : <Redirect to="/signin" />)} />
+            <Route exact path="/" render={() => (<Home />)} />
             <Route exact path="/settings" render={() => (isAuth ? <Settings /> : <Redirect to="/signin" />)} />
           </Switch>
         </Content>
