@@ -24,7 +24,6 @@ const Actions = {
                 dispatch(Actions.setUserData(data));
                 dispatch(Actions.setIsLoading(false));
 
-
             })
             .catch(err => {
                 dispatch(Actions.setIsLoading(false));

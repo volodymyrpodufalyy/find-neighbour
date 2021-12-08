@@ -11,7 +11,7 @@ const SettingsInfo = (props) => {
 
 
     const {moreAbout, age, phoneNumber, hasBadHabits, isMarried, hasJob,
-        isStudent, hasPets, address, user} = props.data
+        isStudent, hasPets, address, user,avatarUrl} = props.data
 
     const [userAddress, setUserAddress] = useState(address);
     const [AboutUser, setAboutUser] = useState(moreAbout);
@@ -52,7 +52,6 @@ const SettingsInfo = (props) => {
         }
     }
     const confirmChanges = ()=>{
-        console.log(Pets,BadHabits,Student,Job,Married,AboutUser)
         props.saveChanges(Pets,BadHabits,Student,Job,Married,AboutUser)
     }
 
@@ -71,14 +70,9 @@ const SettingsInfo = (props) => {
                 <Form className={s.form}>
                     <Form.Item>
                         <div className={s.img}>
-                            <Image src={user.avatar} width={150}/>
-                            <input type="file" onChange={props.uploadOnChange}/>
-                            <Button onClick={props.uploadBtn}>Upload</Button>
-                            {/*<Upload className={s.uploadBtn} {...upload}>*/}
-                            {/*    <Button >*/}
-                            {/*        Click to Upload*/}
-                            {/*    </Button>*/}
-                            {/*</Upload>*/}
+                            <Image src={props.fileUrl === '' ?  avatarUrl: props.fileUrl} className={s.image}/>
+                            <input type="file" onChange={props.uploadOnChange} />
+                            <Button onClick={props.uploadBtn} className={s.upload} disabled={props.disableUpload}>Upload</Button>
                         </div>
                     </Form.Item>
                     <Form.Item>
@@ -170,7 +164,7 @@ const SettingsInfo = (props) => {
                                     <Radio value={false}>Не Люблю</Radio>
                                 </Col>
                                 <Col>
-                                    <Radio value="">Без різниці</Radio>
+                                    <Radio value={null}>Без різниці</Radio>
                                 </Col>
                             </Row>
                         </Radio.Group>
@@ -196,7 +190,7 @@ const SettingsInfo = (props) => {
                                     <Radio value={false}>Немає</Radio>
                                 </Col>
                                 <Col>
-                                    <Radio value="">Не хочу відповідати</Radio>
+                                    <Radio value={null}>Не хочу відповідати</Radio>
                                 </Col>
                             </Row>
                         </Radio.Group>
@@ -214,7 +208,7 @@ const SettingsInfo = (props) => {
                 </Form>
                 <Form.Item>
                     <Button className={s.save} onClick={confirmChanges}>
-                        <Link>Зберегти</Link>
+                        <Link to="/profile" >Зберегти</Link>
                     </Button>
                 </Form.Item>
             </div>

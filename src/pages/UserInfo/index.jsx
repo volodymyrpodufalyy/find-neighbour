@@ -72,7 +72,6 @@ const UserInfo = (props) => {
             value: state.info?.isStudent ? "Yes" : "No",
         },
     ];
-    console.log(state.info)
 
     return (
         <div className={s.container}>
@@ -80,9 +79,10 @@ const UserInfo = (props) => {
                 <div className={s.main_info_container}>
 
                     <div className={s.user_img}>
-                        <a href="#">
-                            <img src={img} alt="User_img"/>
-                        </a>
+                        {
+                            state.info?.avatarUrl==="" ? <img src={img} alt="User_img"/> :
+                                <img src={state.info?.avatarUrl} alt="User_img"/>
+                        }
                     </div>
                     <div className={s.user_title}>
                         <h3>{user?.fullname}</h3>

@@ -6,6 +6,7 @@ const CardItem = ({ card }) => {
   const address = card && card.address.split(",");
   const history =  useHistory();
 
+  console.log(card  )
 
   const navigateToProfile = () => {
     history.push(`/user/${card.user.id}`, {
@@ -18,7 +19,7 @@ const CardItem = ({ card }) => {
       {card && (
         <>
           <div className="users__list-card-image">
-            <Avatar user={card.user} />
+            <Avatar user={card.user} image={card.avatarUrl}  />
           </div>
 
           <div className="users__list-card-info">

@@ -5,12 +5,12 @@ import { generateAvatar } from "utils/helpers";
 
 import "./Avatar.scss";
 
-const Avatar = ({ user }) => {
-  if (user.avatar) {
+const Avatar = ({ user,image }) => {
+  if (image) {
     return (
       <img
         className="avatar"
-        src={user.avatar}
+        src={image}
         alt={`Avatar ${user.fullname}`}
       />
     );

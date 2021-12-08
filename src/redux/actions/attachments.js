@@ -9,11 +9,19 @@ const Actions = {
     type: "ATTACHMENTS:REMOVE_ITEM",
     payload: file
   }),
+  setIsLoading: bool => ({
+    type: "FILE:SET_IS_LOADING",
+    payload: bool
+  }),
 
   uploadFile: file => dispatch =>{
-    filesApi.upload(file).then((date)=>{
-      console.log(date)
-      console.log('success')
+    dispatch(Actions.setIsLoading(true));
+
+    filesApi.upload(file).then(({data})=>{
+      dispatch(Actions.setAttachments(data))
+
+      dispatch(Actions.setIsLoading(false));
+
     }).catch(e =>{
       console.log(e)
     })

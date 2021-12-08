@@ -42,11 +42,46 @@
     width: 100%;
     background-color: red;
     color: white;
+    text-decoration: none;
 }
+
+.upload{
+    margin-top: 10px;
+}
+
 .aboutUser{
     resize: none;
 }
 
+.image{
+    height: 150px;
+    width: 150px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+[type="file"]::-webkit-file-upload-button {
+    text-align: center;
+    background: #ED1C1B;
+    border: 2px solid #ED1C1B;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    outline: none;
+    padding: 5px 25px;
+    text-transform: uppercase;
+    transition: all 1s ease;
+}
+
+[type="file"]::-webkit-file-upload-button:hover {
+    background: #fff;
+    border: 2px solid #535353;
+    color: #000;
+}
+[type="file"] {
+    color: #878787;
+}
 //
 //.savebtn {
 //    position: absolute;

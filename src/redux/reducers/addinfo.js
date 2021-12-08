@@ -16,6 +16,7 @@ const initialState = {
         maritalStatus: false,
         phoneNumber: "",
         moreAbout: "",
+        avatarUrl:"",
         user: {
             _id: 0,
             confirmed: true,

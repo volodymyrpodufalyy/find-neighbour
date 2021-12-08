@@ -9,6 +9,7 @@ const SettingsContainer = () => {
 
     const [isLoading, setIsLoading] = useState(useSelector(state => state.addinfo.isLoading))
     const [file, setFile] = useState()
+    const [disableUpload, setDisableUpload] = useState(true)
 
     let id = useSelector(state => state.user.data.id)
 
@@ -26,13 +27,19 @@ const SettingsContainer = () => {
     let data = useSelector(state => state.addinfo.userInfo)
 
     const uploadOnChange = (e)=>{
-        setFile(e.target.files[0])
+        if (e.target.files[0]) {
+            setDisableUpload(false)
+            setFile(e.target.files[0])
+        }
     }
 
     const uploadBtn = ()=>{
-        console.log(file)
+        setDisableUpload(true)
         dispatch(attachmentsActions.uploadFile(file))
     }
+
+    let fileInfo = useSelector(state => state.attachments.items)
+
 
     const updateAddress = (address) => {
         dispatch(addinfoActions.updateUserAddInfo(
@@ -47,6 +54,7 @@ const SettingsContainer = () => {
             'haveJobOrJobless':job,
             'maritalStatus':marital,
             'moreAboutUser':aboutUser,
+            'avatarUrl': fileInfo.file.url,
         }, data[0].id))
 
     }
@@ -64,7 +72,10 @@ const SettingsContainer = () => {
         <Settings data={data[0]} updateAddress={updateAddress}
                   saveChanges={saveChanges}
                   uploadOnChange={uploadOnChange}
-                  uploadBtn={uploadBtn}/>
+                  uploadBtn={uploadBtn}
+                  disableUpload={disableUpload}
+                  fileUrl={fileInfo.file.url}
+        />
     )
 }
 
