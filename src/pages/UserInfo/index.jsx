@@ -134,8 +134,8 @@ const UserInfo = (props) => {
 
                             </div>
 
-                            <div className={s.a}>
-                                <a href={state.info?.contactWithMeUrl}>
+                            <div className={s.btn_cont}>
+                                <a className={s.abtn} href={state.info?.contactWithMeUrl}>
                                     <div className={s.btn_cont}>
                                         <button className={s.btn}>Contact with me</button>
                                     </div>
@@ -143,7 +143,7 @@ const UserInfo = (props) => {
                             </div>
 
                             <div className={s.btn_cont}>
-                                <button className={s.btn} onClick={ShowMoreHandler}>Less info</button>
+                                <button className="btn btn-outline-secondary" onClick={ShowMoreHandler}>Less info</button>
                             </div>
                         </div> : null}
                 </div>

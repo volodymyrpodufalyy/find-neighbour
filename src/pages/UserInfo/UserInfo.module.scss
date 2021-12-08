@@ -147,6 +147,7 @@
   margin-top: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 55%;
   height: 35px;
 
@@ -200,10 +201,19 @@
   flex-wrap: wrap;
 
 }
+.abtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 @media only screen and(max-width: 700px) {
   .examples_list {
     grid-template-columns:repeat(1, 300px);
   }
+  .main_info_container {
+    width: 80%;
+  }
 }
+
 
