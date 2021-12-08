@@ -82,7 +82,7 @@ const Filter = props => {
                         </h5>
                     </div>
 
-                    <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <Form >
                             <Form.Item hasFeedback>
                                 <div className="check__picker">
