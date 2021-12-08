@@ -10,13 +10,13 @@ const FooterSearch = () => {
                 </div>
 
                 <div>
-                    <a href="" className="me-4 text-reset mr-3">
+                    <a href="https://www.facebook.com/profile.php?id=100075734144558" className="me-4 text-reset mr-3">
                         <i className="fab fa-facebook-f fa-2x"/>
                     </a>
-                    <a href="" className="me-4 text-reset mr-3">
+                    <a href="mailto:propositumtop@gmail.com" className="me-4 text-reset mr-3">
                         <i className="fab fa-google fa-2x"/>
                     </a>
-                    <a href="" className="me-4 text-reset mr-3">
+                    <a href="https://t.me/findneighbour" className="me-4 text-reset mr-3">
                         <i className="fab fa-telegram-plane fa-2x"/>
                     </a>
                 </div>

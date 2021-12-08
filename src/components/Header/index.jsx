@@ -3,11 +3,9 @@ import {Link, useHistory} from 'react-router-dom';
 import {connect} from "react-redux";
 import store from 'redux/store';
 import {userActions} from "redux/actions";
-import {Menu} from 'antd';
 import houselogo from "../../assets/img/house-logo.svg"
 import s from "./Header.Module.scss";
 import "./Navbar.css"
-import {SearchOutlined} from '@ant-design/icons';
 
 
 const Header = ({user}) => {

@@ -9,6 +9,7 @@ const Profile = () => {
             <div className={s.main_info_user}>
                 <MainInfoUser/>
             </div>
+            <div className={s.eblock}></div>
             <FooterSearch/>
         </section>
     );
