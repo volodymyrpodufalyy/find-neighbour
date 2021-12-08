@@ -11,7 +11,7 @@ const SearchLocationInput = ({ onChange }) => {
 
     return (
         <AlgoliaPlaces
-            placeholder={"Введіть ваше місто"}
+            placeholder={"Enter your city..."}
             onChange={handleChangeAddress}
         />
     );

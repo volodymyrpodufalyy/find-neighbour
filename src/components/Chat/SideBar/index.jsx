@@ -32,7 +32,7 @@ const SideBar = ({
       <div className="chat__sidebar-header">
         <div>
         <TeamOutlined />
-          <span>Список діалогів</span>
+          <span>Dialog list</span>
         </div>
         <Button onClick={onShow} icon={<FormOutlined />}/>
       </div>
@@ -41,11 +41,11 @@ const SideBar = ({
         <Dialogs userId={user && user.id} />
       </div>
       <Modal
-        title="Створити діалог"
+        title="Create dialog"
         visible={visible}
         footer={[
           <Button key="back" onClick={onClose}>
-            Закрити
+            Close
           </Button>,
           <Button
             disabled={!messageText}
@@ -54,12 +54,12 @@ const SideBar = ({
             loading={isLoading}
             onClick={onModalOk}
           >
-            Cтворити
+            Create
           </Button>
         ]}
       >
         <Form className="add-dialog-form">
-          <Form.Item label="Введіть ім'я користувача або E-Mail">
+          <Form.Item label="Enter username or E-Mail">
             <Select
               value={inputValue}
               onSearch={onSearch}
@@ -76,7 +76,7 @@ const SideBar = ({
             </Select>
           </Form.Item>
           {selectedUserId && (
-            <Form.Item label="Введіть текст повідомлення">
+            <Form.Item label="Enter message text">
               <TextArea
                 autosize={{ minRows: 3, maxRows: 10 }}
                 onChange={onChangeTextArea}

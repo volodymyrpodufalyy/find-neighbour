@@ -29,11 +29,11 @@ const CardItem = ({ card }) => {
 
             <div className="users__list-card-info-bottom">
               <div className="users__list-card-info-bottom-item">
-                <h5>ВІК</h5>
+                <h5>AGE</h5>
                 <h6 className="item_card_text">{card.age}</h6>
               </div>
               <div className="users__list-card-info-bottom-item">
-                <h5>MICTO</h5>
+                <h5>CITY</h5>
                 <h6 className="item_card_text">{address[0]}</h6>
               </div>
             </div>

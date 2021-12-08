@@ -10,7 +10,7 @@ const Dialogs = ({ author, items, userId, onSearch, inputValue, currentDialogId 
   <div className="dialogs">
     <div className="dialogs__search">
       <Input.Search
-        placeholder="Пошук серед контактів"
+        placeholder="Search among contacts"
         onChange={e => onSearch(e.target.value)}
         value={inputValue}
       />
@@ -28,7 +28,7 @@ const Dialogs = ({ author, items, userId, onSearch, inputValue, currentDialogId 
     ) : (
       <Empty
         image={Empty.PRESENTED_IMAGE_SIMPLE}
-        description="Нічого не знайдено"
+        description="Nothing was found"
       />
     )}
   </div>

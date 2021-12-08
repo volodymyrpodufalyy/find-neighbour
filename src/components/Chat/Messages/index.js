@@ -22,7 +22,7 @@ console.log(items, 'ites');
     <div ref={blockRef} className={classNames('messages',{'messages--loading': isLoading})}>
         {
             isLoading && !user ? (
-                <Spin size="large" tip="Завантаження повідомлень..."/>
+                <Spin size="large" tip="Loading messages..."/>
             ) : items && !isLoading ? (
                 items.length > 0 ? (
                     items.map(item =>( <Message key={item._id} 
@@ -31,8 +31,8 @@ console.log(items, 'ites');
                         onRemoveMessage={onRemoveMessage.bind(this, item._id)} 
                         setPreviewImage={setPreviewImage}
                         />))
-            ) : ( <Empty  description="Напишіть повідомлення,щоб почати діалог" /> )
-            ) : ( <Empty  description="Відкрийте діалог,щоб почати спілкування" /> )
+            ) : ( <Empty  description="Write a message to start a dialogue" /> )
+            ) : ( <Empty  description="Open dialogue to start chatting" /> )
         }
         {isTyping && <Message isTyping={true} user={partner} />}
         <Modal visible={!!previewImage} onCancel={() => setPreviewImage(null)} footer={null} >

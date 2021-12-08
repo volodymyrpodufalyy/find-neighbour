@@ -38,7 +38,7 @@ const Filter = props => {
             >
                 <Form.Item name="range-picker" hasFeedback>
                     <div className="age-picker">
-                        <p>Вік:</p>
+                        <p>Age:</p>
                         <div className="age__dropdowns">
                             <Dropdown
                                 className="age__dropdowns-item"
@@ -66,7 +66,7 @@ const Filter = props => {
             <Form >
                 <Form.Item hasFeedback>
                     <div className="check__picker">
-                        <p>Місто:</p>
+                        <p>City:</p>
                         <SearchLocationInput parentCallback={setUserAdress} onChange={() => null}  />
                     </div>
                 </Form.Item>
@@ -86,7 +86,7 @@ const Filter = props => {
                         <Form >
                             <Form.Item hasFeedback>
                                 <div className="check__picker">
-                                    <div><p>Стать:</p></div>
+                                    <div><p>Gender:</p></div>
                                     <div><Checkbox
                                         onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
                                         className="check__picker-item">Чоловік</Checkbox>
