@@ -1,4 +1,4 @@
-@media only screen and(max-width: 520px){
+@media only screen and(max-width: 580px){
   .home-page {
     max-width: 100% !important;
 
@@ -218,6 +218,17 @@
   .about_us_text {
     color: #ccd2e9;
     font-size: 15px;
+  }
+}
+
+@media only screen and(max-width: 360px) {
+  .home-page .welcome__top .slogan__top p {
+    font-size: 4rem !important;
+    margin-top: 10%;
+  }
+  .home-page .welcome__top .slogan__bottom p {
+    font-size: 4rem !important;
+    margin-top: 8%;
   }
 }
 
