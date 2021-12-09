@@ -103,12 +103,6 @@ const AddInfoForm = (props) => {
         }
     };
 
-    console.log(isSubmitting)
-
-    // console.log(values.kindOfActivity,
-    //     values.sex ,values.haveJobOrJobless,
-    //     values.maritalStatus, values.badHabits, values.pets)
-    //
 
     return (
         <div className='add_info_main'>

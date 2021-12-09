@@ -51,8 +51,8 @@ const Messages = ({
   }, [attachments]);
 
   useEffect(() => {
-    fetchDialogs()
-  }, [])
+    fetchDialogs();
+  }, []);
 
   useEffect(() => {
     if (currentDialog) {
@@ -69,8 +69,6 @@ const Messages = ({
       messagesRef.current.scrollTo(0, 999999);
     }
   }, [items, isTyping]);
-
-  console.log(currentDialog, "currentDialog");
 
   if (!currentDialog) {
     return <Empty description="Відкрийте діалог" />;
