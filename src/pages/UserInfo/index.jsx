@@ -35,6 +35,7 @@ const UserInfo = (props) => {
 
     let addressDetail = state.info?.address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 
+    console.log(state.info)
 
     return (
         <div className={s.container}>
@@ -75,35 +76,44 @@ const UserInfo = (props) => {
                     {showMore ?
                         <div className={s.modal_window}>
                             <div className={s.modal_info}>
+                                <div className={s.age}>
+                                    <h5>Gender</h5>
+                                    <p>{state.info?.sex === "Male" ? 'Male' : (state.info?.sex === "Female") ? "Female" : "Not specified"}</p>
+                                </div>
+                                <div className={s.kind_of}>
+                                    <h5>Has job</h5>
+                                    <p>{state.info?.hasJob === true ? 'Yes' : (state.info?.hasJob === false) ? "No" : "Not specified"}</p>
+                                </div>
+                                <div className={s.city}>
+                                    <h5>Student</h5>
+                                    <p>{state.info?.isStudent === true ? 'Yes' : (state.info?.isStudent === false) ? "No" : "Not specified"}</p>
+                                </div>
+
+                                <div className={s.kind_of}>
+                                    <h5>Marital status</h5>
+                                    <p>{state.info?.isMarried === true ? 'In relationship' : (state.info?.isMarried === false) ? "Single" : "Not specified"}</p>
+                                </div>
+
+
 
                                 <div className={s.age}>
                                     <h5>Bad habits</h5>
-                                    <p>{state.info?.badHabits === true ? 'Yes' : (state.info?.badHabits === false) ? "No" : "Undefined"}</p>
-                                </div>
-                                <div className={s.kind_of}>
-                                    <h5>Стосунки</h5>
-                                    <p>{state.info?.isMarried === true ? 'Так' : (state.info?.isMarried === false) ? "Немає" : "Невідомо"}</p>
-                                </div>
-
-
-                                <div className={s.city}>
-                                    <h5>Студент</h5>
-                                    <p>{state.info?.isStudent === true ? 'Так' : (state.info?.isStudent === false) ? "Немає" : "Невідомо"}</p>
+                                    <p>{state.info?.badHabits === true ? 'Yes' : (state.info?.badHabits === false) ? "No" : "Not specified"}</p>
                                 </div>
                                 <div className={s.city}>
-                                    <h5>Тваринки</h5>
-                                    <p>{state.info?.hasPets === true ? 'Так' : (state.info?.hasPets === false) ? "Немає" : "Невідомо"}</p>
+                                    <h5>Pets</h5>
+                                    <p>{state.info?.hasPets === true ? 'Yes' : (state.info?.hasPets === false) ? "No" : "Not specified"}</p>
                                 </div>
 
                             </div>
-
+                            {state.info?.contactWithMeUrl ?
                             <div className={s.btn_cont}>
                                 <a className={s.abtn} href={state.info?.contactWithMeUrl}>
                                     <div className={s.btn_cont}>
                                         <button className={s.btn}>Contact with me</button>
                                     </div>
                                 </a>
-                            </div>
+                            </div>:null}
 
                             <div className={s.btn_cont}>
                                 <button className="btn btn-outline-secondary" onClick={ShowMoreHandler}>Less info</button>
@@ -112,7 +122,7 @@ const UserInfo = (props) => {
                 </div>
 
                 <div>
-                    <h2 className={s.card_title}>Ваші рекомендації</h2>
+                    <h2 className={s.card_title}>Your recommendations</h2>
                     <ul className={s.examples_list}>
                         {results.map((userInfo) => (
                             <li key={userInfo.id}>
