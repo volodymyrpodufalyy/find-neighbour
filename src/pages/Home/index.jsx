@@ -114,12 +114,13 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
                         </div>
                       </div>
                       <div className="filter__submit">
+                        <Link to={'/search'}>
                         <button onClick={filterUsers}
                                 className="search__submit__button"
                                 type="primary"
                                 htmltype="submit"
                         ><p> OK </p>
-                        </button>
+                        </button></Link>
                       </div>
                     </Form.Item>
                   </Form>

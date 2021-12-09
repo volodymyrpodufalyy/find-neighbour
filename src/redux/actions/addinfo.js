@@ -72,10 +72,11 @@ const Actions = {
                 }
             });
     },
-    filterAddInfos: (startAge, endAge, sex, pets, badHabits) => dispatch => {
+    filterAddInfos: (startAge, endAge,address, sex, pets, badHabits) => dispatch => {
         dispatch(Actions.setIsLoading(true));
+        console.log(startAge, endAge,address, sex, pets, badHabits)
         addinfoApi
-            .filterUsers(startAge, endAge, sex, pets, badHabits)
+            .filterUsers(startAge, endAge,address,  sex, pets, badHabits)
             .then(({data}) => {
                 dispatch(Actions.setAddInfosResults(data));
                 dispatch(Actions.setIsLoading(false));

@@ -6,7 +6,6 @@ const CardItem = ({ card }) => {
   const address = card && card.address.split(",");
   const history =  useHistory();
 
-  console.log(card  )
 
   const navigateToProfile = () => {
     history.push(`/user/${card.user.id}`, {

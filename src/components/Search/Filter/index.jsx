@@ -1,8 +1,9 @@
-import React from "react";
-import { Form, Dropdown, Menu, Button, Checkbox } from "antd";
-import { DownOutlined, SwapOutlined } from '@ant-design/icons';
-import { SearchLocationInput } from "components";
+import React, {useEffect, useState} from "react";
+import {Form, Dropdown, Menu, Button, Checkbox, Radio} from "antd";
+import {DownOutlined, SwapOutlined} from '@ant-design/icons';
+import {SearchLocationInput} from "components";
 import "./Filters.scss";
+import s from "../../settings/settings.module.scss";
 
 const Filter = props => {
     const {
@@ -12,28 +13,37 @@ const Filter = props => {
         endAge,
         setEndAge,
         filterUsers,
-        setUserAdress,
+        setUserAddress,
         setSex,
         setPets,
-        setBadHabits } = props;
+        setBadHabits,
+        badHabits,
+        pets,
+        sex
+    } = props;
+
+
+    const callbackAddress = (childAddress) => {
+        setUserAddress(childAddress);
+    }
 
     const DropdownMenu = (age) => {
         return (
             <Menu className="dropdown_menu">
                 {ageRange.map((num) => {
-                    if(age === "startAge") {
-                        return ( <Menu.Item key={num} onClick={e => setStartAge(e.key)} > {num} </Menu.Item> );
+                    if (age === "startAge") {
+                        return (<Menu.Item key={num} onClick={e => setStartAge(e.key)}> {num} </Menu.Item>);
                     }
-                    return ( <Menu.Item key={num} onClick={e => setEndAge(e.key)} > {num} </Menu.Item> );
+                    return (<Menu.Item key={num} onClick={e => setEndAge(e.key)}> {num} </Menu.Item>);
                 })}
             </Menu>
         );
     };
     return (
-        <div className="filters" >
+        <div className="filters">
             <Form className="filter-form"
                   name="time_related_controls"
-                  initialValues={{ remember: true, }}
+                  initialValues={{remember: true,}}
                   onSubmit={filterUsers}
             >
                 <Form.Item name="range-picker" hasFeedback>
@@ -46,10 +56,10 @@ const Filter = props => {
                                 placement="bottomLeft"
                                 trigger={['click']}
                             >
-                                <Button className="age-btn" > {startAge} <DownOutlined/></Button>
+                                <Button className="age-btn"> {startAge} <DownOutlined/></Button>
                             </Dropdown>
                             <div className="arrows">
-                                <SwapOutlined />
+                                <SwapOutlined/>
                             </div>
                             <Dropdown
                                 className="age__dropdowns-item"
@@ -57,17 +67,17 @@ const Filter = props => {
                                 placement="bottomLeft"
                                 trigger={['click']}
                             >
-                                <Button className="age-btn" > {endAge} <DownOutlined/></Button>
+                                <Button className="age-btn"> {endAge} <DownOutlined/></Button>
                             </Dropdown>
                         </div>
                     </div>
                 </Form.Item>
             </Form>
-            <Form >
+            <Form>
                 <Form.Item hasFeedback>
                     <div className="check__picker">
                         <p>City:</p>
-                        <SearchLocationInput parentCallback={setUserAdress} onChange={() => null}  />
+                        <SearchLocationInput onChange={callbackAddress}/>
                     </div>
                 </Form.Item>
             </Form>
@@ -83,46 +93,60 @@ const Filter = props => {
                     </div>
 
                     <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                        <Form >
+                        <Form>
                             <Form.Item hasFeedback>
                                 <div className="check__picker">
                                     <div><p>Gender:</p></div>
-                                    <div><Checkbox
-                                        onChange={e => e.target.checked ? setSex(e.target.checked) : setSex(undefined)}
-                                        className="check__picker-item">Чоловік</Checkbox>
-                                        <Checkbox
-                                            onChange={e => e.target.checked ? setSex(!e.target.checked) : setSex(undefined)}
-                                            className="check__picker-item check__picker-item--female">Жінка</Checkbox>
-                                    </div>
-                                </div>
-                            </Form.Item>
-                        </Form>
-                        <Form  >
-                            <Form.Item hasFeedback>
-                                <div className="check__picker">
-                                    <div><p>Погані звички:</p></div>
                                     <div>
-                                        <Checkbox
-                                            onChange={e => e.target.checked ? setBadHabits(e.target.checked) : setBadHabits()}
-                                            className="check__picker-item">Так</Checkbox>
-                                        <Checkbox
-                                            onChange={e => e.target.checked ? setBadHabits(!e.target.checked) : setBadHabits()}
-                                            className="check__picker-item check__picker-item--female">Ні</Checkbox>
+
+                                        <Radio.Group
+                                            onChange={e => e.target.checked ? setSex(e.target.value) : setSex(undefined)}
+                                            value={sex}
+                                        >
+                                            <Radio value={'Male'}>Male</Radio>
+                                            <Radio value={'Female'}>Female</Radio>
+                                            <Radio value={undefined}>Any</Radio>
+
+                                        </Radio.Group>
+
                                     </div>
                                 </div>
                             </Form.Item>
                         </Form>
-                        <Form >
+                        <Form>
                             <Form.Item hasFeedback>
                                 <div className="check__picker">
-                                    <div><p>Домашні тваринки:</p></div>
-                                    <div><Checkbox
-                                        onChange={e => e.target.checked ? setPets(e.target.checked) : setPets()}
-                                        className="check__picker-item">Так</Checkbox>
-                                        <Checkbox
-                                            onChange={e => e.target.checked ? setPets(!e.target.checkede) : setPets()}
-                                            className="check__picker-item check__picker-item--female">Ні</Checkbox>
-                                    </div>
+                                    <div><p>Bad habits:</p></div>
+                                    <Radio.Group
+                                        onChange={e => e.target.checked ? setBadHabits(e.target.value) : setBadHabits(undefined)}
+                                        value={badHabits}
+                                    >
+                                        <Radio value={true}>Yes</Radio>
+                                        <Radio value={false}>No</Radio>
+                                        <Radio value={undefined}>Any</Radio>
+
+                                    </Radio.Group>
+
+
+                                </div>
+                            </Form.Item>
+                        </Form>
+                        <Form>
+                            <Form.Item hasFeedback>
+                                <div className="check__picker">
+                                    <div><p>Pets:</p></div>
+
+
+                                    <Radio.Group
+                                        onChange={e => e.target.checked ? setPets(e.target.value) : setPets(undefined)}
+                                        value={pets}
+                                    >
+                                        <Radio value={true}>Yes</Radio>
+                                        <Radio value={false}>No</Radio>
+                                        <Radio value={undefined}>Any</Radio>
+
+                                    </Radio.Group>
+
                                 </div>
 
 

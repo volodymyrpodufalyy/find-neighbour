@@ -33,8 +33,6 @@ const UserList = ({
     );
   }
 
-  console.log(results, "res");
-
   return (
     <div>
       <ul className="users__list">
