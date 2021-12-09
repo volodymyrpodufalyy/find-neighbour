@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import s from "./settings.module.scss"
 //import imge from "../../assets/img/account-avatar-profile-human-man-user-30448.png";
-import {Form, Radio, Row, Col, Image, Upload, Button, Checkbox, Space, Dropdown, Menu, Input} from 'antd';
+import {Form, Radio, Row, Col, Image, Upload, Button, Checkbox, Space, Dropdown, Menu, Input, Spin} from 'antd';
 import {Link} from "react-router-dom";
 import {SearchLocationInput} from 'components';
 
@@ -68,7 +68,12 @@ const SettingsInfo = (props) => {
                 <Form className={s.form}>
                     <Form.Item>
                         <div className={s.img}>
-                            <Image src={props.fileUrl === '' ? avatarUrl ==='': props.fileUrl} className={s.image}/>
+                            {props.isLoadingFile ?
+                                <div className={s.loader} >
+                                    <Spin size="large" tip="Loading..."/>
+                                </div> :
+                                <Image src={props.fileUrl === '' ? avatarUrl === '' : props.fileUrl}
+                                       className={s.image}/>}
                             <input type="file" onChange={props.uploadOnChange} accept="image/png, image/jpeg"/>
                             <Button onClick={props.uploadBtn} className={s.upload}
                                     disabled={props.disableUpload}>Upload</Button>
