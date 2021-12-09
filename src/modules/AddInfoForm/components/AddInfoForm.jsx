@@ -20,10 +20,10 @@ const AddInfoForm = (props) => {
 
 
     const [userAddress, setUserAddress] = useState("");
-    const [day, setDay] = useState("День");
-    const [month, setMonth] = useState("Місяць");
+    const [day, setDay] = useState("Day");
+    const [month, setMonth] = useState("Month");
     const [monthKey, setMonthKey] = useState("");
-    const [year, setYear] = useState("Рік");
+    const [year, setYear] = useState("Year");
     const [sex, setSex] = useState()
     const [student, setStudent] = useState()
     const [job, setJob] = useState()
@@ -33,18 +33,18 @@ const AddInfoForm = (props) => {
 
     const dayRange = [...Array(33).keys()].slice(1, 32);
     const monthRange = [
-        "Січень",
-        "Лютий",
-        "Березень",
-        "Квітень",
-        "Травень",
-        "Червень",
-        "Липень",
-        "Серпень",
-        "Вересень",
-        "Жовтень",
-        "Листопад",
-        "Грудень",
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
     ];
     const yearRange = [...Array(2020).keys()].slice(1970, 2020);
 
@@ -113,8 +113,8 @@ const AddInfoForm = (props) => {
     return (
         <div className='add_info_main'>
             <div className="auth__top">
-                <h2>Роскажіть про себе більше</h2>
-                <p>Щоб ми підібрали для вас найкращі варіанти</p>
+                <h2>Tell us more about yourself</h2>
+                <p>So that we can choose the best options for you</p>
             </div>
             <Block className="addinfo-block">
                 <Form
@@ -128,7 +128,7 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="birthdate" >
-                            <p>Дата народження:</p>
+                            <p>Date of birth:</p>
                         </div>
                         <Space direction="vertical">
                             <Space wrap >
@@ -182,8 +182,8 @@ const AddInfoForm = (props) => {
                                 setSex(e.target.value)
                                 values.sex = e.target.value
                             }} value={sex}>
-                                <Radio value="Male">Чоловік</Radio>
-                                <Radio value="Female">Жінка</Radio>
+                                <Radio value="Male">Male</Radio>
+                                <Radio value="Female">Female</Radio>
                                 {/*<Radio value="">Інше</Radio>*/}
                             </Radio.Group>
 
@@ -196,7 +196,7 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="birthdate">
-                            <p>Номер телефону:</p>
+                            <p>Phone number:</p>
                         </div>
                         <Input
                             id="phoneNumber"
@@ -206,6 +206,7 @@ const AddInfoForm = (props) => {
                             value={values.phoneNumber}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            maxLength={9}
                         />
                     </Form.Item>
                     <Form.Item
@@ -214,7 +215,7 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="birthdate">
-                            <p>Місто:</p>
+                            <p>City:</p>
                         </div>
                         <SearchLocationInput onChange={onChangeAddress} />
                     </Form.Item>
@@ -224,14 +225,14 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="checkbox">
-                            <p>Рід зайнятості:</p>
+                            <p>Kind of Activity:</p>
                         </div>
                         <Radio.Group className="radio"  onChange={(e) =>{
                             setStudent(e.target.value)
                             values.kindOfActivity = e.target.value
                         }} value={student}>
-                            <Radio value={true}>Студент</Radio>
-                            <Radio value={false}>Закінчив</Radio>
+                            <Radio value={true}>Student</Radio>
+                            <Radio value={false}>Graduated</Radio>
                         </Radio.Group>
                     </Form.Item>
                     <Form.Item
@@ -240,14 +241,14 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="checkbox">
-                            <p>Ви працюєте?</p>
+                            <p>Do you have job?</p>
                         </div>
                         <Radio.Group className="radio"  onChange={(e) =>{
                             setJob(e.target.value)
                             values.haveJobOrJobless = e.target.value
                         }} value={job}>
-                            <Radio value={true}>Так</Radio>
-                            <Radio  value={false}>Ні</Radio>
+                            <Radio value={true}>Have job</Radio>
+                            <Radio  value={false}>Unemployed</Radio>
                         </Radio.Group>
 
                     </Form.Item>
@@ -257,7 +258,7 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="checkbox">
-                            <p>Cтатус</p>
+                            <p>Marital Status:</p>
                         </div>
 
                         <Radio.Group className="radio"  onChange={(e) =>{
@@ -265,9 +266,9 @@ const AddInfoForm = (props) => {
                             values.maritalStatus = e.target.value
                         }} value={married}>
 
-                            <Radio value={true}>В стосунках</Radio>
+                            <Radio value={true}>In a relationship</Radio>
 
-                            <Radio value={false}>Не в стосунках</Radio>
+                            <Radio value={false}>Single</Radio>
 
                         </Radio.Group>
 
@@ -278,16 +279,16 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="checkbox">
-                            <p>Шкідливі звички?</p>
+                            <p>Bad Habits:</p>
                         </div>
 
                         <Radio.Group onChange={(e) =>{
                             setBadHabits(e.target.value)
                             values.badHabits = e.target.value
                         }} value={badHabits}>
-                            <Radio value={true}>Так, є</Radio>
-                            <Radio value={false}>Ні, немає</Radio>
-                            <Radio value={null}>Не хочу відповідати</Radio>
+                            <Radio value={true}>Yes</Radio>
+                            <Radio value={false}>No</Radio>
+                            <Radio value={null}>I don't know</Radio>
                         </Radio.Group>
 
                     </Form.Item>
@@ -297,16 +298,16 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="checkbox">
-                            <p>Домашні тварини?</p>
+                            <p>Pets</p>
                         </div>
                         <Radio.Group onChange={(e) =>{
                             setPets(e.target.value)
                             values.pets = e.target.value
 
                         }} value={hasPets}>
-                            <Radio value={true}>Так, є</Radio>
-                            <Radio value={false}>Ні, немає</Radio>
-                            <Radio value={null}>Не хочу відповідати</Radio>
+                            <Radio value={true}>Yes</Radio>
+                            <Radio value={false}>No</Radio>
+                            <Radio value={null}>I don't know</Radio>
                         </Radio.Group>
 
 
@@ -317,7 +318,7 @@ const AddInfoForm = (props) => {
                         hasFeedback
                     >
                         <div className="birthdate">
-                            <p>Особисті вподобання(*необов'язково):</p>
+                            <p>Tell something about yourself(*not necessarily):</p>
                         </div>
                         <Input
                             value={values.moreAboutUser}
@@ -327,7 +328,7 @@ const AddInfoForm = (props) => {
                         />
                     </Form.Item>
                     <Form.Item>
-                        {isSubmitting && !isValid && <span>Помилка</span>}
+                        {isSubmitting && !isValid && <span>Error</span>}
                         <Button
                             disabled={isSubmitting}
                             onClick={handleSubmit}
@@ -336,7 +337,7 @@ const AddInfoForm = (props) => {
                             htmlType="submit"
                             className="login-form-button"
                         >
-                            Далі
+                            Submit
                         </Button>
                     </Form.Item>
                 </Form>

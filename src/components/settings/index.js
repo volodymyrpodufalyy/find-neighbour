@@ -193,7 +193,7 @@ const SettingsInfo = (props) => {
                     <Form.Item>
                         <div className='checkbox'><p>Phone number:</p></div>
                         <label className={s.form_item}>
-                            <Input type={"number"} disabled={false} value={Number} maxLength={15}
+                            <Input type={"number"} disabled={false} value={Number} maxLength={12}
                                    onChange={event => setNumber(event.target.value)}/>
                             <div className={s.hint}>Enter your phone number like this: 380...</div>
                         </label>
