@@ -34,7 +34,7 @@ const Messages = ({
               <Message
                 key={item._id}
                 {...item}
-                isMe={user && user.id == item.user.id}
+                isMe={user && user.id === item.user.id}
                 onRemoveMessage={onRemoveMessage.bind(this, item._id)}
                 setPreviewImage={setPreviewImage}
               />
@@ -45,7 +45,6 @@ const Messages = ({
         ) : (
           <Empty description="Open dialogue to start chatting" />
         )}
-        {isTyping && <Message isTyping={true} user={partner} />}
         <Modal
           visible={!!previewImage}
           onCancel={() => setPreviewImage(null)}

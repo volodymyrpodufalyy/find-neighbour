@@ -21,7 +21,8 @@ const SideBar = ({
   onChangeInput,
   onSelectUser,
   onChangeTextArea,
-  onModalOk
+  onModalOk,
+  closeModal
 }) => {
   const options = users.map(user => (
     <Option key={user.id}>{user.fullname}</Option>

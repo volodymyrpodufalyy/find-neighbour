@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 import format from "date-fns/format";
 import isToday from "date-fns/is_today";
 import { Link } from "react-router-dom";
 import { IconReaded, Avatar } from "components";
+import { ModalContext } from "../../../pages/Chat";
 
 const getMessageTime = createdAt => {
   if (isToday(createdAt)) {
@@ -37,9 +38,12 @@ const DialogItem = ({
     author,
     userId
   }) => {
+
+    const {setIsOpen} = useContext(ModalContext)
     
         return (<Link to={`/chat/dialog/${_id}`}>
         <div
+        onClick={() => setIsOpen(false)}
           className={classNames("dialogs__item", {
             "dialogs__item--online": partner.isOnline,
             "dialogs__item--selected": currentDialogId === _id

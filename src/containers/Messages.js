@@ -86,7 +86,7 @@ const Messages = ({
       blockHeight={blockHeight}
       isTyping={isTyping}
       partner={
-        user.id !== currentDialog.partner.id
+        user.id != currentDialog.partner.id
           ? currentDialog.author
           : currentDialog.partner
       }
