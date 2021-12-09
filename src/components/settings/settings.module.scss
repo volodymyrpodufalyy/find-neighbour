@@ -26,7 +26,11 @@ input::-webkit-inner-spin-button {
     border-radius: 7px;
     transition: opacity 0.4s;
 }
-
+.loader{
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 
 
 /*_______Main div and settings______*/

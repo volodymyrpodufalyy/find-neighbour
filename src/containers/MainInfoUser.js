@@ -52,7 +52,7 @@ const MainInfoUserContainer = ({user, userInfo, isLoading, setIsLoading, fetchUs
     if (loading) {
         return (
             <div className="spin-load">
-                <Spin size="large" tip="Завантаження..."/>
+                <Spin size="large" tip="Loading..."/>
             </div>
         );
     }

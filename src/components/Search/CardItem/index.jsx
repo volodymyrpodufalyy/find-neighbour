@@ -8,7 +8,7 @@ const CardItem = ({ card }) => {
 
 
   const navigateToProfile = () => {
-    document.documentElement.scrollTop = 0;
+    window.scrollTo({top: 0, behavior: 'smooth'});
     history.push(`/user/${card.user.id}`, {
       info: card
     })

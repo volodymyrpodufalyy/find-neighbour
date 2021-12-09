@@ -38,7 +38,8 @@ const SettingsContainer = () => {
         dispatch(attachmentsActions.uploadFile(file))
     }
 
-    let fileInfo = useSelector(state => state.attachments.items)
+    let fileInfo = useSelector(state => state.attachments.fileItem)
+    let isLoadingFile = useSelector(state => state.attachments.isLoading)
 
 
     const updateAddress = (address) => {
@@ -77,6 +78,7 @@ const SettingsContainer = () => {
                   uploadBtn={uploadBtn}
                   disableUpload={disableUpload}
                   fileUrl={fileInfo.file.url}
+                  isLoadingFile={isLoadingFile}
         />
     )
 }
