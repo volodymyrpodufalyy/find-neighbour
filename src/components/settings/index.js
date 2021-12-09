@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import s from "./settings.module.scss"
-import imge from "../../assets/img/account-avatar-profile-human-man-user-30448.png";
+//import imge from "../../assets/img/account-avatar-profile-human-man-user-30448.png";
 import {Form, Radio, Row, Col, Image, Upload, Button, Checkbox, Space, Dropdown, Menu, Input} from 'antd';
 import {Link} from "react-router-dom";
 import {SearchLocationInput} from 'components';
@@ -68,7 +68,7 @@ const SettingsInfo = (props) => {
                 <Form className={s.form}>
                     <Form.Item>
                         <div className={s.img}>
-                            <Image src={props.fileUrl === '' ? avatarUrl : props.fileUrl} className={s.image}/>
+                            <Image src={props.fileUrl === '' ? avatarUrl ==='': props.fileUrl} className={s.image}/>
                             <input type="file" onChange={props.uploadOnChange} accept="image/png, image/jpeg"/>
                             <Button onClick={props.uploadBtn} className={s.upload}
                                     disabled={props.disableUpload}>Upload</Button>
@@ -193,7 +193,7 @@ const SettingsInfo = (props) => {
                     <Form.Item>
                         <div className='checkbox'><p>Phone number:</p></div>
                         <label className={s.form_item}>
-                            <Input type={"number"} disabled={false} value={Number} maxLength={15}
+                            <Input type={"number"} disabled={false} value={Number} maxLength={12}
                                    onChange={event => setNumber(event.target.value)}/>
                             <div className={s.hint}>Enter your phone number like this: 380...</div>
                         </label>

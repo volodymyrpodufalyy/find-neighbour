@@ -177,7 +177,7 @@ const Home = ({fetchUserAddInfos, results, isLoading, filterAddInfos}) => {
           <div className="about__article">
             <p>
               We are a Lviv team of students who wanted to help people communicate more with each other through <br/>
-              our web application that will help people organize cool and interesting events "in two clicks". <br/>
+              our web application that will help people find neighbour for divide the rent and living space "in two clicks". <br/>
               All you need to do is just register in our application and find or create an event that others can join.
             </p>
           </div>

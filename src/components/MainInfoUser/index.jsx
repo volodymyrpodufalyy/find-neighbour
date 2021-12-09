@@ -7,7 +7,6 @@ import img from "../../assets/img/account-avatar-profile-human-man-user-30448.pn
 const MainInfoUser = props => {
 
     const {fullname} = props.state[0].user
-    console.log(props.state[0])
     const {moreAbout, age, isStudent, hasJob, address, user,avatarUrl} = props.state[0]
     let addressDetail = address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 

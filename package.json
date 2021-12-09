@@ -106,7 +106,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://localhost:3003",
+  "proxy": "https://findneighbour-backend.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",

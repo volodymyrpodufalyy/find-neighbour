@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {Card} from "antd";
-import {Avatar, CardItem} from "components";
+import {CardItem} from "components";
 import {useLocation} from "react-router";
 import s from "./UserInfo.module.scss";
 import {connect} from "react-redux";
 import {addinfoActions} from "redux/actions";
 import {Spin} from "antd";
-//import s from "../../components/MainInfoUser/mainInfoUser.module.scss";
 import img from "../../assets/img/account-avatar-profile-human-man-user-30448.png";
-import {Link} from "react-router-dom";
 import FooterSearch from "../../components/Search/FooterSearch/FooterSearch";
+
 
 const UserInfo = (props) => {
     const {fetchUserAddInfos, results, isLoading} = props;
@@ -38,41 +36,6 @@ const UserInfo = (props) => {
     let addressDetail = state.info?.address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 
 
-    const details = [
-        {
-            label: "Age",
-            value: state.info?.age,
-        },
-        {
-            label: "Phone number",
-            value: state.info?.phoneNumber,
-        },
-        {
-            label: "City",
-            value: state.info?.address.split(",")[0],
-        },
-        {
-            label: "Sex",
-            value: state.info?.sex,
-        },
-        {
-            label: "Bad habits",
-            value: state.info?.hasBadHabits ? "Yes" : "No",
-        },
-        {
-            label: "Has job",
-            value: state.info?.hasJob ? "Yes" : "No",
-        },
-        {
-            label: "Is married",
-            value: state.info?.isMarried ? "Yes" : "No",
-        },
-        {
-            label: "Is student",
-            value: state.info?.isStudent ? "Yes" : "No",
-        },
-    ];
-
     return (
         <div className={s.container}>
             <div className={s.main}>
@@ -80,7 +43,7 @@ const UserInfo = (props) => {
 
                     <div className={s.user_img}>
                         {
-                            state.info?.avatarUrl === "" ? <img src={img} alt="User_img"/> :
+                            state.info?.avatarUrl === "" || state.info?.avatarUrl === null || state.info?.avatarUrl === undefined ? <img src={img} alt="User_img"/> :
                                 <img src={state.info?.avatarUrl} alt="User_img"/>
                         }
                     </div>
@@ -95,8 +58,8 @@ const UserInfo = (props) => {
                             <p>{state.info?.age} Year</p>
                         </div>
                         <div className={s.kind_of}>
-                            <h5>Статус</h5>
-                            <p>{state.info?.user.isOnline ? "Онлай" : "Офлайн"}</p>
+                            <h5>Status</h5>
+                            <p>{state.info?.user.isOnline ? "Online" : "Offline"}</p>
 
                         </div>
                         <div className={s.city}>
@@ -114,8 +77,8 @@ const UserInfo = (props) => {
                             <div className={s.modal_info}>
 
                                 <div className={s.age}>
-                                    <h5>Погані звички</h5>
-                                    <p>{state.info?.badHabits === true ? 'Так' : (state.info?.badHabits === false) ? "Немає" : "Невідомо"}</p>
+                                    <h5>Bad habits</h5>
+                                    <p>{state.info?.badHabits === true ? 'Yes' : (state.info?.badHabits === false) ? "No" : "Undefined"}</p>
                                 </div>
                                 <div className={s.kind_of}>
                                     <h5>Стосунки</h5>

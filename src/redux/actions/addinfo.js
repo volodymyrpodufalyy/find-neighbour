@@ -74,7 +74,6 @@ const Actions = {
     },
     filterAddInfos: (startAge, endAge,address, sex, pets, badHabits) => dispatch => {
         dispatch(Actions.setIsLoading(true));
-        console.log(startAge, endAge,address, sex, pets, badHabits)
         addinfoApi
             .filterUsers(startAge, endAge,address,  sex, pets, badHabits)
             .then(({data}) => {
