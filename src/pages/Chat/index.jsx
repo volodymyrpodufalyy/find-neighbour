@@ -49,12 +49,12 @@ const Chat = (props) => {
   return (
     <div className="chat">
       <ModalContext.Provider value={{modalIsOpen,setIsOpen}}>
-        {width <= 768 ? (
+        {width <= 900 ? (
           <>
             {!currentDialog && <SideBar />}
-            <div onClick={openModal} className="open-dialogs">
+            {currentDialog && <div onClick={openModal} className="open-dialogs">
               Dialogs
-            </div>
+            </div>}
             <Modal
               isOpen={modalIsOpen}
               onRequestClose={closeModal}
