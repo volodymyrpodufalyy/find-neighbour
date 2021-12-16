@@ -35,15 +35,15 @@ $ git clone https://github.com/volodymyrpodufalyy/find-neighbour/edit/work_versi
 ```
 2. Checkout into other package:
 ```
-cd find-neighbour
+$ cd find-neighbour
 ```
 3. Install NPM packages:
 ```
-npm i
+$ npm i
 ```
 4. Start it!
 ```
-npm start
+$ npm start
 ```
 
 #### Backend: https://github.com/volodymyrpodufalyy/findneighbour-backend
