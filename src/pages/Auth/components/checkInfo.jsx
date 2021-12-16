@@ -53,6 +53,7 @@ const CheckEmailInfo = ({ location, history, user, fetchUserData }) => {
         });
     }
     fetchUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

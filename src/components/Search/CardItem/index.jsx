@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar } from "components";
 import { useHistory } from "react-router";
 
-const CardItem = ({ card }) => {
+const CardItem = ({ card},key) => {
   const address = card && card.address.split(",");
   const history =  useHistory();
 

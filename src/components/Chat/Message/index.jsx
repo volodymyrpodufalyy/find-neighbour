@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./Message.scss";
 import classNames from "classnames";
 import wave from "assets/img/wave.svg";
 import play from "assets/img/play.svg";
 import pause from "assets/img/pause.svg";
-import { Time, IconReaded, Avatar } from "components";
+import { Time,  Avatar } from "components";
 import { convertCurrentTime, isAudio } from "utils/helpers";
-import { EllipsisOutlined, EyeOutlined } from "@ant-design/icons";
-import { Popover, Button } from "antd";
+import {  EyeOutlined } from "@ant-design/icons";
+
 import { Emoji } from "emoji-mart";
 import reactStringReplace from "react-string-replace";
 

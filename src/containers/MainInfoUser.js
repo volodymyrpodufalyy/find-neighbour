@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from "react";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {MainInfoUser} from "components"
 import {addinfoActions} from "redux/actions";
 import {userActions} from "../redux/actions";
 import {Spin} from 'antd';
-import {load} from "dotenv";
 
-const MainInfoUserContainer = ({user, userInfo, isLoading, setIsLoading, fetchUserData, filterUserById}) => {
+const MainInfoUserContainer = ({user, userInfo, fetchUserData, filterUserById}) => {
 
 
     const [userId, setUserId] = useState(null)
     const [state, setState] = useState(userInfo)
-    const [loading, setLoading] = useState(false)
+    let isLoading = useSelector(state => state.addinfo.isLoading)
 
     const searchUserById = (userID) => {
         filterUserById(userID)
@@ -19,41 +18,39 @@ const MainInfoUserContainer = ({user, userInfo, isLoading, setIsLoading, fetchUs
 
     useEffect(() => {
         fetchUserData()
-    }, [])
+    }, [fetchUserData])
 
     useEffect(() => {
-        setLoading(true)
         if (user) {
             setUserId(user.id)
         }
-        setLoading(false)
 
     }, [user])
 
     useEffect(() => {
-        setLoading(true)
         if (userId) {
             searchUserById(userId)
         }
-        setLoading(false)
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId])
 
     useEffect(() => {
-        setLoading(true)
         if (userInfo.length !== 0) {
             setState(userInfo)
         }
-        setLoading(false)
 
     }, [userInfo])
 
 
-    if (loading) {
+    if (isLoading || userInfo.age === 0) {
         return (
-            <div className="spin-load">
-                <Spin size="large" tip="Loading..."/>
+            <div>
+                <div className="spin-load">
+                    <Spin size="large" tip="Loading..."/>
+                </div>
             </div>
+
         );
     }
 

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import format from "date-fns/format";
 import isToday from "date-fns/is_today";
 import { Link } from "react-router-dom";
-import { IconReaded, Avatar } from "components";
+import { Avatar } from "components";
 import { ModalContext } from "../../../pages/Chat";
 
 const getMessageTime = createdAt => {
@@ -19,7 +19,7 @@ const renderLastMessage = (message, userId) => {
   if(!message.text && message?.attachments?.length) {
     text = 'Media';
   } else {
-    text = message.text;  
+    text = message.text;
   }
   return `${message?.user?.id === userId ? "Ви: " : "" }${text}`;
 }
@@ -30,17 +30,16 @@ const DialogItem = ({
     unread,
     createdAt,
     text,
-    isMe,   
+    isMe,
     currentDialogId,
     lastMessage,
     user,
     partner,
     author,
-    userId
-  }) => {
-
+    userId,
+  },key) => {
     const {setIsOpen} = useContext(ModalContext)
-    
+
         return (<Link to={`/chat/dialog/${_id}`}>
         <div
         onClick={() => setIsOpen(false)}
@@ -71,5 +70,5 @@ const DialogItem = ({
       </Link>
     );
   }
- 
+
 export default DialogItem;

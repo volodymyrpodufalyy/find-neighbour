@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {Form, Dropdown, Menu, Button, Checkbox, Radio} from "antd";
+import React from "react";
+import {Form, Dropdown, Menu, Button, Radio} from "antd";
 import {DownOutlined, SwapOutlined} from '@ant-design/icons';
 import {SearchLocationInput} from "components";
 import "./Filters.scss";
-import s from "../../settings/settings.module.scss";
 
 const Filter = props => {
     const {

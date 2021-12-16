@@ -22,10 +22,12 @@ const Filters = ({results, filterAddInfos, fetchUserAddInfos, pageSize}) => {
     useEffect(() => {
         fetchUserAddInfos(1, pageSize)
         filterUsers();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
         filterUsers();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sex, pets, badHabits, userAddress])
 
     return (

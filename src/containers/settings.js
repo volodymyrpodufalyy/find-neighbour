@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {Settings} from "components"
 import {useSelector, useDispatch} from "react-redux";
-import {addinfoActions, userActions,attachmentsActions} from "redux/actions";
+import {addinfoActions, userActions, attachmentsActions} from "redux/actions";
 import {Spin} from "antd";
 
 const SettingsContainer = () => {
     const dispatch = useDispatch()
 
-    const [isLoading, setIsLoading] = useState(useSelector(state => state.addinfo.isLoading))
+    let isLoading = useSelector(state => state.addinfo.isLoading)
     const [file, setFile] = useState()
     const [disableUpload, setDisableUpload] = useState(true)
 
@@ -26,14 +26,14 @@ const SettingsContainer = () => {
 
     let data = useSelector(state => state.addinfo.userInfo)
 
-    const uploadOnChange = (e)=>{
+    const uploadOnChange = (e) => {
         if (e.target.files[0]) {
             setDisableUpload(false)
             setFile(e.target.files[0])
         }
     }
 
-    const uploadBtn = ()=>{
+    const uploadBtn = () => {
         setDisableUpload(true)
         dispatch(attachmentsActions.uploadFile(file))
     }
@@ -47,26 +47,28 @@ const SettingsContainer = () => {
             {'adress': address}, data[0].id))
     }
 
-    const saveChanges = (pets,badHabits,kindOfActivity,job,marital,aboutUser,contactWithMeUrl,Number) =>{
+    const saveChanges = (pets, badHabits, kindOfActivity, job, marital, aboutUser, contactWithMeUrl, Number) => {
         dispatch(addinfoActions.updateUserAddInfo({
-            'pets':pets,
-            'badHabits':badHabits,
-            'kindOfActivity':kindOfActivity,
-            'haveJobOrJobless':job,
-            'maritalStatus':marital,
-            'moreAboutUser':aboutUser,
+            'pets': pets,
+            'badHabits': badHabits,
+            'kindOfActivity': kindOfActivity,
+            'haveJobOrJobless': job,
+            'maritalStatus': marital,
+            'moreAboutUser': aboutUser,
             'avatarUrl': fileInfo.file.url,
-            'contactWithMeUrl':contactWithMeUrl,
-            'phoneNumber':Number
+            'contactWithMeUrl': contactWithMeUrl,
+            'phoneNumber': Number
         }, data[0].id))
 
     }
 
     if (isLoading || id === 0) {
         return (
+
             <div className="spin-load">
-                <Spin size="large" tip="Завантаження..."/>
+                <Spin size="large" tip="Loading..."/>
             </div>
+
         );
     }
 

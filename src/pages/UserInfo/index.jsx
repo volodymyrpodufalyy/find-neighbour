@@ -23,19 +23,21 @@ const UserInfo = (props) => {
 
     useEffect(() => {
         fetchUserAddInfos(1, 6);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (isLoading) {
         return (
-            <div className="spin-load">
-                <Spin size="large" tip="Завантаження..."/>
+            <div>
+                <div className="spin-load">
+                    <Spin size="large" tip="Loading..."/>
+                </div>
+                <FooterSearch/>
             </div>
         );
     }
 
     let addressDetail = state.info?.address.replace(/(^\s+)|(\s+$)/g, '').split(',')
-
-    console.log(state.info)
 
     return (
         <div className={s.container}>
@@ -44,7 +46,8 @@ const UserInfo = (props) => {
 
                     <div className={s.user_img}>
                         {
-                            state.info?.avatarUrl === "" || state.info?.avatarUrl === null || state.info?.avatarUrl === undefined ? <img src={img} alt="User_img"/> :
+                            state.info?.avatarUrl === "" || state.info?.avatarUrl === null || state.info?.avatarUrl === undefined ?
+                                <img src={img} alt="User_img"/> :
                                 <img src={state.info?.avatarUrl} alt="User_img"/>
                         }
                     </div>
@@ -95,7 +98,6 @@ const UserInfo = (props) => {
                                 </div>
 
 
-
                                 <div className={s.age}>
                                     <h5>Bad habits</h5>
                                     <p>{state.info?.badHabits === true ? 'Yes' : (state.info?.badHabits === false) ? "No" : "Not specified"}</p>
@@ -107,16 +109,17 @@ const UserInfo = (props) => {
 
                             </div>
                             {state.info?.contactWithMeUrl ?
-                            <div className={s.btn_cont}>
-                                <a className={s.abtn} href={state.info?.contactWithMeUrl}>
-                                    <div className={s.btn_cont}>
-                                        <button className={s.btn}>Contact with me</button>
-                                    </div>
-                                </a>
-                            </div>:null}
+                                <div className={s.btn_cont}>
+                                    <a className={s.abtn} href={state.info?.contactWithMeUrl}>
+                                        <div className={s.btn_cont}>
+                                            <button className={s.btn}>Contact with me</button>
+                                        </div>
+                                    </a>
+                                </div> : null}
 
                             <div className={s.btn_cont}>
-                                <button className="btn btn-outline-secondary" onClick={ShowMoreHandler}>Less info</button>
+                                <button className="btn btn-outline-secondary" onClick={ShowMoreHandler}>Less info
+                                </button>
                             </div>
                         </div> : null}
                 </div>
@@ -134,7 +137,8 @@ const UserInfo = (props) => {
                 </div>
 
             </div>
-            <FooterSearch/></div>
+            <FooterSearch/>
+        </div>
     );
 };
 

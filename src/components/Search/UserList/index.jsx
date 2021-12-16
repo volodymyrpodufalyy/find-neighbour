@@ -28,7 +28,7 @@ const UserList = ({
   if (isLoading) {
     return (
       <div className="spin-load">
-        <Spin size="large" tip="Завантаження..." />
+        <Spin size="large" tip="Loading..." />
       </div>
     );
   }

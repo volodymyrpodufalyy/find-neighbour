@@ -40,6 +40,7 @@ const Messages = ({
 
   useEffect(() => {
     socket.on("DIALOGS:TYPING", toggleIsTyping);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const Messages = ({
 
   useEffect(() => {
     fetchDialogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -62,12 +64,14 @@ const Messages = ({
     socket.on("SERVER:NEW_MESSAGE", onNewMessage);
 
     return () => socket.removeListener("SERVER:NEW_MESSAGE", onNewMessage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDialog]);
 
   useEffect(() => {
     if (currentDialog) {
       messagesRef.current.scrollTo(0, 999999);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, isTyping]);
 
   if (!currentDialog) {
@@ -86,7 +90,7 @@ const Messages = ({
       blockHeight={blockHeight}
       isTyping={isTyping}
       partner={
-        user.id != currentDialog.partner.id
+        user.id !== currentDialog.partner.id
           ? currentDialog.author
           : currentDialog.partner
       }

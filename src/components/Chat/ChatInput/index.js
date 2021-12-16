@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { SmileOutlined, LoadingOutlined, 
+import { SmileOutlined, LoadingOutlined,
   CameraOutlined, AudioOutlined,
   SendOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import './ChatInput.scss';
@@ -14,12 +14,11 @@ const { TextArea } = Input;
 
 const ChatInput = props => {
     const {
-      emojiPickerVisible, 
-      value, 
-      setValue, 
+      emojiPickerVisible,
+      value,
+      setValue,
       toggleEmojiPicker,
       handleSendMessage,
-      addEmoji,
       sendMessage,
       attachments,
       onSelectFiles,
@@ -30,7 +29,7 @@ const ChatInput = props => {
       isLoading } = props;
 
 
-    return (    
+    return (
       <Fragment>
                 <div className="chat-input">
         <div>
@@ -56,11 +55,11 @@ const ChatInput = props => {
          autoSize={{ minRows: 1, maxRows: 6 }}
           />
           )}
-        <div className="chat-input__actions"> 
+        <div className="chat-input__actions">
             <UploadField onFiles={onSelectFiles}
-             containerProps={{ className: 'chat-input__actions-upload-btn' }} 
+             containerProps={{ className: 'chat-input__actions-upload-btn' }}
              uploadProps={{
-                  accept: '.jpg,.png,.jpeg', 
+                  accept: '.jpg,.png,.jpeg',
                   multiple: "multiple"
                 }}
               >
@@ -79,8 +78,8 @@ const ChatInput = props => {
         </div>
         <div className="chat-input__attachments">
          {attachments.length > 0 && <UploadFiles removeAttachment={removeAttachment} attachments={attachments}/>}
-        </div>  
-        </div>     
+        </div>
+        </div>
       </Fragment>
     );
 };

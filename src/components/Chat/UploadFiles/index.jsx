@@ -22,6 +22,7 @@ const UploadFiles = ({ attachments, removeAttachment }) => {
       ...state,
       fileList: attachments
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attachments]);
 
   const handleCancel = () => setState({ ...state, previewVisible: false });

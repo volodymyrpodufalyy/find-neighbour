@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import s from './mainInfoUser.module.scss'
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import img from "../../assets/img/account-avatar-profile-human-man-user-30448.png"
 
 
 const MainInfoUser = props => {
 
     const {fullname} = props.state[0].user
-    const {moreAbout, age, isStudent, hasJob, address, user,avatarUrl} = props.state[0]
+    const {moreAbout, age, isStudent, hasJob, address,avatarUrl} = props.state[0]
     let addressDetail = address.replace(/(^\s+)|(\s+$)/g, '').split(',')
 
     return (
@@ -17,7 +17,7 @@ const MainInfoUser = props => {
 
                 <div className={s.user_img}>
                     <Link to="/settings">
-                        { avatarUrl ? <img src={avatarUrl}/> : <img src={img} alt="User_img"/>}
+                        { avatarUrl ? <img src={avatarUrl} alt='user avatar'/> : <img src={img} alt="User_img"/>}
                     </Link>
                 </div>
                 <div className={s.user_title}>

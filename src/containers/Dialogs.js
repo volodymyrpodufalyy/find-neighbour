@@ -27,7 +27,7 @@ const Dialogs = ({
       )
     );
     setValue(value);
-    
+
   };
   window.fetchDialogs = fetchDialogs;
 
@@ -35,6 +35,7 @@ const Dialogs = ({
     if (items.length) {
       onChangeInput();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Dialogs = ({
       fetchDialogs();
     } else {
       setFiltredItems(filtred);
-    } 
+    }
 
     socket.on("SERVER:DIALOG_CREATED", fetchDialogs);
     socket.on("SERVER:NEW_MESSAGE", fetchDialogs);
@@ -51,6 +52,7 @@ const Dialogs = ({
       socket.removeListener("SERVER:DIALOG_CREATED", fetchDialogs)
       socket.removeListener("SERVER:NEW_MESSAGE", fetchDialogs)
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

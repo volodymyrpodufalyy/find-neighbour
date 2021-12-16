@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from "react";
-import { Form, Button, Checkbox, Space, Dropdown, Menu, Input,Radio,Col,Row } from "antd";
+import React, { useState} from "react";
+import { Form, Button, Space, Dropdown, Menu, Input,Radio, } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { Block, SearchLocationInput } from "../../../components";
-import { Link } from "react-router-dom";
 import "./AddInfoForm.scss";
 import { validateField, convertDate, getAge } from "../../../utils/helpers";
 
@@ -178,7 +177,6 @@ const AddInfoForm = (props) => {
                             }} value={sex}>
                                 <Radio value="Male">Male</Radio>
                                 <Radio value="Female">Female</Radio>
-                                {/*<Radio value="">Інше</Radio>*/}
                             </Radio.Group>
 
                         </div>

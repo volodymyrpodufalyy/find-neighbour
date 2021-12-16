@@ -15,11 +15,11 @@ const LoginForm = props => {
     handleSubmit,
     isSubmitting,
     isValid,
-    status
+
   } = props;
 
     return (
-        
+
         <div>
         <div className="auth__top">
          <h2>Enter Your Account</h2>
@@ -34,7 +34,7 @@ const LoginForm = props => {
       }}
       onSubmit={handleSubmit}
     >
-     <Form.Item 
+     <Form.Item
             validateStatus={validateField("email", touched, errors)}
             help={!touched.email ? "" : errors.email}
             hasFeedback
@@ -71,7 +71,7 @@ const LoginForm = props => {
 
       <Form.Item>
         {isSubmitting && !isValid && <span>Error</span>}
-        <Button 
+        <Button
         disabled={isSubmitting}
         onClick={handleSubmit} size="large" type="primary" htmlType="submit" className="login-form-button">
           Enter Account
