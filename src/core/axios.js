@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://findneighbour-backend.herokuapp.com';
+axios.defaults.baseURL = 'https://findneighour-backend-apis.herokuapp.com';
 axios.defaults.headers.common['token'] = window.localStorage.token;
 
 window.axios = axios;
