@@ -31,17 +31,21 @@
 ## ◼How To Start? :
 1. Clone the repo</br>
 ```
-$ git clone https://github.com/volodymyrpodufalyy/find-neighbour/edit/work_version
+$ git clone https://github.com/volodymyrpodufalyy/find-neighbour.git
 ```
 2. Checkout into other package:
 ```
 $ cd find-neighbour
 ```
-3. Install NPM packages:
+3. Swith the branch
+```
+$ git checkout work_version
+```
+4. Install NPM packages:
 ```
 $ npm i
 ```
-4. Start it!
+5. Start it!
 ```
 $ npm start
 ```
